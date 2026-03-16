@@ -5,12 +5,8 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center w-11/12 container mx-auto fixed top-10 left-1/2 -translate-x-1/2">
       {/* Logo */}
-      <div className="site-logo w-20 h-14">
-        <img
-          src={logo}
-          alt="super fitness app logo"
-          className="object-contain"
-        />
+      <div className="site-logo">
+        <img src={logo} alt="super fitness app logo" className="w-20 h-14" />
       </div>
 
       {/* Nav */}
