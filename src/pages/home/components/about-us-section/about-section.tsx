@@ -35,7 +35,7 @@ const features: FeatureType[] = [
 
 export default function AboutUsSection() {
   return (
-    <section className=" bg-white text-black pb-16 ">
+    <section className=" bg-white text-black pb-6 ">
       <div className="container grid grid-cols-1 lg:grid-cols-2 items-center lg:gap-20 mx-auto ">
         {/* images */}
         <div className="order-2 lg:order-1 -mb-64 lg:mb-2">
