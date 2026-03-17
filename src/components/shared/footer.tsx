@@ -35,7 +35,7 @@ export default function Footer() {
     <div>
       {/* Scrolling ticker */}
       <div className="bg-[#FF4100] flex items-center overflow-hidden h-20 whitespace-nowrap w-full">
-        <div className="flex animate-ticker items-center w-max">
+        <div className="flex animate-ticker items-center w-max font-inter">
           {Array(4)
             .fill(scrollingTicker)
             .flat()
