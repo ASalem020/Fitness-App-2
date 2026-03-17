@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.png.png";
 import Nav from "./nav";
+import { cn } from "@/lib/utils/tailwind-merge";
 
 export default function Header() {
+  // States
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  // Effects
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="flex justify-between items-center w-11/12 container mx-auto fixed top-10 left-1/2 -translate-x-1/2">
+    <header
+      className={cn(
+        "flex justify-between items-center w-11/12 container mx-auto fixed top-10 left-1/2 -translate-x-1/2 duration-300",
+        scrolled &&
+          "bg-gray-300/20 backdrop-blur-md px-4 py-2 rounded-2xl shadow-md",
+      )}
+    >
       {/* Logo */}
       <div className="site-logo">
         <img src={logo} alt="super fitness app logo" className="w-20 h-14" />
