@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "../shared/header";
+import Footer from "../shared/footer";
 
 export default function RootLayout() {
   return (
@@ -11,7 +12,7 @@ export default function RootLayout() {
       <Outlet />
 
       {/* Footer */}
-      {/* Wait michle to merge his code */}
+      <Footer />
     </div>
   );
 }
