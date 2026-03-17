@@ -1,15 +1,20 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/shared/footer";
-import WorkoutsSection from "./pages/home/components/workouts-section";
+import RootLayout from "./components/layout/root-layout";
+import Home from "./pages/home";
+import About from "./pages/about";
+import Classes from "./pages/classes";
+import Healthy from "./pages/healthy";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <WorkoutsSection />
-
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="classes" element={<Classes />} />
+        <Route path="healthy" element={<Healthy />} />
+      </Route>
+    </Routes>
   );
 }
-
-export default App;
