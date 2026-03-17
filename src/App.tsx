@@ -6,7 +6,7 @@ import About from "./pages/about";
 import Classes from "./pages/classes";
 import Healthy from "./pages/healthy";
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path="/" element={<RootLayout />}>
@@ -18,5 +18,3 @@ function App() {
     </Routes>
   );
 }
-
-export default App;
