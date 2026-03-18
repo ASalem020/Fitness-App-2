@@ -4,6 +4,12 @@ import image1 from "../../assets/images/0f36261b0706d20727c443ff32594e00d11dd3a4
 import image2 from "../../assets/images/dd063492dc18527cc75097cf3cc013e8fe31ce5f.jpg";
 import image3 from "../../assets/images/dd2b96c9cdde8b7ebcb79863a93b83961cb95f7d.jpg";
 
+const meals = [
+  { title: "Dinner", image: image3 },
+  { title: "Breakfast", image: image1 },
+  { title: "lunch", image: image2 },
+];
+
 export default function MealsSection() {
   return (
     <section className="relative w-full mt-32 h-[700px]">
@@ -26,9 +32,9 @@ export default function MealsSection() {
 
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-8 mt-10 container mx-auto">
-          <MealCard title={"Dinner"} image={image3} />
-          <MealCard title={"Breakfast"} image={image1} />
-          <MealCard title={"lunch"} image={image2} />
+          {meals.map((item, index) => (
+            <MealCard key={index} title={item.title} image={item.image} />
+          ))}
         </div>
       </div>
     </section>
