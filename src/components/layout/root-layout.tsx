@@ -4,15 +4,17 @@ import Footer from "../shared/footer";
 
 export default function RootLayout() {
   return (
-    <div className="root-layout">
+    <>
       {/* Header */}
       <Header />
 
       {/* Content Rendered */}
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
 
       {/* Footer */}
       <Footer />
-    </div>
+    </>
   );
 }
