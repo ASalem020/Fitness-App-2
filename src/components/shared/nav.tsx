@@ -8,7 +8,7 @@ export default function Nav() {
 
   return (
     <nav>
-      <ul className="flex items-center gap-6 *:p-4">
+      <ul className="flex items-center gap-6 *:p-4 z-20">
         {navLinks.map((link) => (
           <li key={link.id}>
             <Link
