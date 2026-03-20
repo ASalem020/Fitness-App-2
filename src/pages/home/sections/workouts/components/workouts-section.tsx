@@ -2,6 +2,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { MoveUpRightIcon } from "lucide-react";
 
 export default function WorkoutsSection() {
+  // Constants
   const categories = [
     "Full Body ",
     "Chest",
@@ -31,15 +32,12 @@ export default function WorkoutsSection() {
     <div
       className="h-screen pt-10"
       style={{
-        backgroundImage: "url(public/workouts-section/workouts.jpg)",
+        backgroundImage: "url(workouts-section/workouts.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div
-        className="bg-[#a7a7a6] h-2/3 p-12"
-        // style={{ backdropFilter: "blur(58.20000076293945px)" }}
-      >
+      <div className="bg-[#a7a7a6] h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md">
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto">
           Transform Your Body with Our Dynamic{" "}
@@ -77,16 +75,13 @@ export default function WorkoutsSection() {
             <div
               key={index}
               style={{
-                backgroundImage: `url(public/workouts-section/${item.image})`,
+                backgroundImage: `url(workouts-section/${item.image})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
               className="relative h-96 w-96 rounded-xl"
             >
-              <div
-                className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2"
-                style={{ backdropFilter: "blur(58.20000076293945px)" }}
-              >
+              <div className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2 bg-gray-300/90 backdrop-blur-md">
                 <p className="uppercase font-bold text-xl">{item.title}</p>
                 <div className="flex items-center gap-2">
                   <p className=" text-[#FF4100] font-medium text-xl">
