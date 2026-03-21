@@ -52,7 +52,7 @@ export default function Footer() {
       <footer className="flex flex-col justify-around gap-4 bg-gray-100 p-4 md:gap-32 md:px-20 md:py-10 md:flex-row">
         {/* Logo */}
         <div className="flex flex-col gap-2 w-60">
-          <img src="/public/logo.svg" alt="logo" width={87} height={55} />
+          <img src="/logo.svg" alt="logo" width={87} height={55} />
           <p className="text-lg">
             Push harder, go further. Your fitness journey starts today!
           </p>
