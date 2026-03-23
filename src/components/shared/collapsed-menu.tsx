@@ -33,7 +33,7 @@ export default function CollapsedMenu({ icon, links }: CollapsedMenuProps) {
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="menu flex flex-col gap-6 bg-neutral-800 py-6 px-4 z-50 w-11/12 h-fit"
+            className="menu flex flex-col gap-6 bg-orange-500 dark:bg-neutral-800 py-6 px-4 z-50 w-11/12 h-fit"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Logo White Text */}
@@ -51,9 +51,9 @@ export default function CollapsedMenu({ icon, links }: CollapsedMenuProps) {
               {links.map((link) => (
                 <li
                   className={cn(
-                    "font-bold duration-300 hover:text-orange-600 font-baloo-thambi text-xl",
+                    "font-bold duration-300 hover:text-white dark:hover:text-orange-600 font-baloo-thambi text-xl",
                     pathname === link.href || pathname.startsWith(link.href)
-                      ? "text-orange-600"
+                      ? "text-white dark:text-orange-600"
                       : "text-neutral-800 dark:text-zinc-100",
                   )}
                   key={link.id}
