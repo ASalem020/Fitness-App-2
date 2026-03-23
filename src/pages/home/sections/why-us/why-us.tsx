@@ -1,15 +1,10 @@
-import AdvantageBox from "./components/advantage-box";
-import WhyUsImageCard from "./components/why-us-image-card";
-import { advantages } from "./constants/advantages.constant";
-import image1 from "../../../../assets/images/why-us-image-1.webp";
-import image2 from "../../../../assets/images/why-us-image-2.jpg";
-import image3 from "../../../../assets/images/why-us-image-3.jpg";
-import image4 from "../../../../assets/images/why-us-image-4.webp";
 import SectionTitle from "@/components/shared/section-title";
+import AdvantageBox from "./components/advantage-box";
+import { advantages } from "./constants/advantages.constant";
 
 export default function WhyUs() {
   return (
-    <section className="why-us-section py-10 container mx-auto px-5 flex flex-col gap-4 lg:gap-0 lg:flex-row justify-between">
+    <section className="why-us-section py-10 container mx-auto px-5 flex justify-between">
       {/* Content */}
       <div className="content">
         {/* Section Title */}
@@ -45,39 +40,7 @@ export default function WhyUs() {
       </div>
 
       {/* Section Images */}
-      <div className="images md:min-w-[37.8125rem] grid grid-cols-2 grid-rows-2 gap-y-2 md:gap-x-2.5 lg:gap-x-0">
-        {/* Left Top Image */}
-        <WhyUsImageCard
-          colClassName="col-1-row-1"
-          imageContainerClassName="w-40 h-52 lg:w-72 lg:h-96"
-          img={image1}
-          alt="Gymnast standing in training gym preparing for workout"
-        />
-
-        {/* Right Top Image */}
-        <WhyUsImageCard
-          colClassName="col-2-row-1 flex items-end"
-          imageContainerClassName="w-44 h-40 lg:size-72 mb-6"
-          img={image2}
-          alt="Male athlete in gym wearing compression outfit ready to train"
-        />
-
-        {/* Left Bottom Image */}
-        <WhyUsImageCard
-          colClassName="col-1-row-2"
-          imageContainerClassName="w-40 h-48 lg:w-72 lg:h-80"
-          img={image3}
-          alt="Fitness model standing under gym rings in training facility"
-        />
-
-        {/* Right Bottom Image */}
-        <WhyUsImageCard
-          colClassName="col-2-row-2"
-          imageContainerClassName="w-44 h-48 lg:w-72 lg:h-80 -mt-6"
-          img={image4}
-          alt="Strong man in sportswear posing inside gymnastics gym"
-        />
-      </div>
+      <div className="images md:min-w-[37.8125rem]"></div>
     </section>
   );
 }

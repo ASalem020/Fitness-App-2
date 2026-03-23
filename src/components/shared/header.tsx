@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/images/logo.png.png";
+import logo from "../../assets/images/logo.png";
 import Nav from "./nav";
 import { cn } from "@/lib/utils/tailwind-merge";
 
@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <header
       className={cn(
-        "flex justify-between items-center w-11/12 container mx-auto fixed top-10 left-1/2 -translate-x-1/2 duration-300",
+        "flex justify-between items-center w-11/12 container mx-auto fixed top-10 left-1/2 -translate-x-1/2 duration-300 z-40",
         scrolled &&
           "bg-gray-300/20 backdrop-blur-md px-4 py-2 rounded-2xl shadow-md",
       )}
