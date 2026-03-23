@@ -8,7 +8,14 @@ export default function SectionTitle({ title }: SectionTitleProps) {
   return (
     <div className="section-title font-baloo-thambi relative">
       {/* Styled Title */}
-      <h2 className="text-white dark:text-zinc-800 text-6xl hidden md:block w-fit uppercase font-bold drop-shadow-[0px_0px_1px_#242424]">
+      <h2
+        style={
+          {
+            WebkitTextStroke: "2px #BCBDBF",
+          } as React.CSSProperties
+        }
+        className="text-white dark:text-zinc-800 text-6xl hidden md:block w-fit uppercase font-bold relative after:absolute after:size-full after:bg-gradient-to-b after:from-white/0 after:to-80% after:to-white after:z-10 after:inset-0"
+      >
         {title}
       </h2>
 
