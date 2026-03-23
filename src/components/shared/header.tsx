@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import logo from "../../assets/images/logo.png.png";
+import logo from "../../assets/images/logo.png";
 import Nav from "./nav";
 import { cn } from "@/lib/utils/tailwind-merge";
 
