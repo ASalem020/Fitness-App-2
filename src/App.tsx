@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Classes from "./pages/classes";
 import Healthy from "./pages/healthy";
+import Register from "./pages/register/register";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="classes" element={<Classes />} />
         <Route path="healthy" element={<Healthy />} />
       </Route>
+      <Route path="register" element={<Register />} />
     </Routes>
   );
 }
