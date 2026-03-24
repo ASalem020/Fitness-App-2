@@ -1,6 +1,6 @@
-import image from "../assets/images/Vector.png";
-import AboutImages from "@/components/about-section/about-image";
-import AIChat from "./../components/about-section/ai-chat";
+import image from "../../assets/images/Vector.png";
+import AboutImages from "@/pages/about/components/about-image";
+import AIChat from "./components/ai-chat";
 import { Button } from "@/components/ui/button";
 
 export default function About() {
@@ -34,8 +34,8 @@ export default function About() {
                   <img src={image} alt="arrow up icon" /> Personal Trainer
                 </h4>
                 <p className="text-gray-400 text-sm mt-4 w-60">
-                  Achieve your fitness goals with the guidance of our
-                  certified trainers.
+                  Achieve your fitness goals with the guidance of our certified
+                  trainers.
                 </p>
               </div>
 
@@ -56,8 +56,8 @@ export default function About() {
                   <img src={image} alt="vector image" /> Cardio Programs
                 </h4>
                 <p className="text-gray-400 text-sm mt-4 w-60">
-                  From steady-state runs to interval sprints, our
-                  treadmill programs.
+                  From steady-state runs to interval sprints, our treadmill
+                  programs.
                 </p>
               </div>
               <div>
@@ -65,8 +65,7 @@ export default function About() {
                   <img src={image} alt="arrow up icon" /> Healthy Nutrition
                 </h4>
                 <p className="text-gray-400 text-sm mt-4 w-60">
-                  Fuel your fitness journey with customized meal plans
-                  for you.
+                  Fuel your fitness journey with customized meal plans for you.
                 </p>
               </div>
             </div>
