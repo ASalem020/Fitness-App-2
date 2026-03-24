@@ -1,8 +1,7 @@
-import image from "../../assets/images/Vector.png";
+import image from "../../../../assets/images/Vector.png";
 import AboutImages from "@/pages/about/components/about-image";
-import AIChat from "./components/ai-chat";
 import { Button } from "@/components/ui/button";
-import Feature from "./components/feature";
+import Feature from "@/pages/about/components/feature";
 
 export type FeatureType = {
   img: string;
@@ -33,9 +32,9 @@ const features: FeatureType[] = [
   },
 ];
 
-export default function About() {
+export default function AboutUsSection() {
   return (
-    <section className=" bg-black text-white py-20 ">
+    <section className=" bg-white text-black py-20 ">
       <div className="container grid grid-cols-2 items-center gap-20 mx-auto mt-12">
         {/* images */}
         <AboutImages />
@@ -49,7 +48,7 @@ export default function About() {
             <span className="text-orange-500">YOUR FITNESS GOALS</span>
           </h2>
 
-          <p className="text-white mb-16 mt-6 ">
+          <p className=" mb-16 mt-6 ">
             We believe fitness is more than just a workout—it's a lifestyle.
             With top-of- the-line facilities, certified trainers, and a
             supportive community, we're here to inspire and guide you every step
@@ -77,10 +76,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* ai chat */}
-      <div>
-        <AIChat />
-      </div>
     </section>
   );
 }
