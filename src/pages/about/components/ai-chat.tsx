@@ -39,7 +39,7 @@ export default function AIChat() {
       {/* chat */}
       {open && (
         <>
-          <div className="fixed top-9 right-32 z-30">
+          <div className="fixed top-24 right-32 z-30">
             <img
               src={image}
               alt="image chat ai"

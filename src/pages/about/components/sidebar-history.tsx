@@ -1,11 +1,11 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 
 type prop = {
   open: boolean;
   onClose: () => void;
 };
 
-export default function ChatHistory({ open }: prop) {
+export default function ChatHistory({ open, onClose }: prop) {
   const items = [
     "Lorem ipsum dolor sit amet",
     "Lorem ipsum dolor sit amet",
@@ -31,9 +31,22 @@ export default function ChatHistory({ open }: prop) {
       "
     >
       {/* Title */}
-      <h3 className="text-white text-sm font-semibold mb-3">
-        Previous Conversations
-      </h3>
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="text-white text-sm font-semibold">
+          Previous Conversations
+        </h3>
+
+        <button
+          onClick={onClose}
+          className="
+            text-gray-400
+            hover:text-white
+            transition
+          "
+        >
+          <X size={16} />
+        </button>
+      </div>
 
       {/* List */}
       <div className="flex flex-col">
@@ -51,12 +64,10 @@ export default function ChatHistory({ open }: prop) {
               transition
             "
           >
-            <span className="truncate pr-2">
-              {item}
-            </span>
+            <span className="truncate pr-2">{item}</span>
 
             <span className="text-orange-500 text-sm">
-             <ChevronRight />
+              <ChevronRight />
             </span>
           </div>
         ))}
