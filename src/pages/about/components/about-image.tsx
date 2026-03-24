@@ -15,7 +15,7 @@ export default function AboutImages() {
       {/* الصورة الصغيرة */}
       <img
         src={image2}
-        className="absolute top-10 right-0 w-56 h-48 object-cover rounded-2xl"
+        className="absolute top-10 -right-6 w-56 h-48 object-cover rounded-2xl"
       />
 
       {/*الصورة الكبيرة تحت */}
