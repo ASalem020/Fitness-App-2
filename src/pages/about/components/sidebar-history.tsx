@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { ChevronRight, X } from "lucide-react";
 
 type prop = {
@@ -36,7 +37,7 @@ export default function ChatHistory({ open, onClose }: prop) {
           Previous Conversations
         </h3>
 
-        <button
+        <Button
           onClick={onClose}
           className="
             text-gray-400
@@ -45,7 +46,7 @@ export default function ChatHistory({ open, onClose }: prop) {
           "
         >
           <X size={16} />
-        </button>
+        </Button>
       </div>
 
       {/* List */}
