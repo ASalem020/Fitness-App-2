@@ -9,7 +9,6 @@ export default function ForgetPassword() {
       <FormContainer
         title="forget password"
         formComponent={<ForgetPassForm />}
-        subTitle="hi , there"
       />
     </main>
   );

@@ -30,12 +30,12 @@ export default function FormContainer({
       )}
 
       {/* Title */}
-      <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize">
+      <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize text-center">
         {title}
       </h1>
 
       {/* Form Container */}
-      <div className="form-container p-10 border border-gray-300 rounded-[3.125rem] flex items-center">
+      <div className="form-container p-10 border border-gray-300 rounded-[3.125rem] flex justify-center">
         {/* Form will render here */}
         {formComponent}
       </div>
