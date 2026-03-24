@@ -1,32 +1,82 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
+import {
+  getMusclesGroupsService,
+  getMusclesService,
+  type Muscle,
+  type Muscles,
+} from "@/lib/services/workout.service";
 import { MoveUpRightIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import WorkoutCardSkeleton from "./skeletons/workout-card-skeleton";
+import WorkoutTabsSkeleton from "./skeletons/workout-tabs-skeleton";
 
 export default function WorkoutsSection() {
-  // Constants
-  const categories = [
-    "Full Body ",
-    "Chest",
-    "Arm",
-    "Shoulder",
-    "Back",
-    "Legs",
-    "stomach",
-  ];
+  // states
+  const [musclesGroup, setMusclesGroup] = useState<Muscle[]>([]);
+  const [musclesDetails, setMusclesDetails] = useState<Muscles>();
+  const [loading, setLoading] = useState(true);
+  const [loadingDetails, setLoadingDetails] = useState(true);
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+  const [activeTab, setActiveTab] = useState<string>("");
 
-  const cards = [
-    {
-      title: "group workout",
-      image: "card-1.png",
-    },
-    {
-      title: "personal training",
-      image: "card-2.png",
-    },
-    {
-      title: "muscle building",
-      image: "card-3.png",
-    },
-  ];
+  useEffect(() => {
+    const fetchMusclesGroup = async () => {
+      try {
+        const data = await getMusclesGroupsService();
+        setMusclesGroup(data.musclesGroup);
+        setActiveTab(data.musclesGroup[0]?._id || "");
+      } catch (error) {
+        console.error("Error fetching muscles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMusclesGroup();
+  }, []);
+
+  useEffect(() => {
+    // Guard: don't fetch if activeTab isn't set yet
+    if (!activeTab) return;
+
+    // fetch muscles details
+    const fetchDetails = async () => {
+      setLoadingDetails(true);
+      try {
+        const data = await getMusclesService(activeTab);
+        setMusclesDetails(data || []);
+      } catch (error) {
+        console.error("Error fetching muscle details:", error);
+      } finally {
+        setLoadingDetails(false);
+      }
+    };
+    fetchDetails();
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  // How many tabs to show per carousel "page"
+  const TABS_PER_PAGE = 4;
+  const pages = [];
+  for (let i = 0; i < musclesGroup.length; i += TABS_PER_PAGE) {
+    pages.push(musclesGroup.slice(i, i + TABS_PER_PAGE));
+  }
 
   return (
     <div
@@ -37,62 +87,95 @@ export default function WorkoutsSection() {
         backgroundPosition: "center",
       }}
     >
-      <div className="bg-[#a7a7a6] h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md">
+      <div className="bg-[#a7a7a6] h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
         {/* Header */}
-        <h3 className="font-bold text-4xl uppercase w-5/12 m-auto">
+        <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
           Transform Your Body with Our Dynamic{" "}
           <span className="text-[#FF4100]">Upcoming Workouts</span>
         </h3>
 
-        {/* Tabs */}
+        {/* Tabs Carousel */}
         <div className="mt-8">
-          <Tabs defaultValue={categories[0]} className="w-full">
-            <TabsList className="bg-transparent gap-4 w-full justify-center">
-              {categories.map((category) => (
-                <TabsTrigger
-                  key={category}
-                  value={category}
-                  className="capitalize font-bold text-xl data-[state=active]:bg-[#FF4100] data-[state=active]:text-white data-[state=active]:rounded-full"
-                >
-                  {category}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-            <TabsContent value="all" className="mt-10">
-              {/* Content for all */}
-            </TabsContent>
-            {categories.slice(1).map((category) => (
-              <TabsContent key={category} value={category} className="mt-10">
-                {/* Content for {category} */}
-              </TabsContent>
-            ))}
-          </Tabs>
+          {loading ? (
+            <WorkoutTabsSkeleton />
+          ) : (
+            <>
+              <Carousel
+                setApi={setApi}
+                opts={{ align: "start", loop: false }}
+                className="w-full"
+              >
+                <CarouselContent>
+                  {pages.map((pageGroup, pageIndex) => (
+                    <CarouselItem key={pageIndex} className="basis-full">
+                      <div className="flex justify-center gap-4">
+                        {pageGroup.map((muscle) => (
+                          <button
+                            key={muscle._id}
+                            onClick={() => setActiveTab(muscle._id)}
+                            className={`capitalize font-bold text-xl px-5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
+                              activeTab === muscle._id
+                                ? "bg-[#FF4100] text-white"
+                                : "text-neutral-900 hover:bg-neutral-200"
+                            }`}
+                          >
+                            {muscle.name}
+                          </button>
+                        ))}
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </>
+          )}
         </div>
 
-        {/* Cards */}
-        <div className="flex justify-center gap-8 mt-8">
-          {cards.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundImage: `url(workouts-section/${item.image})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-              className="relative h-96 w-96 rounded-xl"
-            >
-              <div className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2 bg-gray-300/90 backdrop-blur-md">
-                <p className="uppercase font-bold text-xl">{item.title}</p>
-                <div className="flex items-center gap-2">
-                  <p className=" text-[#FF4100] font-medium text-xl">
-                    Explore{" "}
-                  </p>
-                  <MoveUpRightIcon className="w-4 h-4 p-1 bg-[#FF4100] rounded-full mt-1" />
+        {/* Static Cards */}
+        {loadingDetails ? (
+          <WorkoutCardSkeleton />
+        ) : (
+          <div className="flex justify-center gap-8 mt-8">
+            {musclesDetails?.muscles?.map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                className="relative h-96 w-96 rounded-xl"
+              >
+                <div className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2 bg-gray-300/90 backdrop-blur-md">
+                  <p className="uppercase font-bold text-xl">{item.name}</p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[#FF4100] font-medium text-xl">
+                      Explore
+                    </p>
+                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-[#FF4100] text-white rounded-full mt-1" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {/* Dots */}
+        {count > 1 && (
+          <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: count }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`rounded-full transition-all duration-300 ${
+                  current === index
+                    ? "bg-[#FF4100] w-6 h-3"
+                    : "bg-neutral-900 w-3 h-3 hover:bg-gray-500"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
