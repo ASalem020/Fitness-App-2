@@ -7,18 +7,19 @@ import type { CarouselApi } from "@/components/ui/carousel";
 import {
   getMusclesGroupsService,
   getMusclesService,
-  type Muscle,
-  type Muscles,
 } from "@/lib/services/workout.service";
 import { MoveUpRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import WorkoutCardSkeleton from "./skeletons/workout-card-skeleton";
 import WorkoutTabsSkeleton from "./skeletons/workout-tabs-skeleton";
+import type { MuscleGroup, MusclesResponse } from "@/lib/types/muscles";
 
 export default function WorkoutsSection() {
   // states
-  const [musclesGroup, setMusclesGroup] = useState<Muscle[]>([]);
-  const [musclesDetails, setMusclesDetails] = useState<Muscles>();
+  const [musclesGroup, setMusclesGroup] = useState<MuscleGroup[]>([]);
+  const [musclesDetails, setMusclesDetails] = useState<
+    MusclesResponse["muscles"]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [loadingDetails, setLoadingDetails] = useState(true);
   const [api, setApi] = useState<CarouselApi>();
@@ -26,6 +27,7 @@ export default function WorkoutsSection() {
   const [count, setCount] = useState(0);
   const [activeTab, setActiveTab] = useState<string>("");
 
+  // effects
   useEffect(() => {
     const fetchMusclesGroup = async () => {
       try {
@@ -51,7 +53,7 @@ export default function WorkoutsSection() {
       setLoadingDetails(true);
       try {
         const data = await getMusclesService(activeTab);
-        setMusclesDetails(data || []);
+        setMusclesDetails(data.muscles);
       } catch (error) {
         console.error("Error fetching muscle details:", error);
       } finally {
@@ -62,6 +64,7 @@ export default function WorkoutsSection() {
   }, [activeTab]);
 
   useEffect(() => {
+    // carousel api
     if (!api) return;
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
@@ -71,8 +74,8 @@ export default function WorkoutsSection() {
     });
   }, [api]);
 
-  // How many tabs to show per carousel "page"
-  const TABS_PER_PAGE = 4;
+  // Number of tabs per page
+  const TABS_PER_PAGE = 7;
   const pages = [];
   for (let i = 0; i < musclesGroup.length; i += TABS_PER_PAGE) {
     pages.push(musclesGroup.slice(i, i + TABS_PER_PAGE));
@@ -131,12 +134,12 @@ export default function WorkoutsSection() {
           )}
         </div>
 
-        {/* Static Cards */}
+        {/* Muscles */}
         {loadingDetails ? (
           <WorkoutCardSkeleton />
         ) : (
           <div className="flex justify-center gap-8 mt-8">
-            {musclesDetails?.muscles?.map((item, index) => (
+            {musclesDetails?.map((item, index) => (
               <div
                 key={index}
                 style={{
@@ -146,9 +149,11 @@ export default function WorkoutsSection() {
                 }}
                 className="relative h-96 w-96 rounded-xl"
               >
+                {/* Muscle name */}
                 <div className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2 bg-gray-300/90 backdrop-blur-md">
                   <p className="uppercase font-bold text-xl">{item.name}</p>
                   <div className="flex items-center gap-2">
+                    {/* Future implementation... */}
                     <p className="text-[#FF4100] font-medium text-xl">
                       Explore
                     </p>
