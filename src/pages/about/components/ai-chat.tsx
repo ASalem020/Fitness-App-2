@@ -1,13 +1,15 @@
-import { Menu, Pencil } from "lucide-react";
-import image from "../../assets/images/image-ai.png";
-import image2 from "../../assets/images/image-user-chat.jpg";
+import { Pencil, TextAlignEnd } from "lucide-react";
+import image from "../../../assets/images/image-ai.png";
+import image2 from "../../../assets/images/image-user-chat.jpg";
 import { useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import ChatHistory from "./sidebar-history";
 
 export default function AIChat() {
   // state
   const [open, setOpen] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   return (
     <>
@@ -54,6 +56,7 @@ export default function AIChat() {
               Tap to Close
             </Button>
           </div>
+
           <div className="fixed bottom-6 right-6 w-[300px] h-[420px] z-30">
             {/* overlay  */}
             <div
@@ -73,10 +76,13 @@ export default function AIChat() {
                 <h3 className="font-semibold">Smart Coach</h3>
 
                 <Button
-                  onClick={() => setOpen(false)}
+                  onClick={() => setHistoryOpen(true)}
                   className="text-orange-500 text-xl"
                 >
-                  <Menu className="text-orange-600 cursor-pointer" size={18} />
+                  <TextAlignEnd
+                    className="text-orange-600 cursor-pointer"
+                    size={18}
+                  />
                 </Button>
               </div>
 
@@ -103,6 +109,12 @@ export default function AIChat() {
                 </div>
               </div>
             </div>
+
+            {/* menu */}
+            <ChatHistory
+              open={historyOpen}
+              onClose={() => setHistoryOpen(false)}
+            />
           </div>
         </>
       )}
