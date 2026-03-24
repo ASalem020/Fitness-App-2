@@ -14,7 +14,7 @@ export default function About() {
         <div className="max-w-xl col-span-1 mt-20">
           <p className="text-orange-500 mb-2">About Us</p>
 
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
             EMPOWERING YOU TO ACHIEVE <br />
             <span className="text-orange-500">YOUR FITNESS GOALS</span>
           </h2>
@@ -28,23 +28,23 @@ export default function About() {
 
           {/* Features */}
           <div className="grid grid-cols-2 gap-8 mb-8 ">
-            <div className="">
+            <div>
               <div className="mb-16">
                 <h4 className="font-semibold flex items-center gap-4">
-                  <img src={image} alt="vector image" /> Personal Trainer
+                  <img src={image} alt="arrow up icon" /> Personal Trainer
                 </h4>
-                <p className="text-gray-400 text-sm mt-4">
-                  Achieve your fitness goals with the <br /> guidance of our
+                <p className="text-gray-400 text-sm mt-4 w-60">
+                  Achieve your fitness goals with the guidance of our
                   certified trainers.
                 </p>
               </div>
 
               <div>
                 <h4 className="font-semibold flex items-center gap-4">
-                  <img src={image} alt="vector image" /> Quality Equipment
+                  <img src={image} alt="arrow up icon" /> Quality Equipment
                 </h4>
-                <p className="text-gray-400 text-sm mt-4">
-                  Our gym is equipped with the <br /> latest cardio & strength
+                <p className="text-gray-400 text-sm mt-4 w-60">
+                  Our gym is equipped with the latest cardio & strength
                   machines.
                 </p>
               </div>
@@ -55,17 +55,17 @@ export default function About() {
                 <h4 className="font-semibold flex items-center gap-4">
                   <img src={image} alt="vector image" /> Cardio Programs
                 </h4>
-                <p className="text-gray-400 text-sm mt-4">
-                  From steady-state runs to interval <br /> sprints, our
+                <p className="text-gray-400 text-sm mt-4 w-60">
+                  From steady-state runs to interval sprints, our
                   treadmill programs.
                 </p>
               </div>
               <div>
                 <h4 className="font-semibold flex items-center gap-4">
-                  <img src={image} alt="vector image" /> Healthy Nutrition
+                  <img src={image} alt="arrow up icon" /> Healthy Nutrition
                 </h4>
-                <p className="text-gray-400 text-sm mt-4">
-                  Fuel your fitness journey with <br /> customized meal plans
+                <p className="text-gray-400 text-sm mt-4 w-60">
+                  Fuel your fitness journey with customized meal plans
                   for you.
                 </p>
               </div>
@@ -78,7 +78,7 @@ export default function About() {
             <span className="text-white border-2 border-white size-9 bg-orange-600 rounded-full absolute top-1 -right-4 flex items-center justify-center">
               <img
                 src={image}
-                alt="vector image"
+                alt="arrow up icon"
                 className="filter brightness-0 invert "
               />
             </span>
