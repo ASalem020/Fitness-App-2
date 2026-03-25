@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import RootLayout from "./components/layout/root-layout";
-import About from "./pages/about";
+import Home from "./pages/home";
+import About from "./pages/about/about";
 import Classes from "./pages/classes";
 import Healthy from "./pages/healthy";
-import Home from "./pages/home/index";
 
 export default function App() {
   return (
