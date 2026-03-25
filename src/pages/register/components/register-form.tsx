@@ -28,7 +28,8 @@ export default function RegisterForm() {
   });
 
   const onSubmit = (data: RegisterFormValues) => {
-    console.log(data);
+    data.rePassword = data.password;
+    console.log("Form Data:", data);
   };
 
   return (
@@ -102,6 +103,7 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
+
         {/* Password */}
         <FormField
           control={form.control}
@@ -143,7 +145,7 @@ export default function RegisterForm() {
         {/* Social Icons */}
         <div className="flex gap-4 items-center justify-center mt-2 mb-2">
           {/* Facebook */}
-          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-[#252525] transition-colors border border-gray-700">
+          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-slate-900 transition-colors border border-gray-700">
             <svg
               className="w-5 h-5 text-white"
               fill="currentColor"
@@ -154,7 +156,7 @@ export default function RegisterForm() {
           </div>
 
           {/* Google */}
-          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-[#252525] transition-colors border border-gray-700">
+          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-slate-900 transition-colors border border-gray-700">
             <svg
               className="w-5 h-5 text-white"
               fill="currentColor"
@@ -165,7 +167,7 @@ export default function RegisterForm() {
           </div>
 
           {/* Apple */}
-          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-[#252525] transition-colors border border-gray-700">
+          <div className="w-12 h-12 flex items-center justify-center bg-[#242424] rounded-full cursor-pointer hover:bg-slate-900 transition-colors border border-gray-700">
             <svg
               className="w-5 h-5 text-white"
               fill="currentColor"
