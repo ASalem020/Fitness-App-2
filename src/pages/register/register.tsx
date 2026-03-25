@@ -11,23 +11,21 @@ export default function Register() {
       {/* Right Part */}
       <div className="flex flex-col items-center justify-center bg-black/75">
         {/* Form Container component... */}
-        <>
-          {/* SubTitle */}
-          <p className="mb-5 font-baloo-thambi text-2xl text-white text-center capitalize">
-            hey there
-          </p>
+        {/* SubTitle */}
+        <p className="mb-5 font-baloo-thambi text-2xl text-white text-center capitalize">
+          hey there
+        </p>
 
-          {/* Title */}
-          <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize text-center">
-            create an account
-          </h1>
+        {/* Title */}
+        <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize text-center">
+          create an account
+        </h1>
 
-          {/* Form Container */}
-          <div className="form-container p-10 border border-gray-300 rounded-[3.125rem] flex justify-center">
-            {/* Form will render here */}
-            <RegisterForm />
-          </div>
-        </>
+        {/* Form Container */}
+        <div className="form-container p-10 border border-gray-300 rounded-[3.125rem] flex justify-center">
+          {/* Form will render here */}
+          <RegisterForm />
+        </div>
       </div>
     </div>
   );

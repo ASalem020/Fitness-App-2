@@ -5,7 +5,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -22,14 +22,23 @@ export default function RegisterForm() {
       lastName: "",
       email: "",
       password: "",
-      rePassword: "",
+      // rePassword: "",
     },
+    mode: "all",
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: RegisterFormValues) => {
-    data.rePassword = data.password;
-    console.log("Form Data:", data);
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (values) => {
+    try {
+      // await mutateAsync(values);
+      // toast.success(t('toast.success'));
+      console.log("values", values);
+      form.reset();
+    } catch (e) {
+      // TODO: Until get backend error component
+      // setBackendError((e as Error).message);
+      console.log("error", e);
+    }
   };
 
   return (
@@ -103,6 +112,10 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
+        {/* 
+        <pre className="text-white text-xs">
+          {JSON.stringify(form.formState.errors, null, 2)}
+        </pre> */}
 
         {/* Password */}
         <FormField
@@ -127,10 +140,23 @@ export default function RegisterForm() {
           )}
         />
 
+        {/* Hidden rePassword */}
+        <FormField
+          control={form.control}
+          name="rePassword"
+          render={({ field }) => (
+            <FormItem className="hidden">
+              <FormControl>
+                <Input type="hidden" {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
         {/* Forget password */}
         <Link
           to={"/forget-password"}
-          className="self-end text-[#FF4100] font-bold underline"
+          className="self-end text-[#FF4100] hover:text-orange-700 transition-all font-bold underline"
         >
           Forget Password ?
         </Link>
@@ -196,7 +222,7 @@ export default function RegisterForm() {
           already have an account ?{" "}
           <Link
             to={"/login"}
-            className="underline text-[#FF4100] font-extrabold"
+            className="underline text-[#FF4100] hover:text-orange-700 transition-all font-extrabold"
           >
             login
           </Link>
