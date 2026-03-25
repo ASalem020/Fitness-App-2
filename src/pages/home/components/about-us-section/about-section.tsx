@@ -40,12 +40,12 @@ export default function AboutUsSection() {
         <AboutImages />
 
         {/* conrent */}
-        <div className="max-w-xl col-span-1 mt-12 w-[35rem]">
+        <div className="max-w-xl col-span-1 mt-12 ">
           <p className="text-orange-500 mb-2">About Us</p>
 
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
             EMPOWERING YOU TO ACHIEVE <br />
-            <span className="text-orange-500">YOUR FITNESS GOALS</span>
+            <span className="text-orange-500">YOUR FITNESS</span> GOALS
           </h2>
 
           <p className=" mb-16 mt-6 ">
@@ -63,8 +63,8 @@ export default function AboutUsSection() {
           </div>
           
           {/* Button */}
-          <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative">
-            Get Started →
+          <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative text-white">
+            Get Started 
             <span className="text-white border-2 border-white size-9 bg-orange-600 rounded-full absolute top-1 -right-4 flex items-center justify-center">
               <img
                 src={image}
