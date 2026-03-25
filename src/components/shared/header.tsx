@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.png.png";
 import Nav from "./nav";
 import { cn } from "@/lib/utils/tailwind-merge";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   // States
@@ -32,7 +33,15 @@ export default function Header() {
 
       {/* Login & Sign Up */}
       {/* this buttons will replace when design system is end and ahmed salem merge his code */}
-      <div className="user-actions-buttons flex items-center justify-end gap-8 min-w-96">
+      <div className="user-actions-buttons flex items-center justify-end gap-6 min-w-96">
+        <Link to="/system-design">
+          <button
+            className="px-6 py-2 text-white font-semibold rounded hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: "#333" }}
+          >
+            System Design
+          </button>
+        </Link>
         <button
           className="px-6 py-2 text-white font-semibold rounded hover:opacity-90 transition-opacity"
           style={{ backgroundColor: "#FF4100" }}

@@ -5,6 +5,7 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Classes from "./pages/classes";
 import Healthy from "./pages/healthy";
+import SystemDesign from "./pages/system-design";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="about" element={<About />} />
         <Route path="classes" element={<Classes />} />
         <Route path="healthy" element={<Healthy />} />
+        <Route path="system-design" element={<SystemDesign />} />
       </Route>
     </Routes>
   );
