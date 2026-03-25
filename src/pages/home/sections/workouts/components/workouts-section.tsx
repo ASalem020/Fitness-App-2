@@ -82,7 +82,7 @@ export default function WorkoutsSection() {
   }
 
   return (
-    <div
+    <section
       className="h-screen pt-10"
       style={{
         backgroundImage: "url(workouts-section/workouts.jpg)",
@@ -182,6 +182,6 @@ export default function WorkoutsSection() {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

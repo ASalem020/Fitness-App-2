@@ -12,7 +12,7 @@ const meals = [
 
 export default function MealsSection() {
   return (
-    <section className="relative w-full mt-32 h-[700px]">
+    <section className="relative w-full h-[700px]">
       {/* Background Image */}
       <div className="h-full inset-0">
         <img
