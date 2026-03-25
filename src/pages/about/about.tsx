@@ -35,7 +35,7 @@ const features: FeatureType[] = [
 
 export default function About() {
   return (
-    <section className=" bg-black text-white py-20 ">
+    <section className=" bg-black text-white pt-20 pb-32">
       <div className="container grid grid-cols-2 items-center gap-20 mx-auto mt-12">
         {/* images */}
         <AboutImages />
@@ -46,7 +46,7 @@ export default function About() {
 
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
             EMPOWERING YOU TO ACHIEVE <br />
-            <span className="text-orange-500">YOUR FITNESS GOALS</span>
+            <span className="text-orange-500">YOUR FITNESS </span> GOALS
           </h2>
 
           <p className="text-white mb-16 mt-6 ">
@@ -65,7 +65,7 @@ export default function About() {
           
           {/* Button */}
           <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative">
-            Get Started →
+            Get Started
             <span className="text-white border-2 border-white size-9 bg-orange-600 rounded-full absolute top-1 -right-4 flex items-center justify-center">
               <img
                 src={image}
