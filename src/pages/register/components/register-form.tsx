@@ -14,7 +14,12 @@ import { Link } from "react-router-dom";
 import type { RegisterFormValues } from "@/lib/types/register";
 import { registerSchema } from "@/lib/schemas/register.schema";
 
-export default function RegisterForm() {
+interface props {
+  setValues: React.Dispatch<React.SetStateAction<RegisterFormValues>>;
+  setKycSteps: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function RegisterForm({ setValues, setKycSteps }: props) {
   // Forms
   const form = useForm<RegisterFormValues>({
     defaultValues: {
@@ -22,7 +27,7 @@ export default function RegisterForm() {
       lastName: "",
       email: "",
       password: "",
-      // rePassword: "",
+      rePassword: "",
     },
     mode: "all",
     resolver: zodResolver(registerSchema),
@@ -30,9 +35,9 @@ export default function RegisterForm() {
 
   const onSubmit: SubmitHandler<RegisterFormValues> = async (values) => {
     try {
-      // await mutateAsync(values);
-      // toast.success(t('toast.success'));
-      console.log("values", values);
+      values.rePassword = values.password;
+      setValues(values);
+      setKycSteps(true);
       form.reset();
     } catch (e) {
       // TODO: Until get backend error component
