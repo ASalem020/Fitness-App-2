@@ -1,18 +1,28 @@
-import { useTheme } from "@/hooks/use-theme";
+// import { useTheme } from "@/hooks/use-theme";
 import { Dumbbell } from "lucide-react";
 
 type SectionTitleProps = {
   title: string;
+  subtitle: string;
+  position: "center" | "start" | "end";
+  className?: string;
 };
 
-export default function SectionTitle({ title }: SectionTitleProps) {
+export default function SectionTitle({
+  title,
+  subtitle,
+  position = "center",
+  className,
+}: SectionTitleProps) {
   // Hooks
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   return (
-    <div className="section-title font-baloo-thambi relative">
+    <div
+      className={`section-title font-baloo-thambi relative z-50 text-${position} ${className}`}
+    >
       {/* Styled Title */}
-      <div className="decorated-text relative after:absolute after:bg-gradient-to-b after:from-transparent after:via-45% after:via-white/25 after:to-75% after:to-white dark:after:via-zinc-800/25 dark:after:to-zinc-800 after:w-[15.625rem] after:h-[4.375rem] after:inset-0 w-fit">
+      {/* <div className=" decorated-text relative w-fit">
         <svg width="250" height="70" viewBox="0 0 250 70">
           <text
             x="45%"
@@ -26,7 +36,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
             stroke={theme === "light" ? "#DBDCDC" : "#535454"}
             strokeWidth="3"
           >
-            {title.toUpperCase()}
+            {subtitle.toUpperCase()}
           </text>
           <text
             x="45%"
@@ -36,18 +46,36 @@ export default function SectionTitle({ title }: SectionTitleProps) {
             fontFamily="Baloo Thambi 2, sans-serif"
             fontSize="64px"
             fontWeight="bold"
-            fill={theme === "light" ? "#ffffff" : "#27272a"}
+            fill={theme === "light" ? "" : "#27272a"}
           >
-            {title.toUpperCase()}
+            {subtitle.toUpperCase()}
           </text>
         </svg>
-      </div>
+      </div> */}
 
-      <p className="text-sm text-[#FF4100] flex items-center gap-2 capitalize font-semibold -mt-5 ml-2 relative z-10">
+      <h2
+        className="uppercase text-6xl font-bold text-transparent"
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 40%, black 95%)",
+          maskImage:
+            "linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 40%, black 95%)",
+          border: "1px solid",
+          borderImageSource:
+            "linear-gradient(177.84deg, rgba(255, 255, 255, 0.5) -10.01%, rgba(36, 36, 36, 0.5) 141.87%)",
+          WebkitTextStroke: "2px gray",
+        }}
+      >
+        {title}
+      </h2>
+
+      <p
+        className={`font-inter text-sm text-[#FF4100] flex justify-${position} items-center gap-2 capitalize font-semibold -mt-8 ml-2 relative z-10`}
+      >
         {/* Icon */}
         <Dumbbell size={22} className="rotate-45" />
         {/* Small Title */}
-        <span>{title}</span>
+        <span>{subtitle}</span>
       </p>
     </div>
   );
