@@ -1,8 +1,10 @@
+import MealsSection from "@/components/meals-section/meals-section";
+
 export default function Home() {
   // This code for test only and will replace later
   return (
-    <div className="home-page min-h-screen flex items-center justify-center">
-      {/* <WhyUs /> */}
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <MealsSection />
     </div>
   );
 }
