@@ -7,7 +7,7 @@ export default function Nav() {
   const { pathname } = useLocation();
 
   return (
-    <nav className="hidden md:block">
+    <nav className="hidden md:block ">
       <ul className="flex items-center gap-6 px-2 py-4 lg:*:p-4">
         {navLinks.map((link) => (
           <li key={link.id}>

@@ -1,12 +1,11 @@
 import logo from "../../assets/images/logo.png";
 import Nav from "./nav";
-import { cn } from "@/lib/utils/tailwind-merge";
 import { Link } from "react-router-dom";
 import MenuAuthInMobile from "./menu-auth-in-mobile";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center px-5 md:px-0 lg:w-11/12 container mx-auto py-10">
+    <header className="flex justify-between items-center px-5 md:px-0 lg:w-11/12 container mx-auto py-10 ">
       {/* Logo */}
       <div className="site-logo">
         <img src={logo} alt="super fitness app logo" className="w-20 h-14" />
