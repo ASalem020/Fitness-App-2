@@ -11,7 +11,7 @@ export const ThemeContext = createContext<{
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   //   States
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "light");
 
   // Effects
   useEffect(() => {
