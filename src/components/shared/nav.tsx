@@ -15,7 +15,7 @@ export default function Nav() {
               to={link.href}
               className={cn(
                 "font-bold duration-300 hover:text-orange-600 font-baloo-thambi text-lg lg:text-xl",
-                pathname === link.href || pathname.startsWith(link.href)
+                pathname === link.href
                   ? "text-orange-600"
                   : "text-neutral-800 dark:text-zinc-100",
               )}
