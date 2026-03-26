@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Eye, EyeOff } from "lucide-react"
 
-import { cn } from "@/lib/utils/tailwind-merge"
+import { cn } from "@/lib/utils/tailwind-merge";
 
 export interface InputProps extends React.ComponentProps<"input"> {
   startIcon?: React.ReactNode
@@ -66,4 +66,4 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 )
 Input.displayName = "Input"
 
-export { Input }
+export { Input };

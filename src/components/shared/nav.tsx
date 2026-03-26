@@ -7,15 +7,17 @@ export default function Nav() {
   const { pathname } = useLocation();
 
   return (
-    <nav>
-      <ul className="flex items-center gap-6 *:p-4 z-20">
+    <nav className="hidden md:block">
+      <ul className="flex items-center gap-6 px-2 py-4 lg:*:p-4">
         {navLinks.map((link) => (
           <li key={link.id}>
             <Link
               to={link.href}
               className={cn(
-                "font-bold duration-300 hover:text-orange-600 font-baloo-thambi text-xl",
-                pathname !== link.href ? "text-neutral-800" : "text-orange-600",
+                "font-bold duration-300 hover:text-orange-600 font-baloo-thambi text-lg lg:text-xl",
+                pathname === link.href
+                  ? "text-orange-600"
+                  : "text-neutral-800 dark:text-zinc-100",
               )}
             >
               {link.label}
