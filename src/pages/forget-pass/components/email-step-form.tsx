@@ -1,15 +1,16 @@
-import { useFormContext, type SubmitHandler } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Mail, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
-import type { ForgetPassFormSteps } from "../types/forget-pass-form-steps";
+import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
 import useForgetPass from "../hooks/use-forget-pass";
+import { FORGET_PASS_STEPS } from "../constants/forget-pass.constant";
 
 type EmailStepFormProps = {
-  setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormSteps>>;
+  setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
 };
 
 export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
@@ -19,24 +20,28 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
   // Form
   const {
     register,
-    handleSubmit,
+    getValues,
+    setError,
     formState: { errors },
   } = useFormContext<ForgetPassFormInputs>();
 
   // Handlers
-  const onSubmit: SubmitHandler<ForgetPassFormInputs> = (data) =>
-    mutate(data.email, {
+  const handleClick = () => {
+    const email = getValues("email");
+
+    if (!email)
+      return setError("email", { message: "Please enter a valid email !" });
+
+    mutate(email, {
       onSuccess: () => {
         toast.success("Code sent successfully");
-        setFormStep("otp");
+        setFormStep(FORGET_PASS_STEPS.OTP);
       },
     });
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="forget-password-form flex flex-col gap-2 items-center min-w-[25.375rem]"
-    >
+    <form className="forget-password-form flex flex-col gap-2 items-center min-w-[25.375rem]">
       {/* Form Label */}
       <Label
         htmlFor="forget-pass-input"
@@ -47,19 +52,16 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
 
       {/* Input & Button */}
       <div className="input-and-button flex flex-col gap-6 w-[19.4375rem] mx-auto">
-        {/* Input Container */}
-        <div className="input-container flex items-center gap-2.5 text-gray-300 py-2 px-4 rounded-3xl border border-gray-300">
-          {/* Icon */}
-          <Mail size={20} />
-          {/* Input */}
-          <Input
-            type="text"
-            placeholder="Email"
-            className="bg-transparent border-none !p-0 focus-visible:ring-0 font-baloo-thambi text-sm"
-            {...register("email", { required: "Email is required" })}
-            autoComplete="email"
-          />
-        </div>
+        {/* Input */}
+        <Input
+          id="forget-pass-input"
+          startIcon={<Mail className="h-5 w-5 text-gray-300" />}
+          placeholder="Email"
+          type="email"
+          {...register("email", { required: "Email is required" })}
+          autoComplete="email"
+          className="text-gray-300 font-baloo-thambi"
+        />
 
         {/* Error Message Box */}
         {(errors.email || error) && (
@@ -74,7 +76,8 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
         {/* Button */}
         <Button
           className="font-baloo-thambi bg-[#FF4100] rounded-full font-extrabold text-base text-white py-2 px-4"
-          type="submit"
+          type="button"
+          onClick={handleClick}
           disabled={isPending}
         >
           Sent OTP
