@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import WorkoutCardSkeleton from "./skeletons/workout-card-skeleton";
 import WorkoutTabsSkeleton from "./skeletons/workout-tabs-skeleton";
 import type { MuscleGroup, MusclesResponse } from "@/lib/types/muscles";
+import SectionTitle from "@/components/shared/section-title";
 
 export default function WorkoutsSection() {
   // states
@@ -83,13 +84,19 @@ export default function WorkoutsSection() {
 
   return (
     <section
-      className="h-screen pt-10"
+      className="h-screen relative"
       style={{
         backgroundImage: "url(workouts-section/workouts.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
+      <SectionTitle
+        title="fitness class"
+        subtitle="workouts"
+        position="center"
+        className="top-2 text-white"
+      />
       <div className="h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
@@ -147,7 +154,7 @@ export default function WorkoutsSection() {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
-                className="relative h-96 w-96 rounded-xl"
+                className="relative h-96 w-96 rounded-xl cursor-pointer hover:scale-95 transition-all duration-300"
               >
                 {/* Muscle name */}
                 <div className="absolute flex flex-col bottom-0 w-full rounded-b-xl p-4 gap-2 bg-gray-300/90 backdrop-blur-md">
