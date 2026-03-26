@@ -90,7 +90,7 @@ export default function WorkoutsSection() {
         backgroundPosition: "center",
       }}
     >
-      <div className="bg-[#a7a7a6] h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
+      <div className="h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
           Transform Your Body with Our Dynamic{" "}
@@ -143,7 +143,7 @@ export default function WorkoutsSection() {
               <div
                 key={index}
                 style={{
-                  backgroundImage: `url(${item.image})`,
+                  backgroundImage: `url(${item.image || "workouts-section/card-1.png"})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
