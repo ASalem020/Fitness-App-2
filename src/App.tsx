@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import RootLayout from "./components/layout/root-layout";
-import Home from "./pages/home";
 import About from "./pages/about/about";
-import Classes from "./pages/classes";
-import Healthy from "./pages/healthy";
 import SystemDesign from "./pages/system-design";
+import AuthLayout from "./components/layout/auth-layout";
+import Login from "./pages/login/login";
+import ForgetPassword from "./pages/forget-pass/forget-password";
+import Home from "./pages/home/home";
+import Classes from "./pages/classes/classes";
+import Healthy from "./pages/healthy/healthy";
 
 export default function App() {
   return (
@@ -16,6 +19,10 @@ export default function App() {
         <Route path="classes" element={<Classes />} />
         <Route path="healthy" element={<Healthy />} />
         <Route path="system-design" element={<SystemDesign />} />
+      </Route>
+      <Route element={<AuthLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
       </Route>
     </Routes>
   );
