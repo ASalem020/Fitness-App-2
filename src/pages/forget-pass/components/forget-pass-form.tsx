@@ -2,21 +2,26 @@ import { FormProvider, useForm } from "react-hook-form";
 import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgetPassSchema } from "../schema/forget-pass.schema";
-import { useState } from "react";
 import EmailStepForm from "./email-step-form";
 import OtpStepForm from "./otp-step-form";
-import type { ForgetPassFormSteps } from "../types/forget-pass-form-steps";
+import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
+import { FORGET_PASS_STEPS } from "../constants/forget-pass.constant";
 
-export default function ForgetPassForm() {
-  // States
-  const [forgetFormSteps, setForgetFormSteps] =
-    useState<ForgetPassFormSteps>("email");
+type ForgetPassFormProps = {
+  currentStep: string;
+  setStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
+};
 
+export default function ForgetPassForm({
+  currentStep,
+  setStep,
+}: ForgetPassFormProps) {
   // Forms
   const form = useForm<ForgetPassFormInputs>({
     mode: "all",
     defaultValues: {
       email: "",
+      otp: "",
     },
     resolver: zodResolver(forgetPassSchema),
   });
@@ -24,12 +29,14 @@ export default function ForgetPassForm() {
   return (
     <FormProvider {...form}>
       {/* Email Step */}
-      {forgetFormSteps === "email" && (
-        <EmailStepForm setFormStep={setForgetFormSteps} />
+      {currentStep === FORGET_PASS_STEPS.EMAIL && (
+        <EmailStepForm setFormStep={setStep} />
       )}
 
       {/* OTP Step */}
-      {forgetFormSteps === "otp" && <OtpStepForm />}
+      {currentStep === FORGET_PASS_STEPS.OTP && (
+        <OtpStepForm setFormStep={setStep} />
+      )}
     </FormProvider>
   );
 }
