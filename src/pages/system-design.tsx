@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioPill } from "@/components/ui/radio-group";
@@ -12,26 +11,13 @@ import { HighlightText } from "@/components/ui/highlight-text";
 import { ArrowUpRight, User, Mail, Lock, CheckCircle2, Wand2 } from "lucide-react";
 
 export default function SystemDesign() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
-
   return (
-    <div className={`min-h-screen bg-background text-foreground transition-colors ${theme}`}>
+    <div className="min-h-screen bg-background text-foreground transition-colors">
       <div className="container mx-auto px-4 py-8 max-w-4xl space-y-16">
         <header className="flex items-center justify-between border-b border-border pb-6">
           <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">
             Design System Showcase
           </h1>
-          <Button variant="outline" onClick={toggleTheme}>
-            Toggle Theme ({theme})
-          </Button>
         </header>
 
         {/* Highlighted Text Example */}
@@ -108,12 +94,14 @@ export default function SystemDesign() {
                 <h3 className="text-sm font-medium text-muted-foreground mb-4">OTP Input</h3>
                 <div className="flex flex-col gap-2">
                    <div className="text-sm font-medium mb-2">Enter The OTP You Have Received</div>
-                   <InputOTP maxLength={4}>
+                   <InputOTP>
                       <InputOTPGroup className="gap-4">
                          <InputOTPSlot index={0} />
                          <InputOTPSlot index={1} />
                          <InputOTPSlot index={2} />
                          <InputOTPSlot index={3} />
+                         <InputOTPSlot index={4} />
+                         <InputOTPSlot index={5} />
                       </InputOTPGroup>
                    </InputOTP>
                 </div>
