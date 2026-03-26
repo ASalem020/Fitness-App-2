@@ -49,7 +49,7 @@ export default function AboutUsSection() {
             position="start"
             className="top-2 text-white"
           />
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-7 uppercase ">
             EMPOWERING YOU TO ACHIEVE <br />
             <span className="text-orange-500">YOUR FITNESS</span> GOALS
           </h2>
