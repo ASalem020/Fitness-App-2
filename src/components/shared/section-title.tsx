@@ -45,7 +45,7 @@ export default function SectionTitle({ title }: SectionTitleProps) {
 
       <p className="text-sm text-[#FF4100] flex items-center gap-2 capitalize font-semibold -mt-5 ml-2 relative z-10">
         {/* Icon */}
-        <Dumbbell size={22} />
+        <Dumbbell size={22} className="rotate-45" />
         {/* Small Title */}
         <span>{title}</span>
       </p>
