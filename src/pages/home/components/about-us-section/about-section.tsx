@@ -2,6 +2,7 @@ import image from "../../../../assets/images/Vector.png";
 import AboutImages from "@/pages/about/components/about-image";
 import { Button } from "@/components/ui/button";
 import Feature from "@/pages/about/components/feature";
+import SectionTitle from "@/components/shared/section-title";
 
 export type FeatureType = {
   img: string;
@@ -41,30 +42,32 @@ export default function AboutUsSection() {
 
         {/* conrent */}
         <div className="max-w-xl col-span-1 mt-12 ">
-          <p className="text-orange-500 mb-2">About Us</p>
-
+          .{/* Title */}
+          <SectionTitle
+            title="workouts"
+            subtitle="About Us"
+            position="start"
+            className="top-2 text-white"
+          />
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
             EMPOWERING YOU TO ACHIEVE <br />
             <span className="text-orange-500">YOUR FITNESS</span> GOALS
           </h2>
-
           <p className=" mb-16 mt-6 ">
             We believe fitness is more than just a workout—it's a lifestyle.
             With top-of- the-line facilities, certified trainers, and a
             supportive community, we're here to inspire and guide you every step
             of the way.
           </p>
-
           {/* Features */}
           <div className="grid grid-cols-2 gap-8 mb-6">
             {features.map((item, index) => (
               <Feature key={index} feature={item} />
             ))}
           </div>
-          
           {/* Button */}
           <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative text-white">
-            Get Started 
+            Get Started
             <span className="text-white border-2 border-white size-9 bg-orange-600 rounded-full absolute top-1 -right-4 flex items-center justify-center">
               <img
                 src={image}
@@ -75,7 +78,6 @@ export default function AboutUsSection() {
           </Button>
         </div>
       </div>
-
     </section>
   );
 }
