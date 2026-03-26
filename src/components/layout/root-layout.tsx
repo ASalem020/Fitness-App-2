@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../shared/footer";
 import { useTheme } from "@/hooks/use-theme";
+import Header from "../shared/header";
 
 export default function RootLayout() {
   // Hooks
@@ -9,7 +10,7 @@ export default function RootLayout() {
   return (
     <>
       {/* Header */}
-      {/* <Header /> Make as a comment now to show why us section clearly */}
+      <Header />
 
       {/* Content Rendered */}
       <main>
