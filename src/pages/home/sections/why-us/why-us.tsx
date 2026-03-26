@@ -13,7 +13,7 @@ export default function WhyUs() {
       {/* Content */}
       <div className="content">
         {/* Section Title */}
-        <SectionTitle title="why us" />
+        <SectionTitle title="why us" subtitle="why us" position="start" />
 
         {/* Why Us Brief */}
         <div className="why-us-text text-[#242424] dark:text-[#F3F3F4] mb-4 md:mb-16">
