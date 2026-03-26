@@ -1,6 +1,6 @@
-import type { NavLink } from "../types/nav-link";
+import type { LinkProps } from "../types/nav-link";
 
-export const navLinks: NavLink[] = [
+export const navLinks: LinkProps[] = [
   {
     id: crypto.randomUUID(),
     href: "/",
