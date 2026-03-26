@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
+import { OTPInput, OTPInputContext, REGEXP_ONLY_DIGITS } from "input-otp"
 import { Dot } from "lucide-react"
 
 import { cn } from "@/lib/utils/tailwind-merge"
@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils/tailwind-merge"
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
   React.ComponentPropsWithoutRef<typeof OTPInput>
->(({ className, containerClassName, ...props }, ref) => (
+>(({ className, containerClassName, maxLength = 6, pattern = REGEXP_ONLY_DIGITS, ...props }, ref) => (
   <OTPInput
     ref={ref}
     containerClassName={cn(
@@ -17,6 +17,8 @@ const InputOTP = React.forwardRef<
       containerClassName
     )}
     className={cn("disabled:cursor-not-allowed", className)}
+    maxLength={maxLength}
+    pattern={pattern}
     {...props}
   />
 ))
