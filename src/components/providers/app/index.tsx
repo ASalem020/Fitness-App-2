@@ -1,9 +1,10 @@
+import TanstackQueryProvider from "./components/tanstack-query.provider";
 import { ThemeProvider } from "./components/theme-provider";
 
-type ProvidersProps = {
-  children: React.ReactNode;
-};
-
-export default function Providers({ children }: ProvidersProps) {
-  return <ThemeProvider>{children}</ThemeProvider>;
+export default function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <ThemeProvider>
+      <TanstackQueryProvider>{children}</TanstackQueryProvider>
+    </ThemeProvider>
+  );
 }
