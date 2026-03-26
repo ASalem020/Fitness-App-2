@@ -1,5 +1,7 @@
 import logo from "../../assets/images/logo.png";
 import Nav from "./nav";
+import { cn } from "@/lib/utils/tailwind-merge";
+import { Link } from "react-router-dom";
 import MenuAuthInMobile from "./menu-auth-in-mobile";
 
 export default function Header() {
@@ -16,7 +18,16 @@ export default function Header() {
       {/* Login & Sign Up */}
       {/* ! will appear only on large and medium screens */}
       {/* this buttons will replace when design system is end and ahmed salem merge his code */}
+      
       <div className="user-actions-buttons hidden md:flex items-center justify-end gap-8 lg:min-w-96">
+        <Link to="/system-design">
+          <button
+            className="px-6 py-2 text-white font-semibold rounded hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: "#333" }}
+          >
+            System Design
+          </button>
+        </Link>
         <button
           className="px-4 lg:px-6 py-2 text-white font-semibold rounded hover:opacity-90 transition-opacity"
           style={{ backgroundColor: "#FF4100" }}
