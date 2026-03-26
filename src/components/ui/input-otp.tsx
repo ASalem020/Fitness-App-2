@@ -8,7 +8,9 @@ import { cn } from "@/lib/utils/tailwind-merge"
 
 const InputOTP = React.forwardRef<
   React.ElementRef<typeof OTPInput>,
-  React.ComponentPropsWithoutRef<typeof OTPInput>
+  React.ComponentPropsWithoutRef<typeof OTPInput> extends infer P
+    ? P extends any ? Omit<P, "maxLength"> & { maxLength?: number } : never
+    : never
 >(({ className, containerClassName, maxLength = 6, pattern = REGEXP_ONLY_DIGITS, ...props }, ref) => (
   <OTPInput
     ref={ref}
