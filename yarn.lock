@@ -3948,6 +3948,7 @@ __metadata:
     "@fontsource-variable/inter": "npm:^5.2.8"
     "@hookform/resolvers": "npm:^5.2.2"
     "@radix-ui/react-label": "npm:^2.1.8"
+    "@radix-ui/react-radio-group": "npm:^1.3.8"
     "@radix-ui/react-slot": "npm:^1.2.4"
     "@rolldown/plugin-babel": "npm:^0.2.0"
     "@tanstack/react-query": "npm:^5.95.2"
