@@ -30,6 +30,7 @@ export default function WorkoutsSection() {
 
   // effects
   useEffect(() => {
+    // fetch muscles groups on mount
     const fetchMusclesGroup = async () => {
       try {
         const data = await getMusclesGroupsService();
@@ -49,7 +50,7 @@ export default function WorkoutsSection() {
     // Guard: don't fetch if activeTab isn't set yet
     if (!activeTab) return;
 
-    // fetch muscles details
+    // fetch muscles details when tab changes
     const fetchDetails = async () => {
       setLoadingDetails(true);
       try {
@@ -91,12 +92,14 @@ export default function WorkoutsSection() {
         backgroundPosition: "center",
       }}
     >
+      .{/* Title */}
       <SectionTitle
-        title="fitness class"
-        subtitle="workouts"
+        title="workouts"
+        subtitle="fitness class"
         position="center"
         className="top-2 text-white"
       />
+      {/* Content */}
       <div className="h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
@@ -109,35 +112,34 @@ export default function WorkoutsSection() {
           {loading ? (
             <WorkoutTabsSkeleton />
           ) : (
-            <>
-              <Carousel
-                setApi={setApi}
-                opts={{ align: "start", loop: false }}
-                className="w-full"
-              >
-                <CarouselContent>
-                  {pages.map((pageGroup, pageIndex) => (
-                    <CarouselItem key={pageIndex} className="basis-full">
-                      <div className="flex justify-center gap-4">
-                        {pageGroup.map((muscle) => (
-                          <button
-                            key={muscle._id}
-                            onClick={() => setActiveTab(muscle._id)}
-                            className={`capitalize font-bold text-xl px-5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
-                              activeTab === muscle._id
-                                ? "bg-[#FF4100] text-white"
-                                : "text-neutral-900 hover:bg-neutral-200"
-                            }`}
-                          >
-                            {muscle.name}
-                          </button>
-                        ))}
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-              </Carousel>
-            </>
+            <Carousel
+              setApi={setApi}
+              opts={{ align: "start", loop: false }}
+              className="w-full"
+            >
+              {/* Tabs */}
+              <CarouselContent>
+                {pages.map((pageGroup, pageIndex) => (
+                  <CarouselItem key={pageIndex} className="basis-full">
+                    <div className="flex justify-center gap-4">
+                      {pageGroup.map((muscle) => (
+                        <button
+                          key={muscle._id}
+                          onClick={() => setActiveTab(muscle._id)}
+                          className={`capitalize font-bold text-xl px-5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
+                            activeTab === muscle._id
+                              ? "bg-[#FF4100] text-white"
+                              : "text-neutral-900 hover:bg-neutral-200"
+                          }`}
+                        >
+                          {muscle.name}
+                        </button>
+                      ))}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           )}
         </div>
 
@@ -147,10 +149,11 @@ export default function WorkoutsSection() {
         ) : (
           <div className="flex justify-center gap-8 mt-8">
             {musclesDetails?.map((item, index) => (
+              // Muscle Card
               <div
                 key={index}
                 style={{
-                  backgroundImage: `url(${item.image || "workouts-section/card-1.png"})`,
+                  backgroundImage: `url(${item.image || "workouts-section/default-card.png"})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -164,7 +167,7 @@ export default function WorkoutsSection() {
                     <p className="text-[#FF4100] font-medium text-xl">
                       Explore
                     </p>
-                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-[#FF4100] text-white rounded-full mt-1" />
+                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-[#FF4100] text-black rounded-full mt-1" />
                   </div>
                 </div>
               </div>

@@ -66,7 +66,7 @@ export default function SectionTitle({
           WebkitTextStroke: "2px gray",
         }}
       >
-        {subtitle}
+        {title}
       </h2>
 
       <p
@@ -75,7 +75,7 @@ export default function SectionTitle({
         {/* Icon */}
         <Dumbbell size={22} className="rotate-45" />
         {/* Small Title */}
-        <span>{title}</span>
+        <span>{subtitle}</span>
       </p>
     </div>
   );
