@@ -22,15 +22,19 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
   const { mutate, isPending, error } = useVerifyCode();
 
   // Form
-  const { setError, getValues, control } =
-    useFormContext<ForgetPassFormInputs>();
+  const {
+    getValues,
+    trigger,
+    control,
+    formState: { errors },
+  } = useFormContext<ForgetPassFormInputs>();
 
   // Handlers
-  const handleClick = () => {
-    const otp = getValues("otp");
+  const handleClick = async () => {
+    const isValid = await trigger("otp"); // ← validate otp field only
+    if (!isValid) return;
 
-    if (!otp)
-      return setError("otp", { message: "Please enter a valid otp code !" });
+    const otp = getValues("otp");
 
     mutate(otp, {
       onSuccess: () => {
@@ -41,7 +45,7 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
   };
 
   return (
-    <form className="otp-code-form flex flex-col gap-2 items-center min-w-[25.375rem]">
+    <>
       {/* Form Label */}
       <Label
         htmlFor="otp-code-form"
@@ -71,10 +75,12 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
         />
 
         {/* Error Message Box */}
-        {error && (
+        {(errors.otp || error) && (
           <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
             <AlertCircle size={18} className="shrink-0" />
-            <p className="leading-tight">{error.message}</p>
+            <p className="leading-tight">
+              {errors.otp?.message || error?.message}
+            </p>
           </div>
         )}
 
@@ -104,6 +110,6 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
           Resend Code
         </Button>
       </p>
-    </form>
+    </>
   );
 }
