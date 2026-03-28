@@ -10,16 +10,26 @@ import {
 } from "@/components/ui/input-otp";
 import useVerifyCode from "../hooks/use-verify-code";
 import { toast } from "sonner";
-import { FORGET_PASS_STEPS } from "../constants/forget-pass.constant";
+import {
+  AFTER_TIME_KEY,
+  FORGET_PASS_STEPS,
+} from "../constants/forget-pass.constant";
 import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
+import RemainingSeconds from "./remaining-seconds";
+import useForgetPass from "../hooks/use-forget-pass";
 
 type OtpStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
+  timeRemaining: number;
 };
 
-export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
+export default function OtpStepForm({
+  setFormStep,
+  timeRemaining,
+}: OtpStepFormProps) {
   // Hooks
   const { mutate, isPending, error } = useVerifyCode();
+  const { mutate: sendCode } = useForgetPass();
 
   // Form
   const {
@@ -40,7 +50,16 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
       onSuccess: () => {
         toast.success("Code Verified successfully");
         setFormStep(FORGET_PASS_STEPS.NEW_PASS);
+        localStorage.removeItem(AFTER_TIME_KEY);
       },
+    });
+  };
+
+  const handleResendClick = () => {
+    const email = getValues("email");
+
+    sendCode(email, {
+      onSuccess: () => toast.success("Code Resend Successfully !"),
     });
   };
 
@@ -102,13 +121,15 @@ export default function OtpStepForm({ setFormStep }: OtpStepFormProps) {
           didn’t receive verification code?
         </span>
 
-        {/* Button */}
-        <Button
-          variant={"link"}
-          className="underline py-1 text-base h-auto hover:text-orange-700"
-        >
-          Resend Code
-        </Button>
+        {/* Resend Button OR Remaining Seconds */}
+        {/* Use key prop in RemainingSeconds Component to re-create a new component with a new state ( seconds ) */}
+        {timeRemaining > 0 && (
+          <RemainingSeconds
+            seconds={timeRemaining}
+            key={timeRemaining}
+            handleClick={handleResendClick}
+          />
+        )}
       </p>
     </>
   );

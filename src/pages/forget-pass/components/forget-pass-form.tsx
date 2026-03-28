@@ -5,7 +5,11 @@ import { forgetPassSchema } from "../schema/forget-pass.schema";
 import EmailStepForm from "./email-step-form";
 import OtpStepForm from "./otp-step-form";
 import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
-import { FORGET_PASS_STEPS } from "../constants/forget-pass.constant";
+import {
+  AFTER_TIME_KEY,
+  FORGET_PASS_EMAIL_KEY,
+  FORGET_PASS_STEPS,
+} from "../constants/forget-pass.constant";
 import CreateNewPassStepForm from "./create-new-pass-step-form";
 import useCreateNewPass from "../hooks/use-create-new-pass";
 import { toast } from "sonner";
@@ -50,6 +54,7 @@ export default function ForgetPassForm({
     mutate(fullData, {
       onSuccess: () => {
         toast.success("New Password Created Successfully !");
+        localStorage.removeItem(FORGET_PASS_EMAIL_KEY);
         navigate("/login");
       },
     });
@@ -68,7 +73,16 @@ export default function ForgetPassForm({
 
         {/* OTP Step */}
         {currentStep === FORGET_PASS_STEPS.OTP && (
-          <OtpStepForm setFormStep={setStep} />
+          <OtpStepForm
+            setFormStep={setStep}
+            timeRemaining={Number(
+              (
+                (Number(localStorage.getItem(AFTER_TIME_KEY)) -
+                  new Date().getTime()) /
+                1000
+              ).toFixed(),
+            )}
+          />
         )}
 
         {/* OTP Step */}
