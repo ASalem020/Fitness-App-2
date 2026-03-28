@@ -25,3 +25,17 @@ export interface VerifyCodeApiErrorResponse {
 export type VerifyCodeApiResponse =
   | VerifyCodeApiSuccessResponse
   | VerifyCodeApiErrorResponse;
+
+// Create New Pass
+export interface CreateNewPassApiSuccessResponse {
+  message: string;
+  token: string;
+}
+
+export interface CreateNewPassApiErrorResponse {
+  error: string;
+}
+
+export type CreateNewPassApiResponse =
+  | CreateNewPassApiSuccessResponse
+  | CreateNewPassApiErrorResponse;

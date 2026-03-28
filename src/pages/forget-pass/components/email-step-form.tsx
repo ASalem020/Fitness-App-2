@@ -7,7 +7,11 @@ import { Mail, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
 import useForgetPass from "../hooks/use-forget-pass";
-import { FORGET_PASS_STEPS } from "../constants/forget-pass.constant";
+import {
+  AFTER_TIME_KEY,
+  FORGET_PASS_EMAIL_KEY,
+  FORGET_PASS_STEPS,
+} from "../constants/forget-pass.constant";
 
 type EmailStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
@@ -21,27 +25,44 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
   const {
     register,
     getValues,
-    setError,
+    trigger,
     formState: { errors },
   } = useFormContext<ForgetPassFormInputs>();
 
   // Handlers
-  const handleClick = () => {
-    const email = getValues("email");
+  const handleClick = async () => {
+    const isValid = await trigger("email");
+    if (!isValid) return;
 
-    if (!email)
-      return setError("email", { message: "Please enter a valid email !" });
+    const email = getValues("email");
+    // If was one save , other one sure it saved because these was saved together
+    const savedEmail = localStorage.getItem(FORGET_PASS_EMAIL_KEY);
+    const savedDate = localStorage.getItem(AFTER_TIME_KEY);
+    const now = new Date().getTime();
+    const isEmailAndDateSaved = savedEmail || savedDate;
+
+    // Check if any data saved to Reduce Network Requests
+    if (isEmailAndDateSaved) {
+      if (savedEmail === email && now <= Number(savedDate))
+        return setFormStep(FORGET_PASS_STEPS.OTP);
+    }
 
     mutate(email, {
       onSuccess: () => {
+        // Variables
+        const afterTime = new Date().getTime() + 60000;
+
         toast.success("Code sent successfully");
+        localStorage.setItem(FORGET_PASS_EMAIL_KEY, email);
+        localStorage.setItem(AFTER_TIME_KEY, String(afterTime));
+
         setFormStep(FORGET_PASS_STEPS.OTP);
       },
     });
   };
 
   return (
-    <form className="forget-password-form flex flex-col gap-2 items-center min-w-[25.375rem]">
+    <>
       {/* Form Label */}
       <Label
         htmlFor="forget-pass-input"
@@ -58,7 +79,7 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
           startIcon={<Mail className="h-5 w-5 text-gray-300" />}
           placeholder="Email"
           type="email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email")}
           autoComplete="email"
           className="text-gray-300 font-baloo-thambi"
         />
@@ -83,6 +104,6 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
           Sent OTP
         </Button>
       </div>
-    </form>
+    </>
   );
 }
