@@ -24,7 +24,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <section className="relative grid min-h-screen grid-cols-3 w-full items-center pb-28 pt-72">
+      <section className=" overflow-visible relative grid min-h-screen grid-cols-3 w-full items-center pb-28 pt-72">
         {/* background  image*/}
         <div
           className="absolute inset-0 z-0 bg-cover "
@@ -40,6 +40,8 @@ export default function HeroSection() {
         <div
           className="absolute col-span-1 right-0 bottom-0 w-full h-[44.93rem] lg:w-1/2 bg-cover bg-center z-10"
           style={{
+            top: "12rem", 
+            height: "calc(100% - 12rem)", 
             backgroundImage: `url(${image})`,
             backgroundSize: "contain",
             backgroundPosition: "bottom center",
