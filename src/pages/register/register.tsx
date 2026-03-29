@@ -14,8 +14,6 @@ export default function Register() {
 
   const [KycSteps, setKycSteps] = useState(false);
 
-  console.log(registerValues);
-
   return (
     <div className="grid grid-cols-2 min-h-screen">
       {/* Left Part */}
@@ -25,9 +23,9 @@ export default function Register() {
 
       {/* Right Part */}
       <div className="flex flex-col items-center justify-center bg-black/75">
-        {/* Form Container component... */}
         {!KycSteps ? (
           <div>
+            {/* Form Container component... */}
             {/* SubTitle */}
             <p className="mb-5 font-baloo-thambi text-2xl text-white text-center capitalize">
               hey there

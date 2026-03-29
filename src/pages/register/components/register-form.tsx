@@ -52,6 +52,10 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="font-baloo-thambi flex flex-col items-center justify-center gap-4 py-6 p-10 w-96"
       >
+        <div style={{ display: "none" }}>
+          {JSON.stringify(form.formState.errors)}
+        </div>
+
         {/* First Name */}
         <FormField
           control={form.control}
@@ -117,10 +121,6 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
             </FormItem>
           )}
         />
-        {/* 
-        <pre className="text-white text-xs">
-          {JSON.stringify(form.formState.errors, null, 2)}
-        </pre> */}
 
         {/* Password */}
         <FormField
