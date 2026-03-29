@@ -3,6 +3,7 @@ import AboutImages from "@/pages/about/components/about-image";
 import AIChat from "./components/ai-chat";
 import { Button } from "@/components/ui/button";
 import Feature from "./components/feature";
+import SectionTitle from "@/components/shared/section-title";
 
 export type FeatureType = {
   img: string;
@@ -36,17 +37,22 @@ const features: FeatureType[] = [
 export default function About() {
   return (
     <section className=" bg-black text-white pt-20 pb-32">
-      <div className="container grid grid-cols-2 items-center gap-20 mx-auto mt-12">
+      <div className="container grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-20 mx-auto mt-12">
         {/* images */}
         <AboutImages />
 
         {/* conrent */}
-        <div className="max-w-xl col-span-1 mt-12 w-[35rem]">
-          <p className="text-orange-500 mb-2">About Us</p>
+        <div className="w-[35rem]">
+          <SectionTitle
+            title="workouts"
+            subtitle="About Us"
+            position="start"
+            className="top-2 text-white"
+          />
 
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-3 uppercase ">
-            EMPOWERING YOU TO ACHIEVE <br />
-            <span className="text-orange-500">YOUR FITNESS </span> GOALS
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-snug mt-7 uppercase ">
+            EMPOWERING YOU TO ACHIEVE
+            <span className="text-orange-500"> YOUR FITNESS </span> GOALS
           </h2>
 
           <p className="text-white mb-16 mt-6 ">
