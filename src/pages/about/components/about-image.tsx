@@ -15,13 +15,13 @@ export default function AboutImages() {
       {/* الصورة الصغيرة */}
       <img
         src={image2}
-        className="absolute top-10 -right-6 w-56 h-48 object-cover rounded-2xl"
+        className="absolute top-10 left-[25rem] w-56 h-48 object-cover rounded-2xl"
       />
 
       {/*الصورة الكبيرة تحت */}
       <img
         src={image3}
-        className="absolute bottom-0 left-[18.9rem] top-64  w-80 h-[28.25rem] object-cover rounded-2xl "
+        className="absolute bottom-0 left-[17rem] top-64  w-[22.3rem] h-[28.25rem] object-cover rounded-2xl "
       />
 
     </div>
