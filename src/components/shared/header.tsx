@@ -5,7 +5,7 @@ import MenuAuthInMobile from "./menu-auth-in-mobile";
 
 export default function Header() {
   return (
-    <header className="flex justify-between items-center px-5 md:px-0 lg:w-11/12 container mx-auto py-10 ">
+    <header className="absolute top-0 inset-x-0 z-[500] w-full flex justify-between items-center px-5 md:px-0 lg:w-11/12 container mx-auto py-4 ">
       {/* Logo */}
       <div className="site-logo">
         <img src={logo} alt="super fitness app logo" className="w-20 h-14" />
@@ -17,7 +17,7 @@ export default function Header() {
       {/* Login & Sign Up */}
       {/* ! will appear only on large and medium screens */}
       {/* this buttons will replace when design system is end and ahmed salem merge his code */}
-      
+
       <div className="user-actions-buttons hidden md:flex items-center justify-end gap-8 lg:min-w-96">
         <Link to="/system-design">
           <button
