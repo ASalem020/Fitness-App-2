@@ -35,8 +35,8 @@ const features: FeatureType[] = [
 
 export default function AboutUsSection() {
   return (
-    <section className=" bg-white text-black py-20 ">
-      <div className="container grid grid-cols-2 items-center gap-20 mx-auto mt-12">
+    <section className=" bg-white text-black pb-16 ">
+      <div className="container grid grid-cols-2 items-center gap-20 mx-auto ">
         {/* images */}
         <AboutImages />
 
@@ -60,7 +60,7 @@ export default function AboutUsSection() {
             of the way.
           </p>
           {/* Features */}
-          <div className="grid grid-cols-2 gap-8 mb-6">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             {features.map((item, index) => (
               <Feature key={index} feature={item} />
             ))}
