@@ -1,5 +1,5 @@
-import { useFormContext } from "react-hook-form";
-import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import type { EmailStepFormType } from "../types/forget-pass-inputs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,29 +12,36 @@ import {
   FORGET_PASS_EMAIL_KEY,
   FORGET_PASS_STEPS,
 } from "../constants/forget-pass.constant";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { emailStepSchema } from "../schema/forget-pass.schema";
 
 type EmailStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
+  setSharedData: React.Dispatch<React.SetStateAction<{ email: string }>>;
 };
 
-export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
+export default function EmailStepForm({
+  setFormStep,
+  setSharedData,
+}: EmailStepFormProps) {
   // Mutations
   const { mutate, isPending, error } = useForgetPass();
 
   // Form
   const {
     register,
-    getValues,
-    trigger,
     formState: { errors },
-  } = useFormContext<ForgetPassFormInputs>();
+    handleSubmit,
+  } = useForm<EmailStepFormType>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(emailStepSchema),
+    mode: "onTouched",
+  });
 
   // Handlers
-  const handleClick = async () => {
-    const isValid = await trigger("email");
-    if (!isValid) return;
-
-    const email = getValues("email");
+  const onSubmit: SubmitHandler<EmailStepFormType> = async (data) => {
     // If was one save , other one sure it saved because these was saved together
     const savedEmail = localStorage.getItem(FORGET_PASS_EMAIL_KEY);
     const savedDate = localStorage.getItem(AFTER_TIME_KEY);
@@ -43,26 +50,32 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
 
     // Check if any data saved to Reduce Network Requests
     if (isEmailAndDateSaved) {
-      if (savedEmail === email && now <= Number(savedDate))
+      if (savedEmail === data.email && now <= Number(savedDate))
         return setFormStep(FORGET_PASS_STEPS.OTP);
     }
 
-    mutate(email, {
+    mutate(data.email, {
       onSuccess: () => {
         // Variables
         const afterTime = new Date().getTime() + 60000;
 
         toast.success("Code sent successfully");
-        localStorage.setItem(FORGET_PASS_EMAIL_KEY, email);
+        localStorage.setItem(FORGET_PASS_EMAIL_KEY, data.email);
         localStorage.setItem(AFTER_TIME_KEY, String(afterTime));
 
+        setSharedData((prev) => {
+          return { ...prev, email: data.email };
+        });
         setFormStep(FORGET_PASS_STEPS.OTP);
       },
     });
   };
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-2 items-center min-w-[25.375rem]"
+    >
       {/* Form Label */}
       <Label
         htmlFor="forget-pass-input"
@@ -97,13 +110,16 @@ export default function EmailStepForm({ setFormStep }: EmailStepFormProps) {
         {/* Button */}
         <Button
           className="font-baloo-thambi bg-[#FF4100] rounded-full font-extrabold text-base text-white py-2 px-4"
-          type="button"
-          onClick={handleClick}
+          type="submit"
           disabled={isPending}
         >
-          Sent OTP
+          {isPending ? (
+            <span className="animate-pulse">Verify Email ...</span>
+          ) : (
+            "Sent OTP"
+          )}
         </Button>
       </div>
-    </>
+    </form>
   );
 }
