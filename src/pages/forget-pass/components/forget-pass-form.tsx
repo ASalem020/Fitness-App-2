@@ -1,19 +1,12 @@
-import { FormProvider, useForm, type SubmitHandler } from "react-hook-form";
-import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { forgetPassSchema } from "../schema/forget-pass.schema";
 import EmailStepForm from "./email-step-form";
 import OtpStepForm from "./otp-step-form";
 import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
 import {
   AFTER_TIME_KEY,
-  FORGET_PASS_EMAIL_KEY,
   FORGET_PASS_STEPS,
 } from "../constants/forget-pass.constant";
 import CreateNewPassStepForm from "./create-new-pass-step-form";
-import useCreateNewPass from "../hooks/use-create-new-pass";
-import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type ForgetPassFormProps = {
   currentStep: ForgetPassFormStepsType;
@@ -24,72 +17,37 @@ export default function ForgetPassForm({
   currentStep,
   setStep,
 }: ForgetPassFormProps) {
-  // Navigation
-  const navigate = useNavigate();
-
-  // Hooks
-  const { mutate, isPending, error } = useCreateNewPass();
-
-  // Forms
-  const form = useForm<ForgetPassFormInputs>({
-    defaultValues: {
-      email: "",
-      otp: "",
-      "new-password": "",
-      "confirm-pass": "",
-    },
-    resolver: zodResolver(forgetPassSchema),
-    mode: "onTouched",
+  // States
+  const [shardData, setSharedData] = useState({
+    email: "",
   });
 
-  // Functions
-  const onSubmit: SubmitHandler<ForgetPassFormInputs> = async (data) => {
-    if (currentStep !== FORGET_PASS_STEPS.NEW_PASS) return;
-
-    const fullData = {
-      email: data["email"],
-      newPassword: data["new-password"],
-    };
-
-    mutate(fullData, {
-      onSuccess: () => {
-        toast.success("New Password Created Successfully !");
-        localStorage.removeItem(FORGET_PASS_EMAIL_KEY);
-        navigate("/login");
-      },
-    });
-  };
-
   return (
-    <FormProvider {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-2 items-center min-w-[25.375rem]"
-      >
-        {/* Email Step */}
-        {currentStep === FORGET_PASS_STEPS.EMAIL && (
-          <EmailStepForm setFormStep={setStep} />
-        )}
+    <>
+      {/* Email Step */}
+      {currentStep === FORGET_PASS_STEPS.EMAIL && (
+        <EmailStepForm setFormStep={setStep} setSharedData={setSharedData} />
+      )}
 
-        {/* OTP Step */}
-        {currentStep === FORGET_PASS_STEPS.OTP && (
-          <OtpStepForm
-            setFormStep={setStep}
-            timeRemaining={Number(
-              (
-                (Number(localStorage.getItem(AFTER_TIME_KEY)) -
-                  new Date().getTime()) /
-                1000
-              ).toFixed(),
-            )}
-          />
-        )}
+      {/* OTP Step */}
+      {currentStep === FORGET_PASS_STEPS.OTP && (
+        <OtpStepForm
+          email={shardData.email}
+          setFormStep={setStep}
+          timeRemaining={Number(
+            (
+              (Number(localStorage.getItem(AFTER_TIME_KEY)) -
+                new Date().getTime()) /
+              1000
+            ).toFixed(),
+          )}
+        />
+      )}
 
-        {/* OTP Step */}
-        {currentStep === FORGET_PASS_STEPS.NEW_PASS && (
-          <CreateNewPassStepForm isLoading={isPending} error={error} />
-        )}
-      </form>
-    </FormProvider>
+      {/* OTP Step */}
+      {currentStep === FORGET_PASS_STEPS.NEW_PASS && (
+        <CreateNewPassStepForm email={shardData.email} />
+      )}
+    </>
   );
 }

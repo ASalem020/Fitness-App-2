@@ -1,25 +1,64 @@
-import { useFormContext } from "react-hook-form";
-import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import type { NewPasswordFormType } from "../types/forget-pass-inputs";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { AlertCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { newPasswordSchema } from "../schema/forget-pass.schema";
+import { FORGET_PASS_EMAIL_KEY } from "../constants/forget-pass.constant";
+import { useNavigate } from "react-router-dom";
+import useCreateNewPass from "../hooks/use-create-new-pass";
+import { toast } from "sonner";
 
 type CreateNewPassStepFormProps = {
-    isLoading: boolean;
-    error: Error | null
-}
+  email: string;
+};
 
-export default function CreateNewPassStepForm({isLoading,error}: CreateNewPassStepFormProps) {
+export default function CreateNewPassStepForm({
+  email,
+}: CreateNewPassStepFormProps) {
+  // Navigation
+  const navigate = useNavigate();
+
+  // Hooks
+  const { mutate, isPending, error } = useCreateNewPass();
+
   // Form
   const {
     register,
+    handleSubmit,
     formState: { errors },
-  } = useFormContext<ForgetPassFormInputs>();
+  } = useForm<NewPasswordFormType>({
+    defaultValues: {
+      "new-password": "",
+      "confirm-pass": "",
+    },
+    mode: "onTouched",
+    resolver: zodResolver(newPasswordSchema),
+  });
 
+  // Functions
+  const onSubmit: SubmitHandler<NewPasswordFormType> = async (data) => {
+    const fullData = {
+      email,
+      newPassword: data["new-password"],
+    };
+
+    mutate(fullData, {
+      onSuccess: () => {
+        toast.success("New Password Created Successfully !");
+        localStorage.removeItem(FORGET_PASS_EMAIL_KEY);
+        navigate("/login");
+      },
+    });
+  };
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-2 items-center min-w-[25.375rem]"
+    >
       {/* Form Label */}
       <Label
         htmlFor="new-pass"
@@ -68,12 +107,15 @@ export default function CreateNewPassStepForm({isLoading,error}: CreateNewPassSt
         {/* Confirm Button */}
         <Button
           className="font-baloo-thambi bg-primary rounded-full font-extrabold text-base text-white py-2 px-4 w-full"
-          type="submit"
-          disabled={isLoading}
+          disabled={isPending}
         >
-          Create New Password
+          {isPending ? (
+            <span className="animate-pulse">Creating ...</span>
+          ) : (
+            "Create New Password"
+          )}
         </Button>
       </div>
-    </>
+    </form>
   );
 }

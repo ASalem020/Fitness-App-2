@@ -1,5 +1,5 @@
-import { Controller, useFormContext } from "react-hook-form";
-import type { ForgetPassFormInputs } from "../types/forget-pass-inputs";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import type { OTPStepFormType } from "../types/forget-pass-inputs";
 import { Label } from "@/components/ui/label";
 import { AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,15 +17,19 @@ import {
 import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
 import RemainingSeconds from "./remaining-seconds";
 import useForgetPass from "../hooks/use-forget-pass";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { otpStepSchema } from "../schema/forget-pass.schema";
 
 type OtpStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
   timeRemaining: number;
+  email: string;
 };
 
 export default function OtpStepForm({
   setFormStep,
   timeRemaining,
+  email,
 }: OtpStepFormProps) {
   // Hooks
   const { mutate, isPending, error } = useVerifyCode();
@@ -33,20 +37,20 @@ export default function OtpStepForm({
 
   // Form
   const {
-    getValues,
-    trigger,
     control,
+    handleSubmit,
     formState: { errors },
-  } = useFormContext<ForgetPassFormInputs>();
+  } = useForm<OTPStepFormType>({
+    defaultValues: {
+      otp: "",
+    },
+    resolver: zodResolver(otpStepSchema),
+    mode: "onTouched",
+  });
 
   // Handlers
-  const handleClick = async () => {
-    const isValid = await trigger("otp"); // ← validate otp field only
-    if (!isValid) return;
-
-    const otp = getValues("otp");
-
-    mutate(otp, {
+  const onSubmit: SubmitHandler<OTPStepFormType> = async (data) => {
+    mutate(data.otp, {
       onSuccess: () => {
         toast.success("Code Verified successfully");
         setFormStep(FORGET_PASS_STEPS.NEW_PASS);
@@ -56,15 +60,16 @@ export default function OtpStepForm({
   };
 
   const handleResendClick = () => {
-    const email = getValues("email");
-
     sendCode(email, {
       onSuccess: () => toast.success("Code Resend Successfully !"),
     });
   };
 
   return (
-    <>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-2 items-center min-w-[25.375rem]"
+    >
       {/* Form Label */}
       <Label
         htmlFor="otp-code-form"
@@ -106,11 +111,13 @@ export default function OtpStepForm({
         {/* Confirm Button */}
         <Button
           className="font-baloo-thambi bg-primary rounded-full font-extrabold text-base text-white py-2 px-4 w-full"
-          type="button"
           disabled={isPending}
-          onClick={handleClick}
         >
-          Confirm
+          {isPending ? (
+            <span className="animate-pulse">Checking Code ...</span>
+          ) : (
+            "Confirm"
+          )}
         </Button>
       </div>
 
@@ -131,6 +138,6 @@ export default function OtpStepForm({
           />
         )}
       </p>
-    </>
+    </form>
   );
 }
