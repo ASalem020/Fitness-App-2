@@ -36,9 +36,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         className="text-muted-foreground transition-colors hover:text-foreground focus:outline-none"
       >
         {showPassword ? (
-          <EyeOff className="h-5 w-5" />
+          <EyeOff className="h-5 w-5 text-gray-300" />
         ) : (
-          <Eye className="h-5 w-5" />
+          <Eye className="h-5 w-5 text-gray-300" />
         )}
       </button>
     ) : (
