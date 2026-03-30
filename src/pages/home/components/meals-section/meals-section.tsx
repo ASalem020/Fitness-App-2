@@ -1,8 +1,8 @@
 import MealCard from "./meals-card";
-import image from "../../assets/images/meals-section.jpg";
-import image1 from "../../assets/images/0f36261b0706d20727c443ff32594e00d11dd3a4.jpg";
-import image2 from "../../assets/images/dd063492dc18527cc75097cf3cc013e8fe31ce5f.jpg";
-import image3 from "../../assets/images/dd2b96c9cdde8b7ebcb79863a93b83961cb95f7d.jpg";
+import image from "../../../../assets/images/meals-section.jpg";
+import image1 from "../../../../assets/images/0f36261b0706d20727c443ff32594e00d11dd3a4.jpg";
+import image2 from "../../../../assets/images/dd063492dc18527cc75097cf3cc013e8fe31ce5f.jpg";
+import image3 from "../../../../assets/images/dd2b96c9cdde8b7ebcb79863a93b83961cb95f7d.jpg";
 
 const meals = [
   { title: "Dinner", image: image3 },
@@ -12,7 +12,7 @@ const meals = [
 
 export default function MealsSection() {
   return (
-    <section className="relative w-full mt-32 h-[700px]">
+    <section className="relative w-full h-[700px]">
       {/* Background Image */}
       <div className="h-full inset-0">
         <img
