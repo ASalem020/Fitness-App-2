@@ -9,21 +9,25 @@ import ForgetPassword from "./pages/forget-pass/forget-password";
 import Home from "./pages/home/home";
 import Classes from "./pages/classes/classes";
 import Healthy from "./pages/healthy/healthy";
+import { Toaster } from "sonner";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="classes" element={<Classes />} />
-        <Route path="healthy" element={<Healthy />} />
-        <Route path="system-design" element={<SystemDesign />} />
-      </Route>
-      <Route element={<AuthLayout />}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/forget-password" element={<ForgetPassword />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="classes" element={<Classes />} />
+          <Route path="healthy" element={<Healthy />} />
+          <Route path="system-design" element={<SystemDesign />} />
+        </Route>
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/forget-password" element={<ForgetPassword />} />
+        </Route>
+      </Routes>
+      <Toaster />
+    </>
   );
 }
