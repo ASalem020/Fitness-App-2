@@ -42,7 +42,7 @@ export default function AboutUsSection() {
 
         {/* conrent */}
         <div className="max-w-xl col-span-1 mt-12 ">
-          .{/* Title */}
+          {/* Title */}
           <SectionTitle
             title="workouts"
             subtitle="About Us"
