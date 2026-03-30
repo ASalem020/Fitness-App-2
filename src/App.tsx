@@ -9,6 +9,7 @@ import ForgetPassword from "./pages/forget-pass/forget-password";
 import Home from "./pages/home/home";
 import Classes from "./pages/classes/classes";
 import Healthy from "./pages/healthy/healthy";
+import Register from "./pages/register/register";
 
 export default function App() {
   return (
@@ -23,8 +24,8 @@ export default function App() {
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="register" element={<Register />} />
       </Route>
-      <Route path="register" element={<Register />} />
     </Routes>
   );
 }

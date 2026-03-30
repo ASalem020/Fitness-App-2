@@ -29,7 +29,7 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
       password: "",
       rePassword: "",
     },
-    mode: "all",
+    mode: "onSubmit",
     resolver: zodResolver(registerSchema),
   });
 
@@ -50,7 +50,7 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="font-baloo-thambi flex flex-col items-center justify-center gap-4 py-6 p-10 w-96"
+        className="font-baloo-thambi flex flex-col items-center justify-center gap-4 py-6 p-10 w-96 text-white"
       >
         <div style={{ display: "none" }}>
           {JSON.stringify(form.formState.errors)}
@@ -63,37 +63,31 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
-                  <Input
-                    type="text"
-                    placeholder="First Name"
-                    {...field}
-                    className="pl-10 h-12 rounded-xl border-gray-300 focus:border-[#FF4100] focus:ring-[#FF4100]"
-                  />
-                </div>
+                <Input
+                  startIcon={<User className="text-gray-500 h-5 w-5" />}
+                  placeholder="First Name"
+                  type="text"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Last Name */}
+        {/* First Name */}
         <FormField
           control={form.control}
           name="lastName"
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
-                  <Input
-                    type="text"
-                    placeholder="Last Name"
-                    {...field}
-                    className="pl-10 h-12 rounded-xl border-gray-300 focus:border-[#FF4100] focus:ring-[#FF4100]"
-                  />
-                </div>
+                <Input
+                  startIcon={<User className="text-gray-500 h-5 w-5" />}
+                  placeholder="Last Name"
+                  type="text"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -107,15 +101,12 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
-                  <Input
-                    type="email"
-                    placeholder="Email"
-                    {...field}
-                    className="pl-10 h-12 rounded-xl border-gray-300 focus:border-[#FF4100] focus:ring-[#FF4100]"
-                  />
-                </div>
+                <Input
+                  startIcon={<Mail className="text-gray-500 h-5 w-5" />}
+                  placeholder="Email"
+                  type="email"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -129,16 +120,12 @@ export default function RegisterForm({ setValues, setKycSteps }: props) {
           render={({ field }) => (
             <FormItem className="w-full">
               <FormControl>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" />
-                  <Input
-                    type="password"
-                    placeholder="Password"
-                    {...field}
-                    autoComplete="new-password"
-                    className="pl-10 h-12 rounded-xl border-gray-300 focus:border-[#FF4100] focus:ring-[#FF4100]"
-                  />
-                </div>
+                <Input
+                  startIcon={<Lock className="text-gray-500 h-5 w-5" />}
+                  placeholder="Password"
+                  type="password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
