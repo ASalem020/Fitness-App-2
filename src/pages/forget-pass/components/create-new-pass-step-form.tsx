@@ -69,7 +69,7 @@ export default function CreateNewPassStepForm({
 
       {/* Input & Button */}
       <div className="mt-6 input-and-button flex flex-col items-center gap-6 w-[19.4375rem] mx-auto">
-        <div className="inputs flex flex-col items-center gap-2 w-full h-">
+        <div className="inputs flex flex-col items-center gap-2 w-full">
           {/* New Pass Input */}
           <div className="new-pass-input w-full">
             <Input
