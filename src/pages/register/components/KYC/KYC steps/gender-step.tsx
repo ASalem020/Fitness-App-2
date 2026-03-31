@@ -1,6 +1,7 @@
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Mars, Venus } from "lucide-react";
-import GenderLabel from "../gender-label";
+import GenderLabel from "../../gender-label";
+import KycHeader from "./KYC-header";
 
 interface GenderStepProps {
   selectedGender: string;
@@ -14,18 +15,16 @@ export default function GenderStep({
   return (
     <div>
       {/* Hero Text */}
-      <h1 className="mb-2 text-center text-4xl font-extrabold uppercase  text-white md:text-5xl">
-        TELL US ABOUT YOURSELF!
-      </h1>
-      <p className="mb-4 text-center text-lg capitalize  text-gray-200 opacity-90">
-        we need to now your gender
-      </p>
+      <KycHeader
+        title="TELL US ABOUT YOURSELF!"
+        subtitle="we need to now your gender"
+      />
 
       {/* Gender Selection using Radio Group */}
       <RadioGroup
-        value={selectedGender}
+        // value={selectedGender}
         onValueChange={onGenderChange}
-        className="mb-6 flex items-center justify-center gap-12"
+        className="mt-8 mb-6 flex items-center justify-center gap-12"
       >
         {/* Male option */}
         <GenderLabel

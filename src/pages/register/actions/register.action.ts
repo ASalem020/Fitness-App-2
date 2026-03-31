@@ -1,29 +1,19 @@
-// export async function registerAction(values: RegisterFields) {
-//   const formattedPhone = formatEgyptianPhone(values.phone);
+import type { RegisterFormValues } from "@/lib/types/register";
 
-//   const res = await fetch(`${process.env.API_URL}/auth/signup`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       firstName: values.name.firstName,
-//       lastName: values.name.lastName,
-//       email: values.email,
-//       password: values.password,
-//       rePassword: values.confirmPassword,
-//       phone: formattedPhone,
-//       gender: values.gender,
-//     }),
-//   });
+export async function registerAction(values: RegisterFormValues) {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(values),
+  });
 
-//   const payload: SignUpResponse = await res.json();
+  const payload = await res.json();
 
-//   if ("error" in payload) {
-//     throw new Error(
-//       payload.error || "Failed to create account , try again later !",
-//     );
-//   }
-
-//   redirect({ href: "/login", locale });
-// }
+  if ("error" in payload) {
+    throw new Error(
+      payload.error || "Failed to create account , try again later !",
+    );
+  }
+}

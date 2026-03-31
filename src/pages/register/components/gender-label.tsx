@@ -19,33 +19,31 @@ export default function GenderLabel({
   const isSelected = selectedGender === value;
 
   return (
-    <div>
-      <Label
-        htmlFor={value}
+    <Label
+      htmlFor={value}
+      className={cn(
+        "relative flex h-24 w-24 cursor-pointer flex-col items-center justify-center rounded-full border-2 transition-all duration-500",
+        isSelected
+          ? "border-orange-500"
+          : "hover:border-white/40 hover:bg-white/5",
+      )}
+    >
+      <RadioGroupItem value={value} id={value} className="sr-only" />
+      <Icon
         className={cn(
-          "relative flex h-24 w-24 cursor-pointer flex-col items-center justify-center rounded-full border-2 transition-all duration-500",
-          isSelected
-            ? "border-orange-500"
-            : "hover:border-white/40 hover:bg-white/5",
+          "h-12 w-9 transition-all duration-500",
+          isSelected ? "scale-110 text-orange-500" : "text-white/80",
+        )}
+        strokeWidth={1.5}
+      />
+      <span
+        className={cn(
+          "font-semibold capitalize transition-colors duration-300",
+          isSelected ? "text-orange-500" : "text-white",
         )}
       >
-        <RadioGroupItem value={value} id={value} className="sr-only" />
-        <Icon
-          className={cn(
-            "h-12 w-9 transition-all duration-500",
-            isSelected ? "scale-110 text-orange-500" : "text-white/80",
-          )}
-          strokeWidth={1.5}
-        />
-        <span
-          className={cn(
-            "font-semibold capitalize transition-colors duration-300",
-            isSelected ? "text-orange-500" : "text-white",
-          )}
-        >
-          {label}
-        </span>
-      </Label>
-    </div>
+        {label}
+      </span>
+    </Label>
   );
 }
