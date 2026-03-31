@@ -1,7 +1,7 @@
 import RegisterForm from "./components/register-form";
 import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
-import KYC from "./components/KYC/KYC steps/KYC";
+import KYC from "./components/KYC/KYC steps/KYC-steps";
 import FormContainer from "@/components/shared/form-container";
 
 export default function Register() {
@@ -19,10 +19,10 @@ export default function Register() {
   const [backendError, setBackendError] = useState<string>("");
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center my-20">
       {!KycSteps ? (
+        // Register form
         <div>
-          {/* Form Container component... */}
           <FormContainer
             title="create an account"
             subTitle="hey there"
@@ -37,7 +37,7 @@ export default function Register() {
           />
         </div>
       ) : (
-        // KYC Steps component to be continued...
+        // KYC steps
         <KYC
           registerValues={registerValues}
           setKycSteps={setKycSteps}

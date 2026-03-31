@@ -50,11 +50,15 @@ const kycReducer = (state: KYCState, action: KYCAction): KYCState => {
   }
 };
 
-export default function KYC({ registerValues, setKycSteps, setError }: props) {
+export default function KycSteps({
+  registerValues,
+  setKycSteps,
+  setError,
+}: props) {
   // Navigation
   const navigate = useNavigate();
 
-  // States to track the current step and KYC data
+  // States
   const [currentStep, setCurrentStep] = useState(1);
   const [kycState, dispatch] = useReducer(kycReducer, initialState);
 
@@ -64,11 +68,16 @@ export default function KYC({ registerValues, setKycSteps, setError }: props) {
     (currentStep === 5 && !kycState.goal) ||
     (currentStep === 6 && !kycState.activityLevel);
 
-  // Handlers
+  // Total number of steps for progress calculation
+  const stepsNumber = 6;
+
   const handleFinish = async () => {
     try {
+      // Combine register form values with KYC data and send to backend
       await registerAction({ ...registerValues, ...kycState });
       toast.success("Account created successfully! Please log in.");
+
+      // Redirect to login page after successful registration
       navigate("/login");
     } catch (error) {
       setError((error as Error).message);
@@ -77,12 +86,11 @@ export default function KYC({ registerValues, setKycSteps, setError }: props) {
   };
 
   const handleNext = () => {
-    // Only proceed if gender is selected on Step 1
-    // if (currentStep === 1 && !kycState.gender) return;
-
+    // proceed to next step
     if (currentStep < 6) {
       setCurrentStep((prev) => prev + 1);
     } else {
+      // proceed to finish on last step and handle registration
       handleFinish();
     }
   };
@@ -92,13 +100,13 @@ export default function KYC({ registerValues, setKycSteps, setError }: props) {
       {/* Steps Progress Circle container */}
       <div className="mb-2">
         <ProgressCircle
-          value={(currentStep / 6) * 100}
+          value={(currentStep / stepsNumber) * 100}
           size={64}
           strokeWidth={2}
           progressClassName="text-orange-600"
         >
           <span className="text-xl font-medium text-white">
-            {currentStep}/6
+            {currentStep}/{stepsNumber}
           </span>
         </ProgressCircle>
       </div>
