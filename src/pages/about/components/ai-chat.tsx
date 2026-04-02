@@ -1,4 +1,4 @@
-import { Pencil, TextAlignEnd } from "lucide-react";
+import { TextAlignEnd, Wand2 } from "lucide-react";
 import image from "../../../assets/images/image-ai.png";
 import image2 from "../../../assets/images/image-user-chat.jpg";
 import { useState } from "react";
@@ -98,15 +98,11 @@ export default function AIChat() {
               </div>
 
               {/* Input */}
-              <div className="p-3">
-                <div className="flex gap-2 items-center border border-white rounded-full px-3 py-1 bg-white/10 backdrop-blur-md">
-                  <Pencil className="text-orange-600" size={16} />
-                  <Input
-                    type="text"
-                    placeholder="Ask Me Any Things..."
-                    className="bg-transparent flex-1 outline-none text-sm border-none h-8 rounded-2xl focus:border-none focus:outline-none "
-                  />
-                </div>
+              <div className="mx-5 rounded-full mb-4">
+                <Input
+                  startIcon={<Wand2 className="h-5 w-5 text-[#FF4A11]" />}
+                  placeholder="Ask Me Any Things"
+                />
               </div>
             </div>
 

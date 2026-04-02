@@ -26,7 +26,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         type="button"
         tabIndex={-1}
         onClick={handleTogglePassword}
-        className="text-muted-foreground transition-colors hover:text-foreground focus:outline-none"
+        className="text-muted-foreground transition-colors hover:text-foreground focus:outline-none text-gray-400"
       >
         {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
       </button>
