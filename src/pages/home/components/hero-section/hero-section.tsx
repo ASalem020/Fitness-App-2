@@ -4,8 +4,12 @@ import image2 from "../../../../assets/images/Vector.png";
 import image3 from "../../../../assets/images/background-image.png";
 import StateComponent from "./state-component";
 import ScrollingTicker from "./scrolling-ticker";
+import { useTranslations } from "use-intl";
 
 export default function HeroSection() {
+  // Translation
+  const t = useTranslations("home.hero");
+
   // variables
   const stats = [
     {
@@ -40,8 +44,8 @@ export default function HeroSection() {
         <div
           className="absolute col-span-1 right-0 bottom-0 w-full h-[44.93rem] lg:w-1/2 bg-cover bg-center z-10"
           style={{
-            top: "12rem", 
-            height: "calc(100% - 12rem)", 
+            top: "12rem",
+            height: "calc(100% - 12rem)",
             backgroundImage: `url(${image})`,
             backgroundSize: "contain",
             backgroundPosition: "bottom center",
@@ -54,18 +58,18 @@ export default function HeroSection() {
           <div className="">
             {/* Main Heading */}
             <h1 className="text-5xl font-bold text-black leading-tight uppercase w-[42rem]">
-              YOUR BODY CAN <span className="text-orange-600">STAND</span>
-              <span className="text-orange-600"> ALMOST</span> ANYTHING
+              {t.rich("title", {
+                span: (chunks) => (
+                  <span className="text-primary">{chunks}</span>
+                ),
+              })}
             </h1>
 
             {/* Subtext with side border */}
             <div className="mt-6 flex items-start gap-4">
               <div className="w-1 h-20 bg-orange-600 rounded-full"></div>
               <p className="text-black text-md leading-relaxed w-[34rem]">
-                It's your mind that needs convincing. Push past your limits,
-                stay committed, and watch as your body transform into powerhouse
-                of strength and resilience. Start your journey today & become
-                truly capable of!
+                {t("description")}
               </p>
             </div>
 
