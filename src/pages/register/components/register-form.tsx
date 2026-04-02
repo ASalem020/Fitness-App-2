@@ -157,7 +157,7 @@ export default function RegisterForm({
         {/* Forget password */}
         <Link
           to={"/forget-password"}
-          className="self-end text-[#FF4100] hover:text-orange-700 transition-all font-bold underline"
+          className="self-end text-primary hover:text-orange-700 transition-all font-bold underline"
         >
           Forget Password ?
         </Link>
@@ -174,10 +174,7 @@ export default function RegisterForm({
         )}
 
         {/* Submit Button */}
-        <Button
-          type="submit"
-          className="w-full h-12 rounded-xl bg-[#FF4100] hover:bg-[#e63a00] font-bold text-lg text-white"
-        >
+        <Button type="submit" variant={"default"} className="w-full">
           Register
         </Button>
 
@@ -185,7 +182,7 @@ export default function RegisterForm({
           already have an account ?{" "}
           <Link
             to={"/login"}
-            className="underline text-[#FF4100] hover:text-orange-700 transition-all font-extrabold"
+            className="underline text-primary hover:text-orange-700 transition-all font-extrabold"
           >
             login
           </Link>

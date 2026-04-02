@@ -10,9 +10,9 @@ import HeightStep from "./height-step";
 import type { KYCState, KYCAction } from "../../../lib/type";
 import GoalStep from "./goal-step";
 import ActivityLevelStep from "./level-step";
-import { registerAction } from "../../../actions/register.action";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useRegister } from "@/pages/register/hooks/use-register";
 
 interface props {
   registerValues: RegisterFormValues;
@@ -62,6 +62,9 @@ export default function KycSteps({
   const [currentStep, setCurrentStep] = useState(1);
   const [kycState, dispatch] = useReducer(kycReducer, initialState);
 
+  // Hooks
+  const { isLoading, register } = useRegister();
+
   // Disable button only for gender, goal, and activity level steps
   const isButtonDisabled =
     (currentStep === 1 && !kycState.gender) ||
@@ -72,17 +75,22 @@ export default function KycSteps({
   const stepsNumber = 6;
 
   const handleFinish = async () => {
-    try {
-      // Combine register form values with KYC data and send to backend
-      await registerAction({ ...registerValues, ...kycState });
-      toast.success("Account created successfully! Please log in.");
+    // Combine register form values with KYC data and send to backend
+    register(
+      { ...registerValues, ...kycState },
+      {
+        onSuccess: () => {
+          toast.success("Registration successful!");
+          navigate("/login");
+        },
+        onError: (error) => {
+          setError((error as Error).message);
 
-      // Redirect to login page after successful registration
-      navigate("/login");
-    } catch (error) {
-      setError((error as Error).message);
-      setKycSteps(false);
-    }
+          // Go back to KYC steps to allow retry
+          setKycSteps(false);
+        },
+      },
+    );
   };
 
   const handleNext = () => {
@@ -162,13 +170,12 @@ export default function KycSteps({
 
       {/* Next button */}
       <Button
+        variant={"default"}
         onClick={handleNext}
         disabled={isButtonDisabled}
+        isLoading={isLoading}
         className={cn(
-          "h-10 w-full max-w-80 rounded-full text-white px-4 py-2 font-black transition-all duration-300",
-          isButtonDisabled
-            ? "bg-[#D3D3D3]"
-            : "bg-orange-600 hover:bg-orange-500",
+          "w-full max-w-80 rounded-full transition-all duration-300",
         )}
       >
         {currentStep === 6 ? "Finish" : "Next"}

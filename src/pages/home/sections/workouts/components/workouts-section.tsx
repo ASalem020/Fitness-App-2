@@ -14,6 +14,7 @@ import WorkoutCardSkeleton from "./skeletons/workout-card-skeleton";
 import WorkoutTabsSkeleton from "./skeletons/workout-tabs-skeleton";
 import type { MuscleGroup, MusclesResponse } from "@/lib/types/muscles";
 import SectionTitle from "@/components/shared/section-title";
+import { HighlightText } from "@/components/ui/highlight-text";
 
 export default function WorkoutsSection() {
   // states
@@ -103,8 +104,11 @@ export default function WorkoutsSection() {
       <div className="h-2/3 p-12 inset-0 bg-gray-300/80 backdrop-blur-md flex flex-col">
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
-          Transform Your Body with Our Dynamic{" "}
-          <span className="text-[#FF4100]">Upcoming Workouts</span>
+          <HighlightText
+            startText="Transform Your Body with Our Dynamic"
+            highlightText="Upcoming Workouts"
+            endText=""
+          />
         </h3>
 
         {/* Tabs Carousel */}
@@ -128,7 +132,7 @@ export default function WorkoutsSection() {
                           onClick={() => setActiveTab(muscle._id)}
                           className={`capitalize font-bold text-xl px-5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                             activeTab === muscle._id
-                              ? "bg-[#FF4100] text-white"
+                              ? "bg-primary text-white"
                               : "text-neutral-900 hover:bg-neutral-200"
                           }`}
                         >
@@ -164,10 +168,8 @@ export default function WorkoutsSection() {
                   <p className="uppercase font-bold text-xl">{item.name}</p>
                   <div className="flex items-center gap-2">
                     {/* Future implementation... */}
-                    <p className="text-[#FF4100] font-medium text-xl">
-                      Explore
-                    </p>
-                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-[#FF4100] text-black rounded-full mt-1" />
+                    <p className="text-primary font-medium text-xl">Explore</p>
+                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-primary text-black rounded-full mt-1" />
                   </div>
                 </div>
               </div>
@@ -184,7 +186,7 @@ export default function WorkoutsSection() {
                 onClick={() => api?.scrollTo(index)}
                 className={`rounded-full transition-all duration-300 ${
                   current === index
-                    ? "bg-[#FF4100] w-6 h-3"
+                    ? "bg-primary w-6 h-3"
                     : "bg-neutral-900 w-3 h-3 hover:bg-gray-500"
                 }`}
               />
