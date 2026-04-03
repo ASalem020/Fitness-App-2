@@ -2,6 +2,7 @@ import { Input } from "@/components/ui/input";
 import type { UseMutateAsyncFunction } from "@tanstack/react-query";
 import { Pencil, Send } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import type { ChatMessageType } from "../types/chat-message";
 
 type AIChatInputProps = {
   setMessage: React.Dispatch<React.SetStateAction<ChatMessageType[]>>;
@@ -11,11 +12,13 @@ type AIChatInputProps = {
     string,
     unknown
   >;
+  isLoading: boolean;
 };
 
 export default function AIChatInput({
   setMessage,
   talkToChatbot,
+  isLoading,
 }: AIChatInputProps) {
   // Forms
   const {
@@ -45,7 +48,11 @@ export default function AIChatInput({
   return (
     <form className="p-3" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex gap-2 items-center border border-white rounded-full px-3 py-1 bg-white/10 backdrop-blur-md">
-        <button disabled={!isDirty} className="group" type="submit">
+        <button
+          disabled={!isDirty || isLoading}
+          className="group"
+          type="submit"
+        >
           {isDirty ? (
             <Send
               size={16}

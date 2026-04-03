@@ -6,7 +6,7 @@ const ai = new GoogleGenAI({
 
 export async function talkToGemini(message: string) {
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-3-flash-preview",
     contents: message,
   });
 

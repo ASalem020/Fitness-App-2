@@ -1,21 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, X } from "lucide-react";
+import type { PreviousChatType } from "../types/previous-chat";
+import type { Dispatch, SetStateAction } from "react";
+import type { ChatMessageType } from "../types/chat-message";
 
 type prop = {
-  open: boolean;
   onClose: () => void;
+  previousChats: PreviousChatType[];
+  setChat: Dispatch<SetStateAction<ChatMessageType[]>>;
 };
 
-export default function ChatHistory({ open, onClose }: prop) {
-  const items = [
-    "Lorem ipsum dolor sit amet",
-    "Lorem ipsum dolor sit amet",
-    "Lorem ipsum dolor sit amet",
-    "Lorem ipsum dolor sit amet",
-    "Lorem ipsum dolor sit amet",
-  ];
+export default function ChatHistory({ onClose, previousChats, setChat }: prop) {
+  // Handlers
+  const handleClick = (title: string) => {
+    const requiredChat = previousChats.find((chat) => chat.title === title);
 
-  if (!open) return null;
+    setChat(requiredChat!.messages);
+    onClose();
+  };
 
   return (
     <div
@@ -51,10 +53,13 @@ export default function ChatHistory({ open, onClose }: prop) {
 
       {/* List */}
       <div className="flex flex-col">
-        {items.map((item, i) => (
-          <div
-            key={i}
-            className="
+        {previousChats.length === 0 ? (
+          <span className="truncate pr-2">No Previous Chats Yet :)</span>
+        ) : (
+          previousChats.map((item) => (
+            <div
+              key={item.id}
+              className="
               flex items-center justify-between
               py-3
               text-xs text-gray-300
@@ -64,14 +69,20 @@ export default function ChatHistory({ open, onClose }: prop) {
               hover:text-white
               transition
             "
-          >
-            <span className="truncate pr-2">{item}</span>
+              onClick={() => handleClick(item.title)}
+            >
+              <span className="truncate pr-2">
+                {item.title.length > 30
+                  ? `${item.title.slice(0, 30)}...`
+                  : item.title}
+              </span>
 
-            <span className="text-orange-500 text-sm">
-              <ChevronRight />
-            </span>
-          </div>
-        ))}
+              <span className="text-orange-500 text-sm">
+                <ChevronRight />
+              </span>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
