@@ -1,15 +1,22 @@
-import { Pencil, TextAlignEnd } from "lucide-react";
+import { TextAlignEnd } from "lucide-react";
 import image from "../../../assets/images/image-ai.png";
-import image2 from "../../../assets/images/image-user-chat.jpg";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
 import ChatHistory from "./sidebar-history";
+import AIChatInput from "./ai-chat-input";
+import ChatMessage from "./chat-message";
+import useTalkToChatbot from "../hooks/use-talk-to-chatbot";
 
 export default function AIChat() {
   // state
   const [open, setOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [messages, setMessages] = useState<ChatMessageType[]>([
+    { role: "bot", message: "Hello How Can I Assist You Today ?" },
+  ]);
+
+  // Mutation
+  const { mutateAsync, isLoading } = useTalkToChatbot();
 
   return (
     <>
@@ -57,7 +64,7 @@ export default function AIChat() {
             </Button>
           </div>
 
-          <div className="fixed bottom-6 right-6 w-[300px] h-[420px] z-30">
+          <div className="fixed bottom-6 right-6 w-96 h-[420px] z-30">
             {/* overlay  */}
             <div
               className="
@@ -77,37 +84,36 @@ export default function AIChat() {
 
                 <Button
                   onClick={() => setHistoryOpen(true)}
-                  className="text-orange-500 text-xl"
+                  className="text-orange-500 text-xl bg-transparent border-none hover:bg-transparent"
                 >
-                  <TextAlignEnd
-                    className="text-orange-600 cursor-pointer"
-                    size={18}
-                  />
+                  <TextAlignEnd className="cursor-pointer" size={18} />
                 </Button>
               </div>
 
               {/* Messages */}
               <div className="flex-1 p-3 space-y-3 overflow-y-auto text-sm">
                 {/* AI */}
-                <div className="flex items-start gap-2">
-                  <img src={image2} className="w-8 h-8  rounded-full" />
-                  <div className="bg-white/10 px-3 py-2 rounded-xl max-w-[75%] backdrop-blur-md">
-                    Hello How Can I Assist You Today?
-                  </div>
-                </div>
+                {messages.map((message, i) => (
+                  <ChatMessage
+                    key={i}
+                    role={message.role}
+                    message={message.message}
+                  />
+                ))}
+                {isLoading && (
+                  <ChatMessage
+                    role="bot"
+                    message="Thinking ..."
+                    className="animate-pulse"
+                  />
+                )}
               </div>
 
               {/* Input */}
-              <div className="p-3">
-                <div className="flex gap-2 items-center border border-white rounded-full px-3 py-1 bg-white/10 backdrop-blur-md">
-                  <Pencil className="text-orange-600" size={16} />
-                  <Input
-                    type="text"
-                    placeholder="Ask Me Any Things..."
-                    className="bg-transparent flex-1 outline-none text-sm border-none h-8 rounded-2xl focus:border-none focus:outline-none "
-                  />
-                </div>
-              </div>
+              <AIChatInput
+                setMessage={setMessages}
+                talkToChatbot={mutateAsync}
+              />
             </div>
 
             {/* menu */}
