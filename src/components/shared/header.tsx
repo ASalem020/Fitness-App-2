@@ -18,8 +18,6 @@ export default function Header() {
 
       {/* Login & Sign Up */}
       {/* ! will appear only on large and medium screens */}
-      {/* this buttons will replace when design system is end and ahmed salem merge his code */}
-
       <div className="user-actions-buttons hidden md:flex items-center justify-end gap-8 lg:min-w-96">
         <Button
           variant="primaryWithIcon"

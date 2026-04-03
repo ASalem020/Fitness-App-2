@@ -4188,7 +4188,7 @@ __metadata:
     tw-animate-css: "npm:^1.4.0"
     typescript: "npm:~5.9.3"
     typescript-eslint: "npm:^8.56.1"
-    use-intl: "npm:^4.8.4"
+    use-intl: "npm:^4.9.0"
     vite: "npm:^8.0.0"
     zod: "npm:^4.3.6"
   languageName: unknown
@@ -4607,12 +4607,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"icu-minify@npm:^4.8.4":
-  version: 4.8.4
-  resolution: "icu-minify@npm:4.8.4"
+"icu-minify@npm:^4.9.0":
+  version: 4.9.0
+  resolution: "icu-minify@npm:4.9.0"
   dependencies:
     "@formatjs/icu-messageformat-parser": "npm:^3.4.0"
-  checksum: 10c0/eba7c04df014e43534b272e54123368c7e408f969b585ed74892ca5429e4c73ebacd1403e1bff57302a48764047b8eb8488b06ecb647932e1904d0eb25f39342
+  checksum: 10c0/c643d00db291b6a38717770c7e0027f3bfe7c1eef6ad79bfcd89f118980911e7d30e74586f15218d73d0288270b6045d3d474f0739be4cb8dece06e6eceba9c9
   languageName: node
   linkType: hard
 
@@ -7238,17 +7238,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-intl@npm:^4.8.4":
-  version: 4.8.4
-  resolution: "use-intl@npm:4.8.4"
+"use-intl@npm:^4.9.0":
+  version: 4.9.0
+  resolution: "use-intl@npm:4.9.0"
   dependencies:
     "@formatjs/fast-memoize": "npm:^3.1.0"
     "@schummar/icu-type-parser": "npm:1.21.5"
-    icu-minify: "npm:^4.8.4"
+    icu-minify: "npm:^4.9.0"
     intl-messageformat: "npm:^11.1.0"
   peerDependencies:
     react: ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
-  checksum: 10c0/d487414b5ff2136339753bf092adb444ce0410585f86eaa42ef71f49e364c9f3494603b2b8387b7eb97a9e274c3d866c95145d446eb7c13140718f855ee469b5
+  checksum: 10c0/dc78a9739a44e5ba81f5eaed81e601b5015260ea3063af8fc19bb56da6a3a8dec5a1e11d78f9192bbf9e6c175b134b2351d1ce07cb05351593b96675c27a9189
   languageName: node
   linkType: hard
 
