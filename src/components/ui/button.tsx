@@ -21,15 +21,15 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         primaryWithIcon:
-          "bg-primary text-white hover:bg-primary/90 rounded-full pe-8 ps-6 h-12 font-semibold",
+          "bg-primary text-white group hover:bg-orange-700 font-baloo-thambi rounded-full pe-8 ps-6 h-12 text-base font-semibold",
         secondaryWithIcon:
-          "bg-transparent border border-primary text-primary hover:bg-accent rounded-full pe-2 ps-6 h-12 font-semibold",
+          "bg-transparent border border-primary text-primary hover:bg-orange-50/45 duration-300 font-baloo-thambi rounded-full pe-2 ps-6 h-12 text-base font-semibold",
         ghostWithIcon:
-          "bg-transparent text-primary hover:bg-accent rounded-full pe-2 ps-6 h-12 font-semibold flex",
+          "bg-transparent text-primary hover:bg-accent font-baloo-thambi rounded-full pe-2 ps-6 h-12 text-base font-semibold flex",
         iconInsideDark:
-          "bg-primary text-[#1E1E1E] hover:bg-primary/90 rounded-full px-6 h-12 font-semibold",
+          "bg-primary text-[#1E1E1E] hover:bg-primary/90 font-baloo-thambi rounded-full px-6 h-12 text-base font-semibold",
         iconInsideLight:
-          "bg-primary text-white hover:bg-primary/90 rounded-full px-6 h-12 font-semibold",
+          "bg-primary text-white hover:bg-primary/90 font-baloo-thambi rounded-full px-6 h-12 text-base font-semibold",
       },
       size: {
         default: "h-10 px-4 py-2",
