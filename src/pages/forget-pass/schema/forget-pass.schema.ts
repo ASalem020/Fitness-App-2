@@ -1,3 +1,4 @@
+import type { useTranslations } from "use-intl";
 import z from "zod";
 
 export const forgetPassSchema = z.object({
@@ -21,7 +22,13 @@ export const forgetPassSchema = z.object({
   "confirm-pass": z.string().min(1, { error: "Confirm password is required" }),
 });
 
-export const emailStepSchema = forgetPassSchema.pick({ email: true });
+export const createEmailStepSchema = (
+  t: ReturnType<typeof useTranslations>,
+) => {
+  return z.object({
+    email: z.email({ error: t("required-error") }),
+  });
+};
 
 export const otpStepSchema = forgetPassSchema.pick({ otp: true });
 

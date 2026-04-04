@@ -2,6 +2,7 @@ import * as React from "react";
 import { Eye, EyeOff } from "lucide-react";
 
 import { cn } from "@/lib/utils/tailwind-merge";
+import { useLocale } from "use-intl";
 
 export interface InputProps extends React.ComponentProps<"input"> {
   startIcon?: React.ReactNode;
@@ -14,6 +15,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     { className, type, startIcon, endIcon, containerClassName, ...props },
     ref,
   ) => {
+    // Translations
+    const locale = useLocale();
+
     const [showPassword, setShowPassword] = React.useState(false);
 
     const isPassword = type === "password";
@@ -48,9 +52,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex h-14 w-full items-center rounded-full border border-input bg-background px-4 text-sm transition-colors focus-within:border-[#FF4A11] focus-within:outline-none focus-within:ring-1 focus-within:ring-[#FF4A11] disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-14 w-full items-center rounded-full border border-input bg-background px-4 text-sm transition-colors focus-within:border-[#FF4A11] focus-within:outline-none focus-within:ring-1 focus-within:ring-[#FF4A11] disabled:cursor-not-allowed disabled:opacity-50 font-baloo-thambi rtl:font-tajawal",
           containerClassName,
         )}
+        dir={locale === "ar" ? "rtl" : "ltr"}
       >
         {startIcon && (
           <div className="me-3 flex items-center text-muted-foreground">
