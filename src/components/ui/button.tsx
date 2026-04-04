@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         primaryWithIcon:
-          "bg-primary text-white group hover:bg-orange-700 font-baloo-thambi rounded-full pe-8 ps-6 h-12 text-base font-semibold",
+          "bg-primary text-white group hover:bg-orange-700 font-baloo-thambi rounded-full pe-8 ps-6 rtl:ps-8 rtl:pe-6 h-12 text-base font-semibold",
         secondaryWithIcon:
           "bg-transparent border border-primary text-primary hover:bg-orange-50/45 duration-300 font-baloo-thambi rounded-full pe-2 ps-6 h-12 text-base font-semibold",
         ghostWithIcon:
@@ -77,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {defaultIcon && (
           <span
             className={cn(
-              "flex items-center justify-center bg-primary group-hover:bg-orange-700 absolute -right-6   ",
+              "flex items-center justify-center bg-primary group-hover:bg-orange-700 absolute left-3/4 rtl:-left-6",
               iconContainerClass,
             )}
           >

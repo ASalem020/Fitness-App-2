@@ -16,7 +16,10 @@ export default function RootLayout() {
   };
 
   return (
-    <div className="root-layout" dir={locale === "ar" ? "rtl" : "ltr"}>
+    <div
+      className={`root-layout ${locale === "ar" ? "font-tajawal" : "font-baloo-thambi"}`}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
       {/* Header */}
       <Header />
 

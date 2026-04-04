@@ -4,8 +4,12 @@ import MenuAuthInMobile from "./menu-auth-in-mobile";
 import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslations } from "use-intl";
 
 export default function Header() {
+  // Translation
+  const t = useTranslations("header");
+
   return (
     <header className="absolute top-0 inset-x-0 z-[500] w-full flex justify-between items-center px-5 md:px-0 lg:w-11/12 container mx-auto py-4 ">
       {/* Logo */}
@@ -21,17 +25,19 @@ export default function Header() {
       <div className="user-actions-buttons hidden md:flex items-center justify-end gap-8 lg:min-w-96">
         <Button
           variant="primaryWithIcon"
-          defaultIcon={<ArrowUpRight className="h-4 w-4" />}
+          defaultIcon={<ArrowUpRight className="h-4 w-4 rtl:-rotate-90" />}
           iconContainerClass="rounded-full border-2 border-white h-9 w-9"
         >
-          <Link to="/login">Login</Link>
+          <Link to="/login">{t("login")}</Link>
         </Button>
         <Button
           variant="secondaryWithIcon"
-          endIcon={<ArrowUpRight className="h-4 w-4 text-white" />}
+          endIcon={
+            <ArrowUpRight className="h-4 w-4 text-white rtl:-rotate-90" />
+          }
           iconContainerClass="rounded-full bg-[#FF4A11] h-7 w-7"
         >
-          <Link to="/register">Sign Up</Link>
+          <Link to="/register">{t("signup")}</Link>
         </Button>
       </div>
 
