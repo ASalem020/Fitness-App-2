@@ -2,6 +2,7 @@ import { RadioGroup } from "@/components/ui/radio-group";
 import { Mars, Venus } from "lucide-react";
 import GenderLabel from "../../gender-label";
 import KycHeader from "./KYC-header";
+import { useTranslations } from "use-intl";
 
 interface GenderStepProps {
   selectedGender: string;
@@ -12,13 +13,12 @@ export default function GenderStep({
   selectedGender,
   onGenderChange,
 }: GenderStepProps) {
+  // Translations
+  const t = useTranslations("kyc.genderStep");
   return (
     <div>
       {/* Hero Text */}
-      <KycHeader
-        title="TELL US ABOUT YOURSELF!"
-        subtitle="we need to now your gender"
-      />
+      <KycHeader title={t("title")} subtitle={t("description")} />
 
       {/* Gender Selection using Radio Group */}
       <RadioGroup
@@ -31,7 +31,7 @@ export default function GenderStep({
           value="male"
           selectedGender={selectedGender}
           icon={Mars}
-          label="male"
+          label={t("male")}
         />
 
         {/* Female option */}
@@ -39,7 +39,7 @@ export default function GenderStep({
           value="female"
           selectedGender={selectedGender}
           icon={Venus}
-          label="female"
+          label={t("female")}
         />
       </RadioGroup>
     </div>

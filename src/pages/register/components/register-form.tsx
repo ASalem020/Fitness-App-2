@@ -15,6 +15,7 @@ import type { RegisterFormValues } from "@/lib/types/register";
 import { registerSchema } from "@/lib/schemas/register.schema";
 import { useEffect } from "react";
 import SocialIcons from "./social-icons";
+import { useTranslations } from "use-intl";
 
 interface props {
   setValues: React.Dispatch<React.SetStateAction<RegisterFormValues>>;
@@ -29,6 +30,10 @@ export default function RegisterForm({
   backendError,
   currentValues,
 }: props) {
+  // Translations
+  const registerForm = useTranslations("register.form");
+  const registerFormValidation = useTranslations("register.formValidation");
+
   // Forms
   const form = useForm<RegisterFormValues>({
     defaultValues: {
@@ -39,7 +44,7 @@ export default function RegisterForm({
       rePassword: "",
     },
     mode: "onSubmit",
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema(registerFormValidation)),
   });
 
   // Handlers
@@ -74,7 +79,7 @@ export default function RegisterForm({
               <FormControl>
                 <Input
                   startIcon={<User className="text-gray-500 h-5 w-5" />}
-                  placeholder="First Name"
+                  placeholder={registerForm("firstName")}
                   type="text"
                   {...field}
                 />
@@ -93,7 +98,7 @@ export default function RegisterForm({
               <FormControl>
                 <Input
                   startIcon={<User className="text-gray-500 h-5 w-5" />}
-                  placeholder="Last Name"
+                  placeholder={registerForm("lastName")}
                   type="text"
                   {...field}
                 />
@@ -112,7 +117,7 @@ export default function RegisterForm({
               <FormControl>
                 <Input
                   startIcon={<Mail className="text-gray-500 h-5 w-5" />}
-                  placeholder="Email"
+                  placeholder={registerForm("Email")}
                   type="email"
                   {...field}
                 />
@@ -131,7 +136,7 @@ export default function RegisterForm({
               <FormControl>
                 <Input
                   startIcon={<Lock className="text-gray-500 h-5 w-5" />}
-                  placeholder="Password"
+                  placeholder={registerForm("Password")}
                   type="password"
                   {...field}
                 />
@@ -159,7 +164,7 @@ export default function RegisterForm({
           to={"/forget-password"}
           className="self-end text-primary hover:text-orange-700 transition-all font-bold underline"
         >
-          Forget Password ?
+          {registerForm("ForgetPass")}
         </Link>
 
         {/* Social Media section icons */}
@@ -175,16 +180,16 @@ export default function RegisterForm({
 
         {/* Submit Button */}
         <Button type="submit" variant={"default"} className="w-full">
-          Register
+          {registerForm("registerButton")}
         </Button>
 
         <p className="capitalize text-white">
-          already have an account ?{" "}
+          {registerForm("alreadyHaveAccount")}{" "}
           <Link
             to={"/login"}
             className="underline text-primary hover:text-orange-700 transition-all font-extrabold"
           >
-            login
+            {registerForm("loginLink")}
           </Link>
         </p>
       </form>

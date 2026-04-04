@@ -1,10 +1,14 @@
+import { useTranslations } from "use-intl";
+
 export default function SocialIcons() {
+  const t = useTranslations("register.form");
+
   return (
     <div className="social-icons">
       {/* Or Separator */}
       <div className="flex items-center w-full gap-4">
         <div className="flex-1 h-px bg-gray-500"></div>
-        <span className="text-gray-400">Or</span>
+        <span className="text-gray-400">{t("divider")}</span>
         <div className="flex-1 h-px bg-gray-500"></div>
       </div>
 

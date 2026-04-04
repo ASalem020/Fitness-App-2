@@ -13,6 +13,7 @@ import ActivityLevelStep from "./level-step";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useRegister } from "@/pages/register/hooks/use-register";
+import { useTranslations } from "use-intl";
 
 interface props {
   registerValues: RegisterFormValues;
@@ -55,6 +56,9 @@ export default function KycSteps({
   setKycSteps,
   setError,
 }: props) {
+  // Translations
+  const t = useTranslations("kyc");
+
   // Navigation
   const navigate = useNavigate();
 
@@ -178,7 +182,7 @@ export default function KycSteps({
           "w-full max-w-80 rounded-full transition-all duration-300",
         )}
       >
-        {currentStep === 6 ? "Finish" : "Next"}
+        {currentStep === 6 ? t("finishButton") : t("nextButton")}
       </Button>
     </div>
   );

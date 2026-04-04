@@ -3,8 +3,13 @@ import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
 import KYC from "./components/KYC/KYC steps/KYC-steps";
 import FormContainer from "@/components/shared/form-container";
+import { useTranslations } from "use-intl";
 
 export default function Register() {
+  // Translations
+  const registerForm = useTranslations("register.form");
+
+  // states
   const [registerValues, setRegisterValues] = useState<RegisterFormValues>({
     firstName: "",
     lastName: "",
@@ -24,8 +29,8 @@ export default function Register() {
         // Register form
         <div>
           <FormContainer
-            title="create an account"
-            subTitle="hey there"
+            title={registerForm("title")}
+            subTitle={registerForm("subtitle")}
             formComponent={
               <RegisterForm
                 setValues={setRegisterValues}
