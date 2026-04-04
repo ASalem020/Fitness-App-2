@@ -1,7 +1,7 @@
-import { emailStepAr } from "./ar/forget-pass";
+import { emailStepAr, otpStepAr } from "./ar/forget-pass";
 import { headerAr } from "./ar/header";
 import { heroAr, whyUsAr } from "./ar/home";
-import { emailStepEn } from "./en/forget-pass";
+import { emailStepEn, otpStepEn } from "./en/forget-pass";
 import { headerEn } from "./en/header";
 import { heroEn, whyUsEn } from "./en/home";
 
@@ -14,6 +14,7 @@ export const messages = {
     },
     "forget-pass": {
       "email-step": emailStepEn,
+      "otp-step": otpStepEn,
     },
   },
   ar: {
@@ -24,6 +25,7 @@ export const messages = {
     },
     "forget-pass": {
       "email-step": emailStepAr,
+      "otp-step": otpStepAr,
     },
   },
 };

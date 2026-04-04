@@ -18,7 +18,8 @@ import type { ForgetPassFormStepsType } from "../types/forget-pass-form-steps";
 import RemainingSeconds from "./remaining-seconds";
 import useForgetPass from "../hooks/use-forget-pass";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { otpStepSchema } from "../schema/forget-pass.schema";
+import { createOtpStepSchema } from "../schema/forget-pass.schema";
+import { useTranslations } from "use-intl";
 
 type OtpStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
@@ -31,6 +32,9 @@ export default function OtpStepForm({
   timeRemaining,
   email,
 }: OtpStepFormProps) {
+  // Translations
+  const t = useTranslations("forget-pass.otp-step");
+
   // Hooks
   const { mutate, isPending, error } = useVerifyCode();
   const { mutate: sendCode } = useForgetPass();
@@ -44,7 +48,7 @@ export default function OtpStepForm({
     defaultValues: {
       otp: "",
     },
-    resolver: zodResolver(otpStepSchema),
+    resolver: zodResolver(createOtpStepSchema(t)),
     mode: "onTouched",
   });
 
@@ -73,9 +77,9 @@ export default function OtpStepForm({
       {/* Form Label */}
       <Label
         htmlFor="otp-code-form"
-        className="text-center text-white text-2xl font-baloo-thambi font-normal mx-auto"
+        className="text-center text-white text-2xl font-normal mx-auto"
       >
-        Enter the OTP you have received
+        {t("form-title")}
       </Label>
 
       {/* Input & Button */}
@@ -100,7 +104,7 @@ export default function OtpStepForm({
 
         {/* Error Message Box */}
         {(errors.otp || error) && (
-          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
+          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2 font-baloo-thambi rtl:font-tajawal">
             <AlertCircle size={18} className="shrink-0" />
             <p className="leading-tight">
               {errors.otp?.message || error?.message}
@@ -110,28 +114,27 @@ export default function OtpStepForm({
 
         {/* Confirm Button */}
         <Button
-          className="font-baloo-thambi bg-primary rounded-full font-extrabold text-base text-white py-2 px-4 w-full"
+          className="bg-primary rounded-full font-extrabold text-base text-white py-2 px-4 w-full"
           disabled={isPending}
         >
           {isPending ? (
-            <span className="animate-pulse">Checking Code ...</span>
+            <span className="animate-pulse">{t("check-code")} ...</span>
           ) : (
-            "Confirm"
+            t("confirm")
           )}
         </Button>
       </div>
 
       {/* Didn't receive code */}
-      <p className="mt-4 text-center flex flex-col items-center font-baloo-thambi">
+      <p className="mt-4 text-center flex flex-col items-center font-baloo-thambi rtl:font-tajawal">
         {/* Text */}
-        <span className="text-white capitalize">
-          didn’t receive verification code?
-        </span>
+        <span className="text-white capitalize">{t("resend-message")}</span>
 
         {/* Resend Button OR Remaining Seconds */}
         {/* Use key prop in RemainingSeconds Component to re-create a new component with a new state ( seconds ) */}
         {timeRemaining > 0 && (
           <RemainingSeconds
+            text={t("resend")}
             seconds={timeRemaining}
             key={timeRemaining}
             handleClick={handleResendClick}

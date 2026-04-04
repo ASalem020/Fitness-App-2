@@ -30,7 +30,11 @@ export const createEmailStepSchema = (
   });
 };
 
-export const otpStepSchema = forgetPassSchema.pick({ otp: true });
+export const createOtpStepSchema = (t: ReturnType<typeof useTranslations>) => {
+  return z.object({
+    otp: z.string().min(6, { error: t("min-error") }),
+  });
+};
 
 export const newPasswordSchema = forgetPassSchema
   .pick({ "new-password": true, "confirm-pass": true })

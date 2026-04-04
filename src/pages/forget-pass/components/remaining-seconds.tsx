@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 type RemainingSecondsProps = {
   seconds: number;
   handleClick: () => void;
+  text: string;
 };
 
 export default function RemainingSeconds({
   seconds,
   handleClick,
+  text,
 }: RemainingSecondsProps) {
   // States
   const [remainingSeconds, setRemainingSeconds] = useState(seconds);
@@ -32,7 +34,7 @@ export default function RemainingSeconds({
       onClick={handleClick}
       type="button"
     >
-      Resend Code
+      {text}
       <>{remainingSeconds > 0 && ` at ${remainingSeconds}`}</>
     </Button>
   );

@@ -7,21 +7,21 @@ import { useTranslations } from "use-intl";
 
 export default function ForgetPassword() {
   // Translation
-  const t = useTranslations("forget-pass.email-step");
+  const t = useTranslations("forget-pass");
 
   // States
   const [forgetFormSteps, setForgetFormSteps] =
-    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.EMAIL);
+    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.OTP);
 
   // Variables
   const FormTitle: string =
     forgetFormSteps === FORGET_PASS_STEPS.EMAIL
-      ? t("title")
+      ? t("email-step.title")
       : forgetFormSteps === FORGET_PASS_STEPS.OTP
-        ? "OTP CODE"
+        ? t("otp-step.title")
         : forgetFormSteps === FORGET_PASS_STEPS.NEW_PASS
           ? "create new password"
-          : t("title");
+          : t("email-step.title");
 
   return (
     <main>
