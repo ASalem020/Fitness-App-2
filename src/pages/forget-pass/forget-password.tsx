@@ -11,7 +11,7 @@ export default function ForgetPassword() {
 
   // States
   const [forgetFormSteps, setForgetFormSteps] =
-    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.OTP);
+    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.NEW_PASS);
 
   // Variables
   const FormTitle: string =
@@ -20,7 +20,7 @@ export default function ForgetPassword() {
       : forgetFormSteps === FORGET_PASS_STEPS.OTP
         ? t("otp-step.title")
         : forgetFormSteps === FORGET_PASS_STEPS.NEW_PASS
-          ? "create new password"
+          ? t("new-pass-step.title")
           : t("email-step.title");
 
   return (

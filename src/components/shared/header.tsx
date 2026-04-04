@@ -35,7 +35,7 @@ export default function Header() {
           endIcon={
             <ArrowUpRight className="h-4 w-4 text-white rtl:-rotate-90" />
           }
-          iconContainerClass="rounded-full bg-[#FF4A11] h-7 w-7"
+          iconContainerClass="rounded-full bg-primary h-7 w-7"
         >
           <Link to="/register">{t("signup")}</Link>
         </Button>
