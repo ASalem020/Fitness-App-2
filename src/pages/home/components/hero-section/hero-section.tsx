@@ -6,6 +6,7 @@ import StateComponent from "./state-component";
 import ScrollingTicker from "./scrolling-ticker";
 
 export default function HeroSection() {
+  
   // variables
   const stats = [
     {
@@ -57,8 +58,7 @@ export default function HeroSection() {
           <div>
             {/* Main Heading */}
             <h1 className="text-xl w-52 lg:text-5xl font-bold dark:text-white text-black leading-tight uppercase lg:w-[42rem]">
-              YOUR BODY CAN <span className="text-orange-600">STAND</span>
-              <span className="text-orange-600"> ALMOST</span> ANYTHING
+              YOUR BODY CAN <span className="text-orange-600">STAND ALMOST</span> ANYTHING
             </h1>
 
             {/* Subtext with side border */}
