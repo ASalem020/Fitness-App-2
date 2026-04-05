@@ -34,7 +34,7 @@ export default function HeroSection() {
         />
 
         {/* blur */}
-        <div className=" absolute inset-0 z-10 lg:bg-white/60 bg-neutral-700/40 backdrop-blur-[86.1px]" />
+        <div className=" absolute inset-0 z-10 bg-white/60 dark:bg-neutral-700/40 backdrop-blur-[86.1px]" />
 
         {/* Image */}
         <div
@@ -53,10 +53,10 @@ export default function HeroSection() {
         />
 
         {/* content */}
-        <div className="container lg:col-span-2 mx-auto px-6 lg:px-20 relative z-20">
+        <div className="container lg:col-span-2 mx-auto px-4 lg:px-20 relative z-20">
           <div>
             {/* Main Heading */}
-            <h1 className="text-xl w-52 lg:text-5xl font-bold text-white lg:text-black leading-tight uppercase lg:w-[42rem]">
+            <h1 className="text-xl w-52 lg:text-5xl font-bold dark:text-white text-black leading-tight uppercase lg:w-[42rem]">
               YOUR BODY CAN <span className="text-orange-600">STAND</span>
               <span className="text-orange-600"> ALMOST</span> ANYTHING
             </h1>
@@ -64,7 +64,7 @@ export default function HeroSection() {
             {/* Subtext with side border */}
             <div className="mt-6 flex items-start gap-4">
               <div className="w-2 h-32 lg:h-20 bg-orange-600 rounded-full"></div>
-              <p className="text-white lg:text-black text-md leading-relaxed w-[34rem]">
+              <p className="dark:text-white text-black text-md leading-relaxed w-[34rem]">
                 It's your mind that needs convincing. Push past your limits,
                 stay committed, and watch as your body transform into powerhouse
                 of strength and resilience. Start your journey today & become
@@ -73,7 +73,7 @@ export default function HeroSection() {
             </div>
 
             {/* Stats Section */}
-            <div className="mt-16 flex flex-col lg:flex-row gap-4 lg:gap-12 ">
+            <div className="mt-8 flex flex-col lg:flex-row gap-4 lg:gap-12 ">
               {stats.map((state, i) => (
                 <StateComponent key={i} title={state.title} text={state.text} />
               ))}
