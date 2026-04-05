@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { newPasswordSchema } from "../schema/forget-pass.schema";
 import { FORGET_PASS_EMAIL_KEY } from "../constants/forget-pass.constant";
-import useCreateNewPass from "../hooks/use-create-new-pass";
 import { useNavigate } from "react-router-dom";
+import useCreateNewPass from "../hooks/use-create-new-pass";
 import { toast } from "sonner";
 
 type CreateNewPassStepFormProps = {
@@ -69,39 +69,31 @@ export default function CreateNewPassStepForm({
 
       {/* Input & Button */}
       <div className="mt-6 input-and-button flex flex-col items-center gap-6 w-[19.4375rem] mx-auto">
-        <div className="inputs flex flex-col items-center gap-2 w-full">
+        <div className="inputs flex flex-col items-center gap-2 w-full h-">
           {/* New Pass Input */}
-          <div className="new-pass-input w-full">
-            <Input
-              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
-              placeholder="Password"
-              type="password"
-              id="new-pass"
-              className="text-gray-300 font-baloo-thambi"
-              {...register("new-password")}
-            />
-            <p className="text-sm text-red-500 font-baloo-thambi">
-              {errors["new-password"]?.message}
-            </p>
-          </div>
+          <Input
+            startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+            placeholder="Password"
+            type="password"
+            id="new-pass"
+            className="text-gray-300 font-baloo-thambi"
+            {...register("new-password")}
+          />
 
           {/* Confirm Pass Input */}
-          <div className="confirm-pass-input w-full">
-            <Input
-              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
-              placeholder="Confirm Password"
-              type="password"
-              className="text-gray-300 font-baloo-thambi"
-              {...register("confirm-pass")}
-            />
-            <p className="text-sm text-red-500 font-baloo-thambi">
-              {errors["confirm-pass"]?.message}
-            </p>
-          </div>
+          <Input
+            startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+            placeholder="Confirm Password"
+            type="password"
+            className="text-gray-300 font-baloo-thambi"
+            {...register("confirm-pass")}
+          />
         </div>
 
         {/* Error Message Box */}
-        {error?.message && (
+        {(errors["new-password"]?.message ||
+          errors["confirm-pass"]?.message ||
+          error?.message) && (
           <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
             <AlertCircle size={18} className="shrink-0" />
             <p className="leading-tight">

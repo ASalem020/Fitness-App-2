@@ -2,7 +2,7 @@ import type { SendCodeApiResponse } from "../types/forget-pass-api-response";
 
 export async function SendCodeAction(email: string) {
   const res = await fetch(
-    `${import.meta.env.VITE_API_URL}/auth/forgotPassword`,
+    `https://fitness.elevateegy.com/api/v1/auth/forgotPassword`,
     {
       method: "POST",
       headers: {
