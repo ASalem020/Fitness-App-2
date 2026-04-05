@@ -92,7 +92,7 @@ export default function About() {
       </div>
 
       {/* Test Button */}
-      <Button onClick={} className="mt-10">
+      <Button className="mt-10">
         Call AI
       </Button>
 
