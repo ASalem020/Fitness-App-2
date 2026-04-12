@@ -5,13 +5,21 @@ const ai = new GoogleGenAI({
 });
 
 export async function talkToGemini(message: string) {
-  const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
-    contents: message,
-  });
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: message,
+    });
 
-  return {
-    role: "bot",
-    message: response.text ?? "I'm sorry, I can't answer that question.",
-  };
+    return {
+      role: "bot",
+      message: response.text ?? "I'm sorry, I can't answer that question.",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      role: "bot",
+      message: "ai chat bot not available now , try again later",
+    };
+  }
 }
