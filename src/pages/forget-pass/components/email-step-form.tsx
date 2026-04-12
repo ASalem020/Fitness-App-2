@@ -63,7 +63,7 @@ export default function EmailStepForm({
         // Variables
         const afterTime = new Date().getTime() + 60000;
 
-        toast.success("Code sent successfully");
+        toast.success(t("code-sent"));
         localStorage.setItem(FORGET_PASS_EMAIL_KEY, data.email);
         localStorage.setItem(AFTER_TIME_KEY, String(afterTime));
 

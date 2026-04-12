@@ -20,17 +20,20 @@ import useForgetPass from "../hooks/use-forget-pass";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createOtpStepSchema } from "../schema/forget-pass.schema";
 import { useTranslations } from "use-intl";
+import { useState } from "react";
 
 type OtpStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
   timeRemaining: number;
   email: string;
+  setTimeRemaining: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function OtpStepForm({
   setFormStep,
   timeRemaining,
   email,
+  setTimeRemaining,
 }: OtpStepFormProps) {
   // Translations
   const t = useTranslations("forget-pass.otp-step");
@@ -38,6 +41,10 @@ export default function OtpStepForm({
   // Hooks
   const { mutate, isPending, error } = useVerifyCode();
   const { mutate: sendCode } = useForgetPass();
+
+  // Remount RemainingSeconds on each resend; parent timeRemaining often stays 60
+  // because it is not decremented during the local countdown, so key={timeRemaining} alone does not reset.
+  const [resendTimerKey, setResendTimerKey] = useState(0);
 
   // Form
   const {
@@ -56,7 +63,7 @@ export default function OtpStepForm({
   const onSubmit: SubmitHandler<OTPStepFormType> = async (data) => {
     mutate(data.otp, {
       onSuccess: () => {
-        toast.success("Code Verified successfully");
+        toast.success(t("code-verified"));
         setFormStep(FORGET_PASS_STEPS.NEW_PASS);
         localStorage.removeItem(AFTER_TIME_KEY);
       },
@@ -65,8 +72,11 @@ export default function OtpStepForm({
 
   const handleResendClick = () => {
     sendCode(email, {
-      onSuccess: () => toast.success("Code Resend Successfully !"),
+      onSuccess: () => toast.success(t("code-resend")),
     });
+    localStorage.setItem(AFTER_TIME_KEY, String(new Date().getTime() + 60000));
+    setTimeRemaining(60);
+    setResendTimerKey((k) => k + 1);
   };
 
   return (
@@ -131,12 +141,11 @@ export default function OtpStepForm({
         <span className="text-white capitalize">{t("resend-message")}</span>
 
         {/* Resend Button OR Remaining Seconds */}
-        {/* Use key prop in RemainingSeconds Component to re-create a new component with a new state ( seconds ) */}
         {timeRemaining > 0 && (
           <RemainingSeconds
             text={t("resend")}
             seconds={timeRemaining}
-            key={timeRemaining}
+            key={resendTimerKey}
             handleClick={handleResendClick}
           />
         )}

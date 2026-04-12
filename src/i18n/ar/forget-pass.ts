@@ -5,6 +5,7 @@ export const emailStepAr = {
   "required-error": "يرجى إدخال بريد إلكتروني صالح!",
   verify: "جارى التحقق",
   "input-placeholder": "البريد الإلكتروني",
+  "code-sent": "تم إرسال الكود بنجاح !",
 };
 
 export const otpStepAr = {
@@ -15,6 +16,9 @@ export const otpStepAr = {
   confirm: "تأكيد",
   "check-code": "جارى التحقق",
   "min-error": "لا يجب ان يقل الكود عن 6 ارقام!",
+  "code-verified": "تم التحقق من الكود بنجاح",
+  "code-resend": "تم اعادة ارسال الكود بنجاح",
+  at: "بعد",
 };
 
 export const newPassStepAr = {

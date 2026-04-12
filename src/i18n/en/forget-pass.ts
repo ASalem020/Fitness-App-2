@@ -5,6 +5,7 @@ export const emailStepEn = {
   "required-error": "Please enter a valid email !",
   verify: "Verify Email",
   "input-placeholder": "Email",
+  "code-sent": "Code Sent Successfully !",
 };
 
 export const otpStepEn = {
@@ -15,6 +16,9 @@ export const otpStepEn = {
   confirm: "Confirm",
   "check-code": "Checking Code",
   "min-error": "OTP must be at least 6 characters",
+  "code-verified": "Code Verified Successfully !",
+  "code-resend": "Code Resend Successfully !",
+  at: "at",
 };
 
 export const newPassStepEn = {

@@ -11,7 +11,7 @@ export default function ForgetPassword() {
 
   // States
   const [forgetFormSteps, setForgetFormSteps] =
-    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.NEW_PASS);
+    useState<ForgetPassFormStepsType>(FORGET_PASS_STEPS.EMAIL);
 
   // Variables
   const FormTitle: string =
