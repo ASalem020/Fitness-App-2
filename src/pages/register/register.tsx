@@ -1,9 +1,9 @@
 import RegisterForm from "./components/register-form";
 import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
-import KYC from "./components/KYC";
 
 export default function Register() {
+  // will send these values to Kyc steps...
   const [registerValues, setRegisterValues] = useState<RegisterFormValues>({
     firstName: "",
     lastName: "",
@@ -40,7 +40,7 @@ export default function Register() {
         </div>
       ) : (
         // KYC Steps component to be continued...
-        <KYC registerValues={registerValues} />
+        <div className="text-white font-bold">KYC Steps</div>
       )}
     </div>
   );
