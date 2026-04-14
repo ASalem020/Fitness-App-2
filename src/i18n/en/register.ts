@@ -1,7 +1,7 @@
 export const formEn = {
   title: "create an account",
   subtitle: "hey there",
-  firstName: "firstName",
+  firstName: "First Name",
   lastName: "Last Name",
   Email: "Email",
   Password: "Password",
