@@ -47,15 +47,15 @@ const RadioPill = React.forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={cn(
-        "group flex h-14 w-full items-center justify-between rounded-full border border-input bg-transparent px-6 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[#FF4A11] data-[state=checked]:text-[#FF4A11]",
+        "group flex h-14 w-full items-center justify-between rounded-full border border-input bg-transparent px-6 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary data-[state=checked]:text-primary",
         className,
       )}
       {...props}
     >
       <span>{children}</span>
-      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-muted-foreground transition-colors group-data-[state=checked]:border-[#FF4A11]">
+      <div className="flex h-5 w-5 items-center justify-center rounded-full border border-muted-foreground transition-colors group-data-[state=checked]:border-primary">
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-          <div className="h-2.5 w-2.5 rounded-full bg-[#FF4A11]" />
+          <div className="h-2.5 w-2.5 rounded-full bg-primary" />
         </RadioGroupPrimitive.Indicator>
       </div>
     </RadioGroupPrimitive.Item>

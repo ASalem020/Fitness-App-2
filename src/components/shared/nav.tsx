@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { navLinks } from "../../lib/constants/nav-links.constant";
 import { cn } from "../../lib/utils/tailwind-merge";
+import { useTranslations } from "use-intl";
 
 export default function Nav() {
+  // Translation
+  const t = useTranslations("header");
+
   // Hooks
   const { pathname } = useLocation();
 
@@ -14,13 +18,13 @@ export default function Nav() {
             <Link
               to={link.href}
               className={cn(
-                "font-bold duration-300 hover:text-orange-600 font-baloo-thambi text-lg lg:text-xl",
+                "font-bold duration-300 hover:text-orange-600 text-lg lg:text-xl",
                 pathname === link.href
                   ? "text-orange-600"
                   : "text-neutral-800 dark:text-zinc-100",
               )}
             >
-              {link.label}
+              {t(link.translationKey)}
             </Link>
           </li>
         ))}
