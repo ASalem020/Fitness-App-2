@@ -13,7 +13,8 @@ import {
   FORGET_PASS_STEPS,
 } from "../constants/forget-pass.constant";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { emailStepSchema } from "../schema/forget-pass.schema";
+import { useTranslations } from "use-intl";
+import { createEmailStepSchema } from "../schema/forget-pass.schema";
 
 type EmailStepFormProps = {
   setFormStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
@@ -24,6 +25,9 @@ export default function EmailStepForm({
   setFormStep,
   setSharedData,
 }: EmailStepFormProps) {
+  // Translations
+  const t = useTranslations("forget-pass.email-step");
+
   // Mutations
   const { mutate, isPending, error } = useForgetPass();
 
@@ -36,7 +40,7 @@ export default function EmailStepForm({
     defaultValues: {
       email: "",
     },
-    resolver: zodResolver(emailStepSchema),
+    resolver: zodResolver(createEmailStepSchema(t)),
     mode: "onTouched",
   });
 
@@ -59,7 +63,7 @@ export default function EmailStepForm({
         // Variables
         const afterTime = new Date().getTime() + 60000;
 
-        toast.success("Code sent successfully");
+        toast.success(t("code-sent"));
         localStorage.setItem(FORGET_PASS_EMAIL_KEY, data.email);
         localStorage.setItem(AFTER_TIME_KEY, String(afterTime));
 
@@ -79,9 +83,9 @@ export default function EmailStepForm({
       {/* Form Label */}
       <Label
         htmlFor="forget-pass-input"
-        className="text-center text-white text-2xl font-baloo-thambi font-normal mx-auto"
+        className="text-center text-white text-2xl font-normal mx-auto"
       >
-        Enter Your Email
+        {t("form-title")}
       </Label>
 
       {/* Input & Button */}
@@ -90,16 +94,16 @@ export default function EmailStepForm({
         <Input
           id="forget-pass-input"
           startIcon={<Mail className="h-5 w-5 text-gray-300" />}
-          placeholder="Email"
+          placeholder={t("input-placeholder")}
           type="email"
           {...register("email")}
           autoComplete="email"
-          className="text-gray-300 font-baloo-thambi"
+          className="text-gray-300"
         />
 
         {/* Error Message Box */}
         {(errors.email || error) && (
-          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
+          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2 font-baloo-thambi rtl:font-tajawal">
             <AlertCircle size={18} className="mt-0.5 shrink-0" />
             <p className="leading-tight">
               {errors?.email?.message || error?.message}
@@ -109,14 +113,14 @@ export default function EmailStepForm({
 
         {/* Button */}
         <Button
-          className="font-baloo-thambi bg-[#FF4100] rounded-full font-extrabold text-base text-white py-2 px-4"
+          className="bg-[#FF4100] rounded-full font-extrabold text-base text-white py-2 px-4"
           type="submit"
           disabled={isPending}
         >
           {isPending ? (
-            <span className="animate-pulse">Verify Email ...</span>
+            <span className="animate-pulse">{t("verify")} ...</span>
           ) : (
-            "Sent OTP"
+            t("button")
           )}
         </Button>
       </div>

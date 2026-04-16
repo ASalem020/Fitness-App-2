@@ -16,7 +16,10 @@ export default function RootLayout() {
   };
 
   return (
-    <div className="root-layout" dir={locale === "ar" ? "rtl" : "ltr"}>
+    <div
+      className={`root-layout ${locale === "ar" ? "font-tajawal" : "font-baloo-thambi"}`}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
       {/* Header */}
       <Header />
 
@@ -56,7 +59,7 @@ export default function RootLayout() {
           <Languages className="w-5 h-5" />
           <span className="hidden sm:block">
             {/* Show current locale in caps */}
-            {locale.toUpperCase()}
+            {locale === "ar" ? "EN" : "AR"}
           </span>
         </button>
       </div>

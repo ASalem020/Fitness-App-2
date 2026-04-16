@@ -1,17 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { useTranslations } from "use-intl";
 
 type RemainingSecondsProps = {
   seconds: number;
   handleClick: () => void;
+  text: string;
 };
 
 export default function RemainingSeconds({
   seconds,
   handleClick,
+  text,
 }: RemainingSecondsProps) {
+  // Translations
+  const t = useTranslations("forget-pass.otp-step");
+
   // States
   const [remainingSeconds, setRemainingSeconds] = useState(seconds);
+
+  // Keep local countdown in sync when parent passes a new duration (e.g. after resend).
+  useEffect(() => {
+    setRemainingSeconds(seconds);
+  }, [seconds]);
 
   // Effects
   useEffect(() => {
@@ -32,8 +43,8 @@ export default function RemainingSeconds({
       onClick={handleClick}
       type="button"
     >
-      Resend Code
-      <>{remainingSeconds > 0 && ` at ${remainingSeconds}`}</>
+      {text}
+      <>{remainingSeconds > 0 && ` ${t("at")} ${remainingSeconds}`}</>
     </Button>
   );
 }
