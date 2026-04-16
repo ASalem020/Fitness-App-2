@@ -64,6 +64,7 @@ export default function AIChatInput({
         </button>
         <Input
           {...register("message")}
+          autoComplete="off"
           containerClassName="p-0 h-auto border-none focus:border-none focus:outline-none focus:ring-0 focus:outline-offset-0 focus-within:border-none focus-within:outline-none focus-within:ring-0 focus-within:outline-offset-0"
           type="text"
           placeholder="Ask Me Any Things..."
