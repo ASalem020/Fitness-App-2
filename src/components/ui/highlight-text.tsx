@@ -1,10 +1,10 @@
-import * as React from "react"
-import { cn } from "@/lib/utils/tailwind-merge"
+import * as React from "react";
+import { cn } from "@/lib/utils/tailwind-merge";
 
 export interface HighlightTextProps extends React.HTMLAttributes<HTMLHeadingElement> {
-  startText?: string
-  highlightText?: string
-  endText?: string
+  startText?: string;
+  highlightText?: string;
+  endText?: string;
 }
 
 export function HighlightText({
@@ -18,13 +18,13 @@ export function HighlightText({
     <h2
       className={cn(
         "text-2xl font-bold uppercase leading-tight md:text-3xl lg:text-4xl text-foreground",
-        className
+        className,
       )}
       {...props}
     >
       {startText && <>{startText} </>}
-      {highlightText && <span className="text-[#FF4A11]">{highlightText}</span>}
+      {highlightText && <span className="text-primary">{highlightText}</span>}
       {endText && <> {endText}</>}
     </h2>
-  )
+  );
 }

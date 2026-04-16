@@ -14,6 +14,7 @@ export default {
         inter: ["Inter", "sans-serif"],
         "baloo-thambi": ['"Baloo Thambi 2"', "system-ui"],
         rubik: ['"Rubik"', "sans-serif"],
+        tajawal: ["Tajawal", "sans-serif"],
       },
       backgroundImage: {
         "dashed-border":
