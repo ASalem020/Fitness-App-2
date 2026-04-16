@@ -76,8 +76,8 @@ export function RangeSlider({
   const values = Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-2 py-8 select-none">
-      <div className="text-sm font-semibold text-[#FF4A11] capitalize tracking-wider">
+    <div className="flex w-full flex-col items-center justify-center space-y-4 py-8 select-none">
+      <div className="text-sm font-semibold text-primary uppercase tracking-wider">
         {label}
       </div>
       <div
@@ -91,7 +91,7 @@ export function RangeSlider({
             // Smoothly stepping scale sizes based on distance from center
             let scaleClass = "text-xl text-muted-foreground opacity-60";
             if (distance === 0) {
-              scaleClass = "text-5xl text-[#FF4A11]";
+              scaleClass = "text-5xl text-primary";
             } else if (distance === 1) {
               scaleClass = "text-3xl text-foreground";
             } else if (distance === 2) {
@@ -117,7 +117,7 @@ export function RangeSlider({
           })}
         </div>
       </div>
-      <div className="h-0 w-0 border-x-[8px] border-x-transparent border-b-[12px] border-b-[#FF4A11]" />
+      <div className="h-0 w-0 border-x-[8px] border-x-transparent border-b-[12px] border-b-primary" />
     </div>
   );
 }

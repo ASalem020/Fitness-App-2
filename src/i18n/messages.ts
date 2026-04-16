@@ -1,28 +1,39 @@
-import { heroAr } from "./ar/home";
-import { formEn, formValidationEn } from "./en/register";
-import { heroEn } from "./en/home";
-import { formAr, formValidationAr } from "./ar/register";
+import { emailStepAr, newPassStepAr, otpStepAr } from "./ar/forget-pass";
+import { headerAr } from "./ar/header";
+import { heroAr, whyUsAr } from "./ar/home";
 import {
-  ageEn,
-  genderEn,
-  goalEn,
-  heightEn,
-  levelsEn,
-  weightEn,
-} from "./en/kyc";
-import {
-  ageAr,
   genderAr,
-  goalAr,
-  heightAr,
-  levelsAr,
+  ageAr,
   weightAr,
+  heightAr,
+  goalAr,
+  levelsAr,
 } from "./ar/kyc";
+import { formAr, formValidationAr } from "./ar/register";
+import { emailStepEn, newPassStepEn, otpStepEn } from "./en/forget-pass";
+import { headerEn } from "./en/header";
+import { heroEn, whyUsEn } from "./en/home";
+import {
+  genderEn,
+  ageEn,
+  weightEn,
+  heightEn,
+  goalEn,
+  levelsEn,
+} from "./en/kyc";
+import { formEn, formValidationEn } from "./en/register";
 
 export const messages = {
   en: {
+    header: headerEn,
     home: {
       hero: heroEn,
+      "why-us": whyUsEn,
+    },
+    "forget-pass": {
+      "email-step": emailStepEn,
+      "otp-step": otpStepEn,
+      "new-pass-step": newPassStepEn,
     },
     register: {
       form: formEn,
@@ -40,8 +51,15 @@ export const messages = {
     },
   },
   ar: {
+    header: headerAr,
     home: {
       hero: heroAr,
+      "why-us": whyUsAr,
+    },
+    "forget-pass": {
+      "email-step": emailStepAr,
+      "otp-step": otpStepAr,
+      "new-pass-step": newPassStepAr,
     },
     register: {
       form: formAr,
