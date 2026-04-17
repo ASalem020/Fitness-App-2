@@ -1,7 +1,11 @@
 import { Outlet } from "react-router-dom";
 import logo from "../../assets/images/logo-text-white.png";
+import { useLocale } from "use-intl";
 
 export default function AuthLayout() {
+  // Translation
+  const locale = useLocale();
+
   return (
     /**
      * Full-viewport wrapper that breaks out of any centered #root container.

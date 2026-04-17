@@ -5,11 +5,12 @@ import { Input } from "@/components/ui/input";
 import { AlertCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { newPasswordSchema } from "../schema/forget-pass.schema";
+import { createNewPasswordSchema } from "../schema/forget-pass.schema";
 import { FORGET_PASS_EMAIL_KEY } from "../constants/forget-pass.constant";
-import { useNavigate } from "react-router-dom";
 import useCreateNewPass from "../hooks/use-create-new-pass";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useTranslations } from "use-intl";
 
 type CreateNewPassStepFormProps = {
   email: string;
@@ -20,6 +21,9 @@ export default function CreateNewPassStepForm({
 }: CreateNewPassStepFormProps) {
   // Navigation
   const navigate = useNavigate();
+
+  // Translation
+  const t = useTranslations("forget-pass.new-pass-step");
 
   // Hooks
   const { mutate, isPending, error } = useCreateNewPass();
@@ -35,7 +39,7 @@ export default function CreateNewPassStepForm({
       "confirm-pass": "",
     },
     mode: "onTouched",
-    resolver: zodResolver(newPasswordSchema),
+    resolver: zodResolver(createNewPasswordSchema(t)),
   });
 
   // Functions
@@ -62,39 +66,47 @@ export default function CreateNewPassStepForm({
       {/* Form Label */}
       <Label
         htmlFor="new-pass"
-        className="text-center text-white text-2xl font-baloo-thambi font-normal mx-auto"
+        className="text-center text-white text-2xl font-normal mx-auto"
       >
-        Make sure to create a strong password!
+        {t("title")}
       </Label>
 
       {/* Input & Button */}
       <div className="mt-6 input-and-button flex flex-col items-center gap-6 w-[19.4375rem] mx-auto">
-        <div className="inputs flex flex-col items-center gap-2 w-full h-">
+        <div className="inputs flex flex-col items-center gap-2 w-full">
           {/* New Pass Input */}
-          <Input
-            startIcon={<Lock className="h-5 w-5 text-gray-300" />}
-            placeholder="Password"
-            type="password"
-            id="new-pass"
-            className="text-gray-300 font-baloo-thambi"
-            {...register("new-password")}
-          />
+          <div className="new-pass-input w-full">
+            <Input
+              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+              placeholder={t("pass-placeholder")}
+              type="password"
+              id="new-pass"
+              className="text-gray-300"
+              {...register("new-password")}
+            />
+            <p className="text-sm text-red-500 font-baloo-thambi rtl:font-tajawal">
+              {errors["new-password"]?.message}
+            </p>
+          </div>
 
           {/* Confirm Pass Input */}
-          <Input
-            startIcon={<Lock className="h-5 w-5 text-gray-300" />}
-            placeholder="Confirm Password"
-            type="password"
-            className="text-gray-300 font-baloo-thambi"
-            {...register("confirm-pass")}
-          />
+          <div className="confirm-pass-input w-full">
+            <Input
+              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+              placeholder={t("confirm-pass-placeholder")}
+              type="password"
+              className="text-gray-300"
+              {...register("confirm-pass")}
+            />
+            <p className="text-sm text-red-500 font-baloo-thambi rtl:font-tajawal">
+              {errors["confirm-pass"]?.message}
+            </p>
+          </div>
         </div>
 
         {/* Error Message Box */}
-        {(errors["new-password"]?.message ||
-          errors["confirm-pass"]?.message ||
-          error?.message) && (
-          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
+        {error?.message && (
+          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rtl:font-tajawal rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
             <AlertCircle size={18} className="shrink-0" />
             <p className="leading-tight">
               {errors["new-password"]?.message ||
@@ -110,9 +122,9 @@ export default function CreateNewPassStepForm({
           disabled={isPending}
         >
           {isPending ? (
-            <span className="animate-pulse">Creating ...</span>
+            <span className="animate-pulse">{t("creating")} ...</span>
           ) : (
-            "Create New Password"
+            t("button")
           )}
         </Button>
       </div>
