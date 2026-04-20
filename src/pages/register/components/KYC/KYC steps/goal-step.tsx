@@ -1,5 +1,5 @@
 import { RadioGroup, RadioPill } from "@/components/ui/radio-group";
-import KycHeader from "./KYC-header";
+import KycHeader from "./kyc-header";
 import { useTranslations } from "use-intl";
 
 interface GoalStepProps {

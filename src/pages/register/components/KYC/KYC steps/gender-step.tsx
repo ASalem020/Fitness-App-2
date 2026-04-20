@@ -1,8 +1,8 @@
 import { RadioGroup } from "@/components/ui/radio-group";
 import { Mars, Venus } from "lucide-react";
 import GenderLabel from "../../gender-label";
-import KycHeader from "./KYC-header";
 import { useTranslations } from "use-intl";
+import KycHeader from "./kyc-header";
 
 interface GenderStepProps {
   selectedGender: string;

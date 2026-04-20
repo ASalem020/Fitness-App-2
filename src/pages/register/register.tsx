@@ -1,9 +1,9 @@
 import RegisterForm from "./components/register-form";
 import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
-import KYC from "./components/KYC/KYC steps/KYC-steps";
 import FormContainer from "@/components/shared/form-container";
 import { useTranslations } from "use-intl";
+import Kyc from "./components/KYC/KYC steps/kyc-steps";
 
 export default function Register() {
   // Translations
@@ -43,7 +43,7 @@ export default function Register() {
         </div>
       ) : (
         // KYC steps
-        <KYC
+        <Kyc
           registerValues={registerValues}
           setKycSteps={setKycSteps}
           setError={setBackendError}

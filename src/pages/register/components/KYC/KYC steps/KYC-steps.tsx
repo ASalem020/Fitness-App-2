@@ -51,11 +51,7 @@ const kycReducer = (state: KYCState, action: KYCAction): KYCState => {
   }
 };
 
-export default function KycSteps({
-  registerValues,
-  setKycSteps,
-  setError,
-}: props) {
+export default function Kyc({ registerValues, setKycSteps, setError }: props) {
   // Translations
   const t = useTranslations("kyc");
 

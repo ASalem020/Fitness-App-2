@@ -1,5 +1,5 @@
 import { RangeSlider } from "@/components/ui/range-slider";
-import KycHeader from "./KYC-header";
+import KycHeader from "./kyc-header";
 import { useTranslations } from "use-intl";
 
 interface AgeStepProps {
