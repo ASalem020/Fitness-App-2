@@ -76,7 +76,10 @@ export function RangeSlider({
   const values = Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-4 py-8 select-none">
+    <div
+      dir="ltr"
+      className="flex w-full flex-col items-center justify-center space-y-4 py-8 select-none"
+    >
       <div className="text-sm font-semibold text-primary uppercase tracking-wider">
         {label}
       </div>

@@ -108,7 +108,7 @@ export default function KycSteps({
   };
 
   return (
-    <div className="font-baloo-thambi flex flex-col items-center">
+    <div className="flex flex-col items-center">
       {/* Steps Progress Circle container */}
       <div className="mb-2">
         <ProgressCircle

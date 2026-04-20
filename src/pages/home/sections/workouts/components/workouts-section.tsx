@@ -8,15 +8,20 @@ import {
   getMusclesGroupsService,
   getMusclesService,
 } from "@/lib/services/workout.service";
-import { MoveUpRightIcon } from "lucide-react";
+import { MoveUpLeftIcon, MoveUpRightIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import WorkoutCardSkeleton from "./skeletons/workout-card-skeleton";
 import WorkoutTabsSkeleton from "./skeletons/workout-tabs-skeleton";
 import type { MuscleGroup, MusclesResponse } from "@/lib/types/muscles";
 import SectionTitle from "@/components/shared/section-title";
 import { HighlightText } from "@/components/ui/highlight-text";
+import useLocale from "@/hooks/use-locale";
+import { useTranslations } from "use-intl";
 
 export default function WorkoutsSection() {
+  // Translation
+  const t = useTranslations("home.workouts");
+
   // states
   const [musclesGroup, setMusclesGroup] = useState<MuscleGroup[]>([]);
   const [musclesDetails, setMusclesDetails] = useState<
@@ -28,13 +33,14 @@ export default function WorkoutsSection() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const [activeTab, setActiveTab] = useState<string>("");
+  const { locale } = useLocale();
 
   // effects
   useEffect(() => {
     // fetch muscles groups on mount
     const fetchMusclesGroup = async () => {
       try {
-        const data = await getMusclesGroupsService();
+        const data = await getMusclesGroupsService(locale);
         setMusclesGroup(data.musclesGroup);
         setActiveTab(data.musclesGroup[0]?._id || "");
       } catch (error) {
@@ -45,7 +51,7 @@ export default function WorkoutsSection() {
     };
 
     fetchMusclesGroup();
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     // Guard: don't fetch if activeTab isn't set yet
@@ -55,7 +61,7 @@ export default function WorkoutsSection() {
     const fetchDetails = async () => {
       setLoadingDetails(true);
       try {
-        const data = await getMusclesService(activeTab);
+        const data = await getMusclesService(activeTab, locale);
         setMusclesDetails(data.muscles);
       } catch (error) {
         console.error("Error fetching muscle details:", error);
@@ -64,7 +70,7 @@ export default function WorkoutsSection() {
       }
     };
     fetchDetails();
-  }, [activeTab]);
+  }, [activeTab, locale]);
 
   useEffect(() => {
     // carousel api
@@ -93,10 +99,10 @@ export default function WorkoutsSection() {
         backgroundPosition: "center",
       }}
     >
-      .{/* Title */}
+      {/* Title */}
       <SectionTitle
-        title="workouts"
-        subtitle="fitness class"
+        title={t("title")}
+        subtitle={t("subtitle")}
         position="center"
         className="top-2 text-white"
       />
@@ -105,8 +111,8 @@ export default function WorkoutsSection() {
         {/* Header */}
         <h3 className="font-bold text-4xl uppercase w-5/12 m-auto text-center">
           <HighlightText
-            startText="Transform Your Body with Our Dynamic"
-            highlightText="Upcoming Workouts"
+            startText={t("HighlightText.startText")}
+            highlightText={t("HighlightText.highlightText")}
             endText=""
           />
         </h3>
@@ -118,7 +124,11 @@ export default function WorkoutsSection() {
           ) : (
             <Carousel
               setApi={setApi}
-              opts={{ align: "start", loop: false }}
+              opts={{
+                align: "start",
+                loop: false,
+                direction: locale === "ar" ? "rtl" : "ltr",
+              }}
               className="w-full"
             >
               {/* Tabs */}
@@ -168,8 +178,14 @@ export default function WorkoutsSection() {
                   <p className="uppercase font-bold text-xl">{item.name}</p>
                   <div className="flex items-center gap-2">
                     {/* Future implementation... */}
-                    <p className="text-primary font-medium text-xl">Explore</p>
-                    <MoveUpRightIcon className="w-4 h-4 p-1 bg-primary text-black rounded-full mt-1" />
+                    <p className="text-primary font-medium text-xl">
+                      {t("button")}
+                    </p>
+                    {locale === "en" ? (
+                      <MoveUpRightIcon className="w-4 h-4 p-1 bg-primary text-black rounded-full mt-1 " />
+                    ) : (
+                      <MoveUpLeftIcon className="w-4 h-4 p-1 bg-primary text-black rounded-full mt-1 " />
+                    )}
                   </div>
                 </div>
               </div>

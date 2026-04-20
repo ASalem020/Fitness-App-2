@@ -5,7 +5,7 @@ interface KycHeaderProps {
 
 export default function KycHeader({ title, subtitle }: KycHeaderProps) {
   return (
-    <div className="capitalize">
+    <div className="capitalize space-y-2">
       <h1 className="text-center text-4xl font-extrabold text-white md:text-5xl">
         {title}
       </h1>

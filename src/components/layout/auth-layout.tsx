@@ -13,7 +13,7 @@ export default function AuthLayout() {
      */
     <div
       dir={locale === "ar" ? "rtl" : "ltr"}
-      className="absolute left-0 top-0 flex h-screen overflow-hidden w-screen m-0 p-0 border-none bg-black"
+      className={`absolute left-0 top-0 flex h-screen overflow-hidden w-screen m-0 p-0 border-none bg-black ${locale === "ar" ? "font-tajawal" : "font-baloo-thambi"}`}
     >
       {/* ── Full-screen blurred background ── */}
       <div className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat bg-[url('/auth-layout-bg.png')] blur-xl" />
@@ -24,7 +24,7 @@ export default function AuthLayout() {
       {/* ── Two-column content ── */}
       <div className="relative z-10 flex w-full h-screen">
         {/* ════ LEFT SECTION ════ */}
-        <div className="hidden lg:flex flex-col items-center justify-center lrt:border-r-2 rtl:border-l-2 border-[#FF4100]/20 w-[49%] px-6 h-full relative overflow-hidden">
+        <div className="hidden lg:flex flex-col items-center justify-center ltr:border-r-2 rtl:border-l-2 border-[#FF4100]/20 w-[49%] px-6 h-full relative overflow-hidden">
           {/* Logo */}
           <div>
             <img

@@ -18,7 +18,7 @@ export default function WeightStep({ setWeight }: AgeStepProps) {
       {/* Age */}
       <RangeSlider
         min={30}
-        max={150}
+        max={200}
         defaultValue={90}
         label={t("label")}
         onChange={(value) => setWeight(value)}

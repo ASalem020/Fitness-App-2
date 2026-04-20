@@ -36,7 +36,7 @@ export const goalAr = {
 export const levelsAr = {
   title: "مستواك في النشاط البدني المنتظم؟",
   description: "هذا يساعدنا في إنشاء خطتك المخصصة",
-  level1: "مبتدئ",
+  level1: "مستجد",
   level2: "مبتدئ",
   level3: "متوسط",
   level4: "متقدم",

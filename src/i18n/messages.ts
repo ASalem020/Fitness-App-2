@@ -1,6 +1,6 @@
 import { emailStepAr, newPassStepAr, otpStepAr } from "./ar/forget-pass";
 import { headerAr } from "./ar/header";
-import { heroAr, whyUsAr } from "./ar/home";
+import { heroAr, whyUsAr, workoutsAr } from "./ar/home";
 import {
   genderAr,
   ageAr,
@@ -12,7 +12,7 @@ import {
 import { formAr, formValidationAr } from "./ar/register";
 import { emailStepEn, newPassStepEn, otpStepEn } from "./en/forget-pass";
 import { headerEn } from "./en/header";
-import { heroEn, whyUsEn } from "./en/home";
+import { heroEn, whyUsEn, workoutsEn } from "./en/home";
 import {
   genderEn,
   ageEn,
@@ -29,6 +29,7 @@ export const messages = {
     home: {
       hero: heroEn,
       "why-us": whyUsEn,
+      workouts: workoutsEn,
     },
     "forget-pass": {
       "email-step": emailStepEn,
@@ -55,6 +56,7 @@ export const messages = {
     home: {
       hero: heroAr,
       "why-us": whyUsAr,
+      workouts: workoutsAr,
     },
     "forget-pass": {
       "email-step": emailStepAr,

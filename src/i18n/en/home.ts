@@ -25,3 +25,13 @@ export const whyUsEn = {
       "We provide the latest in gym equipment, from cardio machines to free weights, designed to support every type.",
   },
 };
+
+export const workoutsEn = {
+  title: "workouts",
+  subtitle: "fitness class",
+  HighlightText: {
+    startText: "Transform Your Body with Our Dynamic",
+    highlightText: "Upcoming Workouts",
+  },
+  button: "Explore",
+};

@@ -64,7 +64,7 @@ export default function RegisterForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="font-baloo-thambi flex flex-col items-center justify-center gap-4 py-6 p-10 w-96 text-white"
+        className="flex flex-col items-center justify-center gap-4 py-6 p-10 w-96 text-white"
       >
         <div style={{ display: "none" }}>
           {JSON.stringify(form.formState.errors)}
