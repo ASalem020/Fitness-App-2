@@ -2,7 +2,7 @@ import type { VerifyCodeApiResponse } from "../types/forget-pass-api-response";
 
 export async function verifyCodeAction(otp: string) {
   const res = await fetch(
-    `https://fitness.elevateegy.com/api/v1/auth/verifyResetCode`,
+    `${import.meta.env.VITE_API_URL}/auth/verifyResetCode`,
     {
       method: "POST",
       headers: {

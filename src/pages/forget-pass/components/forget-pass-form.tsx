@@ -13,6 +13,13 @@ type ForgetPassFormProps = {
   setStep: React.Dispatch<React.SetStateAction<ForgetPassFormStepsType>>;
 };
 
+function getInitialTimeRemaining() {
+  const storedTime = Number(localStorage.getItem(AFTER_TIME_KEY));
+  if (!storedTime || isNaN(storedTime)) return 60;
+  const seconds = (storedTime - new Date().getTime()) / 1000;
+  return seconds > 0 ? Math.floor(seconds) : 60;
+}
+
 export default function ForgetPassForm({
   currentStep,
   setStep,
@@ -21,6 +28,9 @@ export default function ForgetPassForm({
   const [shardData, setSharedData] = useState({
     email: "",
   });
+  const [timeRemaining, setTimeRemaining] = useState<number>(
+    getInitialTimeRemaining,
+  );
 
   return (
     <>
@@ -34,13 +44,8 @@ export default function ForgetPassForm({
         <OtpStepForm
           email={shardData.email}
           setFormStep={setStep}
-          timeRemaining={Number(
-            (
-              (Number(localStorage.getItem(AFTER_TIME_KEY)) -
-                new Date().getTime()) /
-              1000
-            ).toFixed(),
-          )}
+          timeRemaining={timeRemaining}
+          setTimeRemaining={setTimeRemaining}
         />
       )}
 

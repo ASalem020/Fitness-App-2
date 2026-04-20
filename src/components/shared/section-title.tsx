@@ -19,7 +19,7 @@ export default function SectionTitle({
 
   return (
     <div
-      className={`section-title font-baloo-thambi relative z-50 text-${position} ${className}`}
+      className={`section-title relative z-50 text-${position} ${className}`}
     >
       {/* Styled Title */}
       {/* <div className=" decorated-text relative w-fit">
@@ -70,7 +70,7 @@ export default function SectionTitle({
       </h2>
 
       <p
-        className={`font-inter text-sm text-[#FF4100] flex justify-${position} items-center gap-2 capitalize font-semibold -mt-8 ml-2 relative z-10`}
+        className={`font-inter rtl:font-tajawal text-sm text-[#FF4100] flex justify-${position} items-center gap-2 capitalize font-semibold -mt-6 ml-2 relative z-10`}
       >
         {/* Icon */}
         <Dumbbell size={22} className="rotate-45" />

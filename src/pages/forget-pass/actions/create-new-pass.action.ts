@@ -8,7 +8,7 @@ export async function createNewPassAction({
   newPassword: string;
 }) {
   const res = await fetch(
-    `https://fitness.elevateegy.com/api/v1/auth/resetPassword`,
+    `${import.meta.env.VITE_API_URL}/auth/resetPassword`,
     {
       method: "PUT",
       headers: {

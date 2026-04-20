@@ -35,12 +35,12 @@ const features: FeatureType[] = [
   },
 ];
 
-// const handleClick = async () => {
-// //   const response = await getAIResponse(
-// //     "how can be senior frontend developer ?",
-// //   );
-// //   console.log(response);
-// // };
+const handleClick = async () => {
+  // const response = await getAIResponse(
+  //   "how can be senior frontend developer ?",
+  // );
+  // console.log(response);
+};
 
 export default function About() {
   return (
@@ -92,7 +92,7 @@ export default function About() {
       </div>
 
       {/* Test Button */}
-      <Button className="mt-10">
+      <Button onClick={handleClick} className="mt-10">
         Call AI
       </Button>
 
