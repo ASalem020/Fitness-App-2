@@ -1,3 +1,4 @@
+import { footerAr } from "./ar/footer";
 import { emailStepAr, newPassStepAr, otpStepAr } from "./ar/forget-pass";
 import { headerAr } from "./ar/header";
 import { heroAr, whyUsAr, workoutsAr } from "./ar/home";
@@ -10,6 +11,7 @@ import {
   levelsAr,
 } from "./ar/kyc";
 import { formAr, formValidationAr } from "./ar/register";
+import { footerEn } from "./en/footer";
 import { emailStepEn, newPassStepEn, otpStepEn } from "./en/forget-pass";
 import { headerEn } from "./en/header";
 import { heroEn, whyUsEn, workoutsEn } from "./en/home";
@@ -50,6 +52,7 @@ export const messages = {
       nextButton: "Next",
       finishButton: "Finish",
     },
+    footer: footerEn,
   },
   ar: {
     header: headerAr,
@@ -77,5 +80,6 @@ export const messages = {
       nextButton: "التالي",
       finishButton: "إنهاء",
     },
+    footer: footerAr,
   },
 };

@@ -1,7 +1,11 @@
 import { Mail, Phone, Sparkle } from "lucide-react";
+import { useTranslations } from "use-intl";
 
 // Waiting for i18n translation setup and colors init...
 export default function Footer() {
+  // Translation
+  const t = useTranslations("footer");
+
   // Constants
   const contact = [
     {
@@ -16,20 +20,20 @@ export default function Footer() {
 
   const timing = [
     {
-      day: "Mon - Fri",
-      time: "08:00 AM - 10:00 PM",
+      day: t("firstDate"),
+      time: t("firstTiming"),
     },
     {
-      day: "Sat - Sun",
-      time: "08:00 AM - 09:00 PM",
+      day: t("secondDate"),
+      time: t("secondTiming"),
     },
   ];
 
-  const scrollingTicker = [
-    "outdoor & online trainers",
-    "personal training",
-    "live classes",
-  ];
+  // const scrollingTicker = [
+  //   "outdoor & online trainers",
+  //   "personal training",
+  //   "live classes",
+  // ];
 
   return (
     <div>
@@ -37,7 +41,7 @@ export default function Footer() {
       <div className="bg-[#FF4100] flex items-center overflow-hidden h-20 whitespace-nowrap w-full">
         <div className="flex animate-ticker items-center w-max font-inter">
           {Array(4)
-            .fill(scrollingTicker)
+            .fill(t.raw("scrollingTicker"))
             .flat()
             .map((item, index) => (
               <div className="flex items-center gap-8 pr-8" key={index}>
@@ -53,15 +57,13 @@ export default function Footer() {
         {/* Logo */}
         <div className="flex flex-col gap-2 w-60">
           <img src="/logo.svg" alt="logo" width={87} height={55} />
-          <p className="text-lg">
-            Push harder, go further. Your fitness journey starts today!
-          </p>
+          <p className="text-lg">{t("description")}</p>
         </div>
 
         {/* Contact US */}
         <div className="flex flex-col gap-2">
           <h3 className="text-lg font-bold uppercase mb-6 md:mb-7">
-            Contact Us
+            {t("contactUs")}
           </h3>
           {contact.map((item, index) => (
             <div className="flex items-center gap-4" key={index}>
@@ -75,7 +77,7 @@ export default function Footer() {
 
         {/* Timing */}
         <div className="flex flex-col gap-6">
-          <h3 className="text-lg font-bold uppercase">Our Gym Timing</h3>
+          <h3 className="text-lg font-bold uppercase">{t("timing")}</h3>
           <div className="flex flex-col gap-2">
             {timing.map((item, index) => (
               <div className="flex items-center gap-2" key={index}>
@@ -88,7 +90,7 @@ export default function Footer() {
 
         {/* Location */}
         <div className="w-52">
-          <h3 className="text-lg font-bold uppercase mb-7">our location</h3>
+          <h3 className="text-lg font-bold uppercase mb-7">{t("location")}</h3>
           <p>2715 Ash Dr. San Jose, South Dakota 83475</p>
         </div>
       </footer>

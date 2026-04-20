@@ -15,8 +15,21 @@
   }
 }
 
+@keyframes ticker-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
 .animate-ticker {
   animation: ticker 15s linear infinite;
+}
+
+[dir="rtl"] .animate-ticker {
+  animation: ticker-rtl 15s linear infinite;
 }
 /* 
 :root {
@@ -130,5 +143,3 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 } */
-
-
