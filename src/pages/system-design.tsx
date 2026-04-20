@@ -62,7 +62,7 @@ export default function SystemDesign() {
                 <Button
                   variant="secondaryWithIcon"
                   endIcon={<ArrowUpRight className="h-4 w-4 text-white" />}
-                  iconContainerClass="rounded-full bg-[#FF4A11] h-7 w-7"
+                  iconContainerClass="rounded-full bg-primary h-7 w-7"
                 >
                   Explore More
                 </Button>
@@ -79,7 +79,7 @@ export default function SystemDesign() {
                   endIcon={
                     <ArrowUpRight className="h-4 w-4 text-backgroun text-white " />
                   }
-                  iconContainerClass="rounded-full bg-[#FF4A11] h-7 w-7"
+                  iconContainerClass="rounded-full bg-primary h-7 w-7"
                 >
                   Explore
                 </Button>
@@ -140,7 +140,7 @@ export default function SystemDesign() {
                   AI Input
                 </h3>
                 <Input
-                  startIcon={<Wand2 className="h-5 w-5 text-[#FF4A11]" />}
+                  startIcon={<Wand2 className="h-5 w-5 text-primary" />}
                   placeholder="Ask Me Any Things"
                 />
               </div>
@@ -207,7 +207,7 @@ export default function SystemDesign() {
                 This Helps Us Create Your Personalized Plan
               </p>
               <RangeSlider min={100} max={250} defaultValue={167} label="CM" />
-              <Button className="w-full mt-6 bg-[#FF4A11] hover:bg-[#FF4A11]/90 text-white rounded-full h-12 text-base font-semibold">
+              <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-white rounded-full h-12 text-base font-semibold">
                 Next
               </Button>
             </div>
@@ -218,7 +218,7 @@ export default function SystemDesign() {
                 This Helps Us Create Your Personalized Plan
               </p>
               <RangeSlider min={40} max={200} defaultValue={90} label="Kg" />
-              <Button className="w-full mt-6 bg-[#FF4A11] hover:bg-[#FF4A11]/90 text-white rounded-full h-12 text-base font-semibold">
+              <Button className="w-full mt-6 bg-primary hover:bg-primary/90 text-white rounded-full h-12 text-base font-semibold">
                 Done
               </Button>
             </div>
