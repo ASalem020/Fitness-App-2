@@ -76,7 +76,10 @@ export function RangeSlider({
   const values = Array.from({ length: max - min + 1 }, (_, i) => min + i);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-4 py-8 select-none">
+    <div
+      dir="ltr"
+      className="flex w-full flex-col items-center justify-center space-y-4 py-8 select-none"
+    >
       <div className="text-sm font-semibold text-primary uppercase tracking-wider">
         {label}
       </div>
@@ -101,7 +104,7 @@ export function RangeSlider({
             return (
               <div
                 key={val}
-                className="flex w-20 shrink-0 cursor-pointer items-center justify-center transition-all duration-200"
+                className="flex w-20 shrink-0 cursor-pointer items-center justify-center transition-all duration-200 text-white"
                 onClick={() => emblaApi?.scrollTo(index)}
               >
                 <span
