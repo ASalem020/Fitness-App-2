@@ -4,6 +4,7 @@ import AIChat from "./components/ai-chat";
 import { Button } from "@/components/ui/button";
 import Feature from "./components/feature";
 import SectionTitle from "@/components/shared/section-title";
+// import { getAIResponse } from "@/lib/utils/get-ai-response";
 
 export type FeatureType = {
   img: string;
@@ -33,6 +34,13 @@ const features: FeatureType[] = [
     text: "Fuel your fitness journey with customized meal plans for you.",
   },
 ];
+
+const handleClick = async () => {
+  // const response = await getAIResponse(
+  //   "how can be senior frontend developer ?",
+  // );
+  // console.log(response);
+};
 
 export default function About() {
   return (
@@ -82,6 +90,11 @@ export default function About() {
           </Button>
         </div>
       </div>
+
+      {/* Test Button */}
+      <Button onClick={handleClick} className="mt-10">
+        Call AI
+      </Button>
 
       {/* ai chat */}
       <div>

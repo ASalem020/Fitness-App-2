@@ -24,13 +24,13 @@ export default function FormContainer({
     <>
       {/* SubTitle */}
       {subTitle && (
-        <p className="mb-5 font-baloo-thambi text-2xl text-white text-center capitalize">
+        <p className="mb-5 font-baloo-thambi rtl:font-tajawal text-2xl text-white text-center capitalize">
           {subTitle}
         </p>
       )}
 
       {/* Title */}
-      <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize text-center">
+      <h1 className="text-5xl font-extrabold text-white font-baloo-thambi rtl:font-tajawal mb-4 capitalize text-center">
         {title}
       </h1>
 
