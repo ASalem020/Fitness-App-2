@@ -1,0 +1,133 @@
+import { useForm, type SubmitHandler } from "react-hook-form";
+import type { NewPasswordFormType } from "../types/forget-pass-inputs";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { AlertCircle, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createNewPasswordSchema } from "../schema/forget-pass.schema";
+import { FORGET_PASS_EMAIL_KEY } from "../constants/forget-pass.constant";
+import useCreateNewPass from "../hooks/use-create-new-pass";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { useTranslations } from "use-intl";
+
+type CreateNewPassStepFormProps = {
+  email: string;
+};
+
+export default function CreateNewPassStepForm({
+  email,
+}: CreateNewPassStepFormProps) {
+  // Navigation
+  const navigate = useNavigate();
+
+  // Translation
+  const t = useTranslations("forget-pass.new-pass-step");
+
+  // Hooks
+  const { mutate, isPending, error } = useCreateNewPass();
+
+  // Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewPasswordFormType>({
+    defaultValues: {
+      "new-password": "",
+      "confirm-pass": "",
+    },
+    mode: "onTouched",
+    resolver: zodResolver(createNewPasswordSchema(t)),
+  });
+
+  // Functions
+  const onSubmit: SubmitHandler<NewPasswordFormType> = async (data) => {
+    const fullData = {
+      email,
+      newPassword: data["new-password"],
+    };
+
+    mutate(fullData, {
+      onSuccess: () => {
+        toast.success("New Password Created Successfully !");
+        localStorage.removeItem(FORGET_PASS_EMAIL_KEY);
+        navigate("/login");
+      },
+    });
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-2 items-center min-w-[25.375rem]"
+    >
+      {/* Form Label */}
+      <Label
+        htmlFor="new-pass"
+        className="text-center text-white text-2xl font-normal mx-auto"
+      >
+        {t("title")}
+      </Label>
+
+      {/* Input & Button */}
+      <div className="mt-6 input-and-button flex flex-col items-center gap-6 w-[19.4375rem] mx-auto">
+        <div className="inputs flex flex-col items-center gap-2 w-full">
+          {/* New Pass Input */}
+          <div className="new-pass-input w-full">
+            <Input
+              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+              placeholder={t("pass-placeholder")}
+              type="password"
+              id="new-pass"
+              className="text-gray-300"
+              {...register("new-password")}
+            />
+            <p className="text-sm text-red-500 font-baloo-thambi rtl:font-tajawal">
+              {errors["new-password"]?.message}
+            </p>
+          </div>
+
+          {/* Confirm Pass Input */}
+          <div className="confirm-pass-input w-full">
+            <Input
+              startIcon={<Lock className="h-5 w-5 text-gray-300" />}
+              placeholder={t("confirm-pass-placeholder")}
+              type="password"
+              className="text-gray-300"
+              {...register("confirm-pass")}
+            />
+            <p className="text-sm text-red-500 font-baloo-thambi rtl:font-tajawal">
+              {errors["confirm-pass"]?.message}
+            </p>
+          </div>
+        </div>
+
+        {/* Error Message Box */}
+        {error?.message && (
+          <div className="error-message bg-red-500/10 border border-red-500/50 text-red-500 text-sm font-baloo-thambi rtl:font-tajawal rounded-xl p-3 flex items-center gap-2.5 shadow-sm animate-in fade-in slide-in-from-top-2">
+            <AlertCircle size={18} className="shrink-0" />
+            <p className="leading-tight">
+              {errors["new-password"]?.message ||
+                errors["confirm-pass"]?.message ||
+                error?.message}
+            </p>
+          </div>
+        )}
+
+        {/* Confirm Button */}
+        <Button
+          className="font-baloo-thambi bg-primary rounded-full font-extrabold text-base text-white py-2 px-4 w-full"
+          disabled={isPending}
+        >
+          {isPending ? (
+            <span className="animate-pulse">{t("creating")} ...</span>
+          ) : (
+            t("button")
+          )}
+        </Button>
+      </div>
+    </form>
+  );
+}

@@ -7,10 +7,14 @@ export default {
       colors: {
         primary: "#FF4A11",
       },
+      backgroundColor: {
+        primary: "#FF4A11",
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         "baloo-thambi": ['"Baloo Thambi 2"', "system-ui"],
         rubik: ['"Rubik"', "sans-serif"],
+        tajawal: ["Tajawal", "sans-serif"],
       },
       backgroundImage: {
         "dashed-border":

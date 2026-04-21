@@ -6,27 +6,33 @@ import whyUsImage1 from "../../../../assets/images/why-us-image-1.webp";
 import whyUsImage2 from "../../../../assets/images/why-us-image-2.jpg";
 import whyUsImage3 from "../../../../assets/images/why-us-image-3.jpg";
 import whyUsImage4 from "../../../../assets/images/why-us-image-4.webp";
+import { useTranslations } from "use-intl";
 
 export default function WhyUs() {
+  // Translation
+  const t = useTranslations("home.why-us");
+
   return (
-    <section className="why-us-section py-10 container mx-auto px-5 flex flex-col lg:flex-row gap-4 justify-between">
+    <section className="why-us-section py-10 container mx-auto px-5 flex flex-col lg:flex-row gap-4 justify-between my-10">
       {/* Content */}
       <div className="content">
         {/* Section Title */}
-        <SectionTitle title="why us" subtitle="why us" position="start" />
+        <SectionTitle
+          title={t("section-title")}
+          subtitle={t("section-title")}
+          position="start"
+        />
 
         {/* Why Us Brief */}
         <div className="why-us-text text-[#242424] dark:text-[#F3F3F4] mb-4 md:mb-16">
-          <p className="font-bold text-xl md:text-6xl my-6 uppercase font-baloo-thambi">
-            Elevate fitness with the{" "}
-            <span className="text-[#FF4100]"> best way </span> possible
+          <p className="font-bold text-xl md:text-6xl my-6 uppercase">
+            {t.rich("title", {
+              span: (chunks) => <span className="text-primary">{chunks}</span>,
+            })}
           </p>
 
-          <p className="text-lg font-rubik">
-            We offer a fitness journey that's tailored to your goals, supported
-            by professional trainers and a welcoming community. Whether it's
-            weight loss, strength building, or overall wellness, our proven
-            methods.
+          <p className="text-lg font-rubik rtl:font-tajawal">
+            {t("description")}
           </p>
         </div>
 
@@ -36,8 +42,8 @@ export default function WhyUs() {
             <AdvantageBox
               key={advantage.id}
               stepNum={i + 1}
-              advantageTitle={advantage.title}
-              advantageSubTitle={advantage.subTitle}
+              advantageTitle={t(`${advantage.translationKey}.title`)}
+              advantageSubTitle={t(`${advantage.translationKey}.description`)}
               isEndStep={advantages.length === i + 1}
             />
           ))}

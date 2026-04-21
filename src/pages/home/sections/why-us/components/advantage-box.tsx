@@ -21,12 +21,14 @@ export default function AdvantageBox({
       {/* Advantage Text */}
       <div className="text text-[#242424] dark:text-[#F3F3F4]">
         {/* Title */}
-        <h5 className="font-inter mb-2 font-bold text-lg capitalize">
+        <h5 className="font-inter rtl:font-tajawal mb-2 font-bold text-lg capitalize">
           {advantageTitle}
         </h5>
 
         {/* Sub Title */}
-        <p className="font-rubik md:max-w-[33.625rem]">{advantageSubTitle}</p>
+        <p className="font-rubik rtl:font-tajawal md:max-w-[33.625rem]">
+          {advantageSubTitle}
+        </p>
       </div>
     </div>
   );

@@ -1,22 +1,68 @@
-import * as React from "react"
+import * as React from "react";
+import { Eye, EyeOff } from "lucide-react";
+import { cn } from "@/lib/utils/tailwind-merge";
+import { useLocale } from "use-intl";
 
-import { cn } from "@/lib/utils/tailwind-merge"
+export interface InputProps extends React.ComponentProps<"input"> {
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+  containerClassName?: string;
+}
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    { className, type, startIcon, endIcon, containerClassName, ...props },
+    ref,
+  ) => {
+    const locale = useLocale();
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const isPassword = type === "password";
+    const currentType = isPassword
+      ? showPassword
+        ? "text"
+        : "password"
+      : type;
+
+    const handleTogglePassword = (e: React.MouseEvent) => {
+      e.preventDefault();
+      setShowPassword((prev) => !prev);
+    };
+
+    const renderedEndIcon = isPassword ? (
+      <button type="button" onClick={handleTogglePassword}>
+        {showPassword ? <EyeOff /> : <Eye />}
+      </button>
+    ) : (
+      endIcon
+    );
+
     return (
-      <input
-        type={type}
+      <div
         className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none  focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-          className
+          "flex h-14 w-full items-center rounded-full border border-input bg-background px-4",
+          containerClassName
         )}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Input.displayName = "Input"
+        dir={locale === "ar" ? "rtl" : "ltr"}
+      >
+        {startIcon && <div className="me-2">{startIcon}</div>}
 
-export { Input }
+        <input
+          type={currentType}
+          className={cn(
+            "flex-1 bg-transparent outline-none",
+            className
+          )}
+          ref={ref}
+          {...props}
+        />
+
+        {renderedEndIcon && <div className="ms-2">{renderedEndIcon}</div>}
+      </div>
+    );
+  }
+);
+
+Input.displayName = "Input";
+
+export { Input };
