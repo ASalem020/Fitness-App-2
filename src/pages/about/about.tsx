@@ -76,7 +76,7 @@ export default function About() {
               <Feature key={index} feature={item} />
             ))}
           </div>
-
+          
           {/* Button */}
           <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative">
             Get Started
