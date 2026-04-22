@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import type { MealDetail, RecipesSectionProps } from "../types/healthy-types";
 
@@ -12,6 +13,10 @@ export default function RecipesSection({
   loadingDetail,
   mealDetail,
 }: RecipesSectionProps) {
+  // Effects
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [selectedMealId]);
 
   // Functions
   const getIngredients = (detail: MealDetail) => {
