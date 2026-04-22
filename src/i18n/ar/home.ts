@@ -25,3 +25,13 @@ export const whyUsAr = {
       "نوفر أحدث معدات الجيم، من أجهزة الكارديو إلى الأوزان الحرة، مصممة لدعم جميع الاحتياجات.",
   },
 };
+
+export const workoutsAr = {
+  title: "تمارين",
+  subtitle: "فصول لياقة",
+  HighlightText: {
+    startText: "غيّر جسمك مع نظامنا الديناميكي",
+    highlightText: "التمارين القادمة",
+  },
+  button: "استكشف",
+};

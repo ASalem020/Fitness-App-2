@@ -1,9 +1,15 @@
 import RegisterForm from "./components/register-form";
 import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
+import FormContainer from "@/components/shared/form-container";
+import { useTranslations } from "use-intl";
+import Kyc from "./components/KYC/KYC steps/kyc-steps";
 
 export default function Register() {
-  // will send these values to Kyc steps...
+  // Translations
+  const registerForm = useTranslations("register.form");
+
+  // states
   const [registerValues, setRegisterValues] = useState<RegisterFormValues>({
     firstName: "",
     lastName: "",
@@ -14,33 +20,34 @@ export default function Register() {
 
   const [KycSteps, setKycSteps] = useState(false);
 
+  // states
+  const [backendError, setBackendError] = useState<string>("");
+
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center my-20">
       {!KycSteps ? (
+        // Register form
         <div>
-          {/* Form Container component... */}
-          {/* SubTitle */}
-          <p className="mb-5 font-baloo-thambi text-2xl text-white text-center capitalize">
-            hey there
-          </p>
-
-          {/* Title */}
-          <h1 className="text-5xl font-extrabold text-white font-baloo-thambi mb-4 capitalize text-center">
-            create an account
-          </h1>
-
-          {/* Form Container */}
-          <div className="form-container p-10 border border-gray-300 rounded-[3.125rem] flex justify-center">
-            {/* Form will render here */}
-            <RegisterForm
-              setValues={setRegisterValues}
-              setKycSteps={setKycSteps}
-            />
-          </div>
+          <FormContainer
+            title={registerForm("title")}
+            subTitle={registerForm("subtitle")}
+            formComponent={
+              <RegisterForm
+                setValues={setRegisterValues}
+                setKycSteps={setKycSteps}
+                backendError={backendError}
+                currentValues={registerValues}
+              />
+            }
+          />
         </div>
       ) : (
-        // KYC Steps component to be continued...
-        <div className="text-white font-bold">KYC Steps</div>
+        // KYC steps
+        <Kyc
+          registerValues={registerValues}
+          setKycSteps={setKycSteps}
+          setError={setBackendError}
+        />
       )}
     </div>
   );

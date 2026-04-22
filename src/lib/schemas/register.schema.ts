@@ -1,22 +1,24 @@
 import { z } from "zod";
+import type { Translations } from "../types/global";
 
-export const registerSchema = z.object({
-  firstName: z.string().min(3, "Name must be at least 3 characters long"),
-  lastName: z.string().min(3, "Name must be at least 3 characters long"),
-  email: z.string().email("Invalid email address"),
-  password: z
-    .string()
-    .min(8, { error: "Password must be at least 8 characters" })
-    .max(32, { error: "Password must be at most 32 characters" })
-    .regex(/[a-z]/, {
-      error: "Password must contain at least one lowercase letter",
-    })
-    .regex(/[A-Z]/, {
-      error: "Password must contain at least one uppercase letter",
-    })
-    .regex(/[0-9]/, { error: "Password must contain at least one number" })
-    .regex(/[^A-Za-z0-9]/, {
-      error: "Password must contain at least one special character",
-    }),
-  rePassword: z.string(),
-});
+export const registerSchema = (t: Translations) =>
+  z.object({
+    firstName: z.string().min(3, t("firstNameRequired")),
+    lastName: z.string().min(3, t("lastNameRequired")),
+    email: z.string().email(t("emailRequired")),
+    password: z
+      .string()
+      .min(8, t("passwordMinLength"))
+      .max(32, t("passwordMaxLength"))
+      .regex(/[a-z]/, {
+        error: t("passwordLowercase"),
+      })
+      .regex(/[A-Z]/, {
+        error: t("passwordUppercase"),
+      })
+      .regex(/[0-9]/, { error: t("passwordNumber") })
+      .regex(/[^A-Za-z0-9]/, {
+        error: t("passwordSpecial"),
+      }),
+    rePassword: z.string(),
+  });
