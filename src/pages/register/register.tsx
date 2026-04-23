@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { RegisterFormValues } from "@/lib/types/register";
 import FormContainer from "@/components/shared/form-container";
 import { useTranslations } from "use-intl";
-import Kyc from "./components/KYC/KYC steps/kyc-steps";
+import Kyc from "./components/KYC/KYC steps/KYC-steps";
 
 export default function Register() {
   // Translations

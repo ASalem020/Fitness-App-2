@@ -13,8 +13,12 @@ import { Mail, Lock, Facebook, Chrome, Apple, Loader2 } from "lucide-react";
 import { loginSchema, type LoginFormData } from "@/lib/schemas/login.schemas";
 import { useLogin } from "../hooks/use-login";
 import { Link } from "react-router-dom";
+import { useTranslations } from "use-intl";
 
 export default function LoginForm() {
+  // translation
+  const t = useTranslations("login.form");
+
   // mutation
   const { mutate, isPending } = useLogin();
 
@@ -34,8 +38,10 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full rounded-3xl ">
-      <h2 className="text-white text-3xl font-bold text-center mb-5">Login</h2>
+    <div className="w-full rounded-3xl min-w-80">
+      <h2 className="text-white text-3xl font-bold text-center mb-5">
+        {t("title")}
+      </h2>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -52,7 +58,7 @@ export default function LoginForm() {
                     startIcon={
                       <Mail className="h-5 w-5 text-gray-400 pointer-events-none" />
                     }
-                    placeholder="Email"
+                    placeholder={t("email")}
                     type="email"
                   />
                 </FormControl>
@@ -72,7 +78,7 @@ export default function LoginForm() {
                   <Input
                     {...field}
                     startIcon={<Lock className="w-5 h-5 text-gray-400" />}
-                    placeholder="Password"
+                    placeholder={t("password")}
                     type="password"
                   />
                 </FormControl>
@@ -83,17 +89,17 @@ export default function LoginForm() {
 
           <div className="text-right">
             <Link
-              to="/forgot-password"
+              to="/forget-password"
               className="text-[#FF4D00] text-sm font-semibold underline "
             >
-              Forget Password?
+              {t("forgetPassword")}
             </Link>
           </div>
 
           {/* Divider */}
           <div className="flex items-center gap-4 mx-14 ">
             <div className="h-[1px] flex-grow bg-white"></div>
-            <span className="text-gray-300 text-sm">Or</span>
+            <span className="text-gray-300 text-sm">{t("or")}</span>
             <div className="h-[1px] flex-grow bg-white"></div>
           </div>
 
@@ -126,19 +132,19 @@ export default function LoginForm() {
                 Please wait
               </>
             ) : (
-              "Login"
+              t("loginBtn")
             )}
           </Button>
         </form>
       </Form>
 
       <p className="text-white text-center mt-2 text-sm">
-        Dont Have An Account Yet?{" "}
+        {t("notHaveAccount")}
         <Link
           to="/register"
           className="text-[#FF4D00] font-bold hover:underline transition-colors"
         >
-          Register
+          {t("registerLink")}
         </Link>
       </p>
     </div>

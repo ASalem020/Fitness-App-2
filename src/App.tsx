@@ -10,6 +10,7 @@ import ForgetPassword from "./pages/forget-pass/forget-password";
 import Classes from "./pages/classes/classes";
 import Healthy from "./pages/healthy/healthy";
 import { Toaster } from "sonner";
+import Register from "./pages/register/register";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/forget-password" element={<ForgetPassword />} />
         </Route>
       </Routes>

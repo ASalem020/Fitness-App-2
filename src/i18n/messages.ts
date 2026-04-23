@@ -10,6 +10,7 @@ import {
   goalAr,
   levelsAr,
 } from "./ar/kyc";
+import { loginFormAr } from "./ar/login";
 import { formAr, formValidationAr } from "./ar/register";
 import { footerEn } from "./en/footer";
 import { emailStepEn, newPassStepEn, otpStepEn } from "./en/forget-pass";
@@ -23,6 +24,7 @@ import {
   goalEn,
   levelsEn,
 } from "./en/kyc";
+import { loginFormEn } from "./en/login";
 import { formEn, formValidationEn } from "./en/register";
 
 export const messages = {
@@ -38,6 +40,9 @@ export const messages = {
       "email-step": emailStepEn,
       "otp-step": otpStepEn,
       "new-pass-step": newPassStepEn,
+    },
+    login: {
+      form: loginFormEn,
     },
     register: {
       form: formEn,
@@ -59,7 +64,7 @@ export const messages = {
     header: headerAr,
     home: {
       hero: heroAr,
-       "about-us": aboutUsAr,
+      "about-us": aboutUsAr,
       "why-us": whyUsAr,
       workouts: workoutsAr,
     },
@@ -68,6 +73,7 @@ export const messages = {
       "otp-step": otpStepAr,
       "new-pass-step": newPassStepAr,
     },
+    login: { form: loginFormAr },
     register: {
       form: formAr,
       formValidation: formValidationAr,
