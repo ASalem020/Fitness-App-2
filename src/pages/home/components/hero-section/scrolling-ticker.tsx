@@ -1,17 +1,15 @@
 import { Sparkle } from "lucide-react";
+import { useTranslations } from "use-intl";
 
 export default function ScrollingTicker() {
-  // variable
-  const scrollingTicker = [
-    "outdoor & online trainers",
-    "personal training",
-    "live classes",
-  ];
+  // Translation
+  const t = useTranslations("footer");
+
   return (
     <div className="bg-[#FF4100] flex items-center overflow-hidden h-20 whitespace-nowrap w-full">
       <div className="flex animate-ticker items-center w-max font-inter">
         {Array(4)
-          .fill(scrollingTicker)
+          .fill(t.raw("scrollingTicker"))
           .flat()
           .map((item, index) => (
             <div className="flex items-center gap-8 pr-8" key={index}>
