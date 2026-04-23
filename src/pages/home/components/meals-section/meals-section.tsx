@@ -23,7 +23,7 @@ export default function MealsSection() {
         />
       </div>
 
-      {/* Gray Overlay (جزء بس من السكشن) */}
+      {/* Gray Overlay */}
       <div className="absolute top-16 left-0 right-0 bottom-56 bg-gray-300/80 hidden lg:block"></div>
 
       {/* Content */}
