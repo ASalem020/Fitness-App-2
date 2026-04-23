@@ -30,8 +30,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const renderedEndIcon = isPassword ? (
-      <button type="button" onClick={handleTogglePassword}>
-        {showPassword ? <EyeOff /> : <Eye />}
+      <button
+        type="button"
+        tabIndex={-1}
+        onClick={handleTogglePassword}
+        className="text-muted-foreground transition-colors hover:text-foreground focus:outline-none text-gray-400"
+      >
+        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
       </button>
     ) : (
       endIcon
@@ -40,7 +45,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(
-          "flex h-14 w-full items-center rounded-full border border-input bg-background px-4",
+          "flex h-12 w-full items-center rounded-2xl border border-input bg-background px-4 text-sm transition-colors focus-within:border-[#FF4A11] focus-within:outline-none focus-within:ring-1 focus-within:ring-[#FF4A11] disabled:cursor-not-allowed disabled:opacity-50",
           containerClassName
         )}
         dir={locale === "ar" ? "rtl" : "ltr"}
