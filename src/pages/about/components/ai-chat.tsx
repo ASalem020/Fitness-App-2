@@ -28,7 +28,7 @@ export default function AIChat() {
   ];
 
   // State
-  const [open, setOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessageType[]>(initialValue);
   const [previousChats, setPreviousChats] = useState<PreviousChatType[]>(() =>
@@ -102,8 +102,11 @@ export default function AIChat() {
 
   return (
     <>
-      {!open && (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center">
+      {!isChatOpen && (
+        <div
+          className="fixed bottom-6 right-6 z-50 flex flex-col items-center"
+          onClick={() => setIsChatOpen(true)}
+        >
           {/* image */}
           <img
             src={image}
@@ -113,7 +116,6 @@ export default function AIChat() {
 
           {/* button */}
           <Button
-            onClick={() => setOpen(true)}
             className="
               bg-orange-500 text-white px-5 py-3 rounded-full
               shadow-[0_0_25px_rgba(255,115,0,0.7)]
@@ -126,27 +128,30 @@ export default function AIChat() {
       )}
 
       {/* chat */}
-      {open && (
-        <>
-          <div className="fixed top-24 right-32 z-30">
-            <img
-              src={image}
-              alt="image chat ai"
-              className="w-24 h-24 object-contain -mb-3"
-            />
-            <Button
-              onClick={() => setOpen(false)}
-              className="
+      {isChatOpen && (
+        <div className="relative">
+          <div className="fixed bottom-6 right-6 w-96 h-[420px] z-30">
+            {/* close button */}
+            <div
+              className=" absolute -top-32 right-1/2 translate-x-1/2 flex flex-col items-end z-40"
+              onClick={() => setIsChatOpen(false)}
+            >
+              <img
+                src={image}
+                alt="image chat ai"
+                className="w-24 h-24 object-contain -mb-3 mr-4"
+              />
+              <Button
+                className="
                 bg-orange-600 text-white px-5 py-3 rounded-full
                 shadow-[0_0_25px_rgba(255,115,0,0.7)]
                 hover:scale-105 transition
               "
-            >
-              Tap to Close
-            </Button>
-          </div>
+              >
+                Tap to Close
+              </Button>
+            </div>
 
-          <div className="fixed bottom-6 right-6 w-96 h-[420px] z-30">
             {/* overlay  */}
             <div
               className="
@@ -233,7 +238,7 @@ export default function AIChat() {
               />
             )}
           </div>
-        </>
+        </div>
       )}
     </>
   );

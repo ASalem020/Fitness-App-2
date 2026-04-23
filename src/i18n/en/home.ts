@@ -2,6 +2,39 @@ export const heroEn = {
   title: "YOUR BODY CAN <span>STAND ALMOST</span> ANYTHING",
   description:
     "It's your mind that needs convincing. Push past your limits, stay committed, and watch as your body transform into powerhouse of strength and resilience. Start your journey today & become truly capable of!",
+  activeMembers : "Active Members",
+  certifiedTrainers : "Certified Trainers",
+  yearsOfExperience : "Years Of Experience",
+  getStarted:"Get Started",
+  exploreMore: "Explore More",
+};
+
+export const aboutUsEn = {
+  "section-title": "About Us",
+  title: "EMPOWERING YOU TO ACHIEVE <span>YOUR FITNESS</span> GOALS",
+  description:
+    "We believe fitness is more than just a workout—it's a lifestyle. With top-of- the-line facilities, certified trainers, and a supportive community, we're here to inspire and guide you every step of the way.",
+  trainer: {
+    title: "Personal Trainer",
+    description:
+      "Achieve your fitness goals with the guidance of our certified trainers.",
+  },
+  programs: {
+    title: "Cardio Programs",
+    description:
+      "From steady-state runs to interval sprints, our treadmill programs.",
+  },
+  equipment: {
+    title: "Quality Equipment",
+    description:
+      "Our gym is equipped with the latest cardio & strength machines.",
+  },
+  nutrition: {
+    title: "Healthy Nutrition",
+    description:
+      "Fuel your fitness journey with customized meal plans for you.",
+  },
+  getStarted:"Get Started"
 };
 
 export const whyUsEn = {

@@ -4,7 +4,7 @@ import image3 from'../../../assets/images/image-about3.png'
 
 export default function AboutImages() {
   return (
-    <div className="relative h-screen z-10 ">
+    <div className="relative h-screen z-10 mb-6 mt-8">
 
       {/* الصورة الكبيرة فوق */}
       <img

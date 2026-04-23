@@ -1,7 +1,7 @@
 import { footerAr } from "./ar/footer";
 import { emailStepAr, newPassStepAr, otpStepAr } from "./ar/forget-pass";
 import { headerAr } from "./ar/header";
-import { heroAr, whyUsAr, workoutsAr } from "./ar/home";
+import { aboutUsAr, heroAr, whyUsAr, workoutsAr } from "./ar/home";
 import {
   genderAr,
   ageAr,
@@ -14,7 +14,7 @@ import { formAr, formValidationAr } from "./ar/register";
 import { footerEn } from "./en/footer";
 import { emailStepEn, newPassStepEn, otpStepEn } from "./en/forget-pass";
 import { headerEn } from "./en/header";
-import { heroEn, whyUsEn, workoutsEn } from "./en/home";
+import { aboutUsEn, heroEn, whyUsEn, workoutsEn } from "./en/home";
 import {
   genderEn,
   ageEn,
@@ -30,6 +30,7 @@ export const messages = {
     header: headerEn,
     home: {
       hero: heroEn,
+      "about-us": aboutUsEn,
       "why-us": whyUsEn,
       workouts: workoutsEn,
     },
@@ -58,6 +59,7 @@ export const messages = {
     header: headerAr,
     home: {
       hero: heroAr,
+       "about-us": aboutUsAr,
       "why-us": whyUsAr,
       workouts: workoutsAr,
     },

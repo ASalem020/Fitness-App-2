@@ -3,6 +3,7 @@ import AboutImages from "@/pages/about/components/about-image";
 import { Button } from "@/components/ui/button";
 import Feature from "@/pages/about/components/feature";
 import SectionTitle from "@/components/shared/section-title";
+import { useTranslations } from "use-intl";
 
 export type FeatureType = {
   img: string;
@@ -10,32 +11,35 @@ export type FeatureType = {
   text: string;
 };
 
-const features: FeatureType[] = [
-  {
-    img: image,
-    title: "Personal Trainer",
-    text: "Achieve your fitness goals with the guidance of our certified trainers",
-  },
-  {
-    img: image,
-    title: "Cardio Programs",
-    text: " From steady-state runs to interval sprints, our treadmill programs.",
-  },
-  {
-    img: image,
-    title: "Quality Equipment",
-    text: " Our gym is equipped with the latest cardio & strength machines.",
-  },
-  {
-    img: image,
-    title: "Healthy Nutrition",
-    text: "Fuel your fitness journey with customized meal plans for you.",
-  },
-];
-
 export default function AboutUsSection() {
+  // Translation
+  const t = useTranslations("home.about-us");
+
+  const features: FeatureType[] = [
+    {
+      img: image,
+      title: t("trainer.title"),
+      text: t("trainer.description"),
+    },
+    {
+      img: image,
+      title: t("programs.title"),
+      text: t("programs.description"),
+    },
+    {
+      img: image,
+      title: t("equipment.title"),
+      text: t("equipment.description"),
+    },
+    {
+      img: image,
+      title: t("nutrition.title"),
+      text: t("nutrition.description"),
+    },
+  ];
+
   return (
-    <section className=" bg-white text-black pb-6 ">
+    <section className=" bg-white dark:bg-black text-black dark:text-white pt-8 pb-12  ">
       <div className="container grid grid-cols-1 lg:grid-cols-2 items-center lg:gap-20 mx-auto ">
         {/* images */}
         <div className="order-2 lg:order-1 -mb-64 lg:mb-2">
@@ -46,20 +50,18 @@ export default function AboutUsSection() {
         <div className="max-w-xl lg:mt-12 ml-4 order-1 lg:order-2">
           {/* Title */}
           <SectionTitle
-            title="workouts"
-            subtitle="About Us"
+            title={t("section-title")}
+            subtitle={t("section-title")}
             position="start"
             className="top-2 text-white"
           />
           <h2 className="text-xl lg:text-4xl font-bold mb-4 leading-snug mt-7 uppercase ">
-            EMPOWERING YOU TO ACHIEVE
-            <span className="text-orange-500"> YOUR FITNESS</span> GOALS
+            {t.rich("title", {
+              span: (chunks) => <span className="text-primary">{chunks}</span>,
+            })}
           </h2>
-          <p className=" mb-16 mt-6 sm:text-xl lg:text-lg">
-            We believe fitness is more than just a workout—it's a lifestyle.
-            With top-of- the-line facilities, certified trainers, and a
-            supportive community, we're here to inspire and guide you every step
-            of the way.
+          <p className=" mb-16 mt-6 sm:text-xl lg:text-lg dark:text-white">
+            {t("description")}
           </p>
           {/* Features */}
           <div className="grid lg:grid-cols-2 lg:-mb-8 mb-4 lg:gap-4">
@@ -69,7 +71,7 @@ export default function AboutUsSection() {
           </div>
           {/* Button */}
           <Button className="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-full font-medium relative text-white ">
-            Get Started
+            {t("getStarted")}
             <span className="text-white border-2 border-white size-9 bg-orange-600 rounded-full absolute top-1 -right-4 flex items-center justify-center">
               <img
                 src={image}
